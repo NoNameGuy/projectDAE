@@ -5,14 +5,26 @@
  */
 package entidades;
 
-import javax.ejb.Stateless;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  *
  * @author paulovieira
  */
-@Stateless
+@Entity
 public class Participante {
+    @Id
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")

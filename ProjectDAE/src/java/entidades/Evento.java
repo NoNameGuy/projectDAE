@@ -6,13 +6,25 @@
 package entidades;
 
 import javax.ejb.Stateful;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  *
  * @author paulovieira
  */
-@Stateful
+@Entity
 public class Evento {
+    @Id
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
