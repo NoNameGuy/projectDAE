@@ -6,11 +6,12 @@
 package entity;
 
 import java.io.Serializable;
-import javax.ejb.Stateless;
+import java.util.ArrayList;
+
+import java.util.List;
+
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+
 
 /**
  *
@@ -19,14 +20,17 @@ import javax.validation.constraints.Pattern;
 @Entity
 public class Participant extends User implements Serializable {
  
+    
 
     public Participant(int id, String password, String name, String email) {
         super(id, password, name, email);
+        
     }
     
     public Participant() {
-        
     }
+    
+    
 
 
 }

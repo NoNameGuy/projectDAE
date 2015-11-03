@@ -5,6 +5,8 @@
  */
 package entity;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
@@ -26,10 +28,13 @@ public class User {
     @NotNull
     @Pattern(regexp = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\." + "[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@" + "(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message = "{invalid.email}")
     protected String email;
+    
+    protected List<Event> events;
     //@NotNull
     //protected String role;
 
     public User() {
+        this.events = new ArrayList<>();
     }
     
     public User(int id, String password, String name, String email) {
@@ -37,6 +42,7 @@ public class User {
         this.password = password;
         this.name = name;
         this.email = email;
+        this.events = new ArrayList<>();
         //this.role = role;
     }
 
