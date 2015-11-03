@@ -5,18 +5,40 @@
  */
 package entity;
 
-import javax.ejb.Stateless;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 /**
  *
- * @author paulovieira
+ * @author Francisco
  */
 @Entity
+
 public class User {
     @Id
-    private int id;
+    protected int id;
+    @NotNull
+    protected String password;
+    @NotNull
+    protected String name;
+    @NotNull
+    @Pattern(regexp = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\." + "[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@" + "(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message = "{invalid.email}")
+    protected String email;
+    //@NotNull
+    //protected String role;
+
+    public User() {
+    }
+    
+    public User(int id, String password, String name, String email) {
+        this.id = id;
+        this.password = password;
+        this.name = name;
+        this.email = email;
+        //this.role = role;
+    }
 
     public int getId() {
         return id;
@@ -26,6 +48,28 @@ public class User {
         this.id = id;
     }
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
 }

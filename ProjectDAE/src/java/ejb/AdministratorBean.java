@@ -21,11 +21,11 @@ public class AdministratorBean {
     @PersistenceContext
     private EntityManager em;
 
-    public void createAdmin(int id, String password, String name, String email, String role) {
+    public void createAdmin(int id, String password, String name, String email) {
 
         try {
             
-            Administrator admin = new Administrator(id, password, name, email, role);
+            Administrator admin = new Administrator(id, password, name, email);
             em.persist(em);
 
         } catch (Exception e) {
@@ -44,7 +44,7 @@ public class AdministratorBean {
             admin.setPassword(password);
             admin.setName(name);
             admin.setEmail(email);
-            admin.setRole(role);
+            //admin.setRole(role);
             em.merge(admin);
         } catch (Exception e) {
             throw new EJBException(e.getMessage());
