@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entidades;
+package entity;
 
 import javax.ejb.Stateless;
 import javax.persistence.Entity;
@@ -14,7 +14,7 @@ import javax.persistence.Id;
  * @author paulovieira
  */
 @Entity
-public class Responsavel {
+public class Responsable {
     @Id
     private int id;
 

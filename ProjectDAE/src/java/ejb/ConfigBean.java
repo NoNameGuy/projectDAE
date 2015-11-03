@@ -3,28 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entidades;
+package ejb;
 
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.ejb.Singleton;
+import javax.ejb.Startup;
 
 /**
  *
  * @author paulovieira
  */
-@Entity
-public class Participante {
-    @Id
-    private int id;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+@Singleton
+@Startup
+public class ConfigBean {
+    
+    
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")

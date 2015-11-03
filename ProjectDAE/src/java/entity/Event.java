@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entidades;
+package entity;
 
-import javax.ejb.Stateless;
+import javax.ejb.Stateful;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -14,7 +14,7 @@ import javax.persistence.Id;
  * @author paulovieira
  */
 @Entity
-public class Utilizador {
+public class Event {
     @Id
     private int id;
 
