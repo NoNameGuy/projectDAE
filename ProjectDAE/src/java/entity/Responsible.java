@@ -6,15 +6,22 @@
 package entity;
 
 import java.io.Serializable;
+<<<<<<< HEAD
 import java.util.LinkedList;
+=======
+import javax.ejb.Stateless;
+>>>>>>> 7bae0615f32c748eba8b4cc57401122a40dc2a08
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 /**
  *
  * @author paulovieira
  */
 @Entity
+<<<<<<< HEAD
 public class Responsible implements Serializable {
     @Id
     private int id;
@@ -23,13 +30,18 @@ public class Responsible implements Serializable {
     public int getId() {
         return id;
     }
+=======
+public class Responsible extends User implements Serializable {
+ 
+>>>>>>> 7bae0615f32c748eba8b4cc57401122a40dc2a08
 
-    public void setId(int id) {
-        this.id = id;
+    public Responsible(int id, String password, String name, String email) {
+        super(id, password, name, email);
     }
     
-    
+    public Responsible() {
+        
+    }
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+
 }

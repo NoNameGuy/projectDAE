@@ -5,27 +5,32 @@
  */
 package entity;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+
+import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
+
 
 /**
  *
  * @author paulovieira
  */
 @Entity
-public class Participant {
-    @Id
-    private int id;
+public class Participant extends User implements Serializable {
+ 
+    
 
-    public int getId() {
-        return id;
+    public Participant(int id, String password, String name, String email) {
+        super(id, password, name, email);
+        
     }
-
-    public void setId(int id) {
-        this.id = id;
+    
+    public Participant() {
     }
+    
+    
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+
 }
