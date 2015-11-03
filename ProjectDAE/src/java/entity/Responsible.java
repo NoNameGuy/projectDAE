@@ -5,7 +5,7 @@
  */
 package entity;
 
-import javax.ejb.Stateless;
+import java.util.LinkedList;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -14,10 +14,11 @@ import javax.persistence.Id;
  * @author paulovieira
  */
 @Entity
-public class Responsable {
+public class Responsible {
     @Id
     private int id;
-
+    private LinkedList<Event> eventList;
+    
     public int getId() {
         return id;
     }
@@ -25,6 +26,8 @@ public class Responsable {
     public void setId(int id) {
         this.id = id;
     }
+    
+    
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
