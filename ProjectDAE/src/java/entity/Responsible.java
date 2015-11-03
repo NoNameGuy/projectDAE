@@ -5,6 +5,7 @@
  */
 package entity;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -14,7 +15,7 @@ import javax.persistence.Id;
  * @author paulovieira
  */
 @Entity
-public class Responsible {
+public class Responsible implements Serializable {
     @Id
     private int id;
     private LinkedList<Event> eventList;

@@ -5,6 +5,7 @@
  */
 package ejb;
 
+import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 
@@ -16,8 +17,13 @@ import javax.ejb.Startup;
 @Startup
 public class ConfigBean {
     
+    @EJB
+    AdministratorBean administratorBean;
+    @EJB
+    ResponsibleBean responsibleBean;
+    @EJB
+    ParticipantBean participantBean;
     
-
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
 }

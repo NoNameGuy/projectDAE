@@ -5,9 +5,12 @@
  */
 package ejb;
 
-import java.beans.*;
-import java.io.Serializable;
+import entity.Event;
+import java.util.List;
+import javax.ejb.EJBException;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  *
@@ -16,16 +19,30 @@ import javax.ejb.Stateless;
 @Stateless
 public class ResponsibleBean {
     
-    public void listEvents () {
-        
+    @PersistenceContext
+    private EntityManager entityManager;
+    
+    public List<Event> listEvents () {
+        return entityManager.createNamedQuery("listEvents").getResultList();
     }
     
     public void createEvent () {
-        
+        try {
+           // Event event = new Event();
+           // entityManager.persist(event);
+        } catch (Exception e) {
+            throw new EJBException(e.getMessage());
+        }
     }
     
     public void removeEvent () {
-        
+        try {
+           
+            //Event event = entityManager.find(Event.class, this);
+            //entityManager.remove(event);
+        } catch (Exception e) {
+            throw new EJBException(e.getMessage());
+        }
     }
     
     public void openEventAttendance () {
