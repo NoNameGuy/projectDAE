@@ -33,6 +33,7 @@ public class ConfigBean {
            
             // Create Administrator
        
+           administratorBean.createAdmin(1, "xxx", "DAE", "DAE@DAE.pt");
        
             // Create Responsible
        
