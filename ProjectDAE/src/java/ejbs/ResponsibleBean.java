@@ -6,6 +6,7 @@
 package ejbs;
 
 import entity.Event;
+import entity.Responsible;
 import java.util.List;
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
@@ -20,10 +21,64 @@ import javax.persistence.PersistenceContext;
 public class ResponsibleBean {
     
     @PersistenceContext
-    private EntityManager entityManager;
+    private EntityManager em;
     
     public List<Event> listEvents () {
-        return entityManager.createNamedQuery("listEvents").getResultList();
+        return em.createNamedQuery("listEvents").getResultList();
+    }
+    
+    //Create Responsible
+
+    public void createResponsible(int id, String password, String name, String email) {
+
+        try {
+
+            Responsible responsible = new Responsible(id, password, name, email);
+            em.persist(em);
+
+        } catch (Exception e) {
+            throw new EJBException(e.getMessage());
+        }
+
+    }
+
+    //Responsible Update
+    
+    public void updateResponsible(int id, String password, String name, String email, String role) {
+        try {
+            Responsible responsible = em.find(Responsible.class, id);
+            if (responsible == null) {
+                return;
+            }
+            responsible.setPassword(password);
+            responsible.setName(name);
+            responsible.setEmail(email);
+            //responsible.setRole(role);
+            em.merge(responsible);
+        } catch (Exception e) {
+            throw new EJBException(e.getMessage());
+        }
+    }
+
+    //remove Responsible
+    
+    public void removeResponsible(int id) {
+        try {
+            Responsible responsible = em.find(Responsible.class, id);
+            em.remove(responsible);
+        } catch (Exception e) {
+            throw new EJBException(e.getMessage());
+        }
+    }
+
+    //Verify if responsible exists
+    
+    public boolean existeResponsible(String username) {
+        try {
+            return em.find(Responsible.class, username) != null;
+        } catch (Exception e) {
+            throw new EJBException(e.getMessage());
+        }
     }
     
     public void createEvent () {
@@ -53,11 +108,11 @@ public class ResponsibleBean {
         
     }
     
-    public void enrollParticipant () {
+    public void enrollResponsible () {
         
     }
     
-    public void unenrollParticipant () {
+    public void unenrollResponsible () {
         
     }
 }
