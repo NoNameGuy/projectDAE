@@ -26,4 +26,39 @@ public class ConfigBean {
     
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
+    
+   public void populateBD() {
+       
+       try {
+           
+            // Create Administrator
+       
+       
+            // Create Responsible
+       
+       
+            // Create Participant
+         
+
+            // Create Course
+       
+       
+            // Create Event
+       
+       
+            // Create Subject
+            
+            
+           
+       } catch (Exception e){
+           
+           System.err.println("Error: " + e.getMessage());
+           
+       }
+       
+
+       
+       
+       
+   }
 }
