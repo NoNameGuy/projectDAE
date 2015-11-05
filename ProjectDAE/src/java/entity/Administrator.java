@@ -6,11 +6,7 @@
 package entity;
 
 import java.io.Serializable;
-import javax.ejb.Stateless;
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 
 /**
  *

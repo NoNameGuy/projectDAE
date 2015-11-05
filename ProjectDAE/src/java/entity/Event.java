@@ -5,11 +5,9 @@
  */
 package entity;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
-import javax.ejb.Stateful;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
