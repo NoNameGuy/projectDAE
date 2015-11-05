@@ -35,7 +35,7 @@ public class User {
     //protected String role;
 
     public User() {
-        this.events = new ArrayList<>();
+        this.events = new LinkedList<>();
     }
     
     public User(int id, String password, String name, String email) {
