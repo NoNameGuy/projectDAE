@@ -20,11 +20,13 @@ public class AdministratorBean {
 
     @PersistenceContext
     private EntityManager em;
+    
+    //Create Admin
 
     public void createAdmin(int id, String password, String name, String email) {
 
         try {
-            
+
             Administrator admin = new Administrator(id, password, name, email);
             em.persist(em);
 
@@ -33,7 +35,8 @@ public class AdministratorBean {
         }
 
     }
-    
+
+    //Admin Update
     
     public void updateAdmin(int id, String password, String name, String email, String role) {
         try {
@@ -50,8 +53,10 @@ public class AdministratorBean {
             throw new EJBException(e.getMessage());
         }
     }
+
+    //remove admin
     
-        public void removeAdmin(int id) {
+    public void removeAdmin(int id) {
         try {
             Administrator admin = em.find(Administrator.class, id);
             em.remove(admin);
@@ -59,9 +64,15 @@ public class AdministratorBean {
             throw new EJBException(e.getMessage());
         }
     }
+
+    //Verify if admin exists
     
-    public void persist(Object object) {
-        em.persist(object);
+    public boolean existeAdmin(String username) {
+        try {
+            return em.find(Administrator.class, username) != null;
+        } catch (Exception e) {
+            throw new EJBException(e.getMessage());
+        }
     }
-    
+
 }
