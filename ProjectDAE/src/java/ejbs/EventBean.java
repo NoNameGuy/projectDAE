@@ -5,8 +5,14 @@
  */
 package ejbs;
 
+import entity.Administrator;
+import entity.Event;
+import java.util.Date;
 import java.util.List;
+import javax.ejb.EJBException;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  *
@@ -15,21 +21,30 @@ import javax.ejb.Stateless;
 @Stateless
 public class EventBean {
 
+    @PersistenceContext
+    private EntityManager em;
     
+    /*public List<String> list() {
+        
+    }*/
     
-    public List<String> list() {
+    public void createEvent(int id, Date date, String name, String type, String local, long responsableId) {
+        
+        try {
+            
+            Event event = new Event(id, date, name, type, local, responsableId);
+            em.persist(em);
+
+        } catch (Exception e) {
+            throw new EJBException(e.getMessage());
+        }
+    }
+    
+    public void updateEvent() {
         
     }
     
-    public boolean create() {
-        return false;
-    }
-    
-    public boolean update() {
-        
-    }
-    
-    public void delete() {
+    public void deleteEvent() {
         
     }
 }
