@@ -7,6 +7,7 @@ package entity;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  *
@@ -14,7 +15,6 @@ import javax.persistence.Entity;
  */
 @Entity
 public class Administrator extends User implements Serializable {
- 
 
     public Administrator(int id, String password, String name, String email) {
         super(id, password, name, email);
@@ -23,6 +23,4 @@ public class Administrator extends User implements Serializable {
     public Administrator() {
         
     }
-
-
 }

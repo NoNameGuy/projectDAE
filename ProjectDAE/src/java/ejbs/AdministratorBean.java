@@ -24,12 +24,9 @@ public class AdministratorBean {
     //Create Admin
 
     public void createAdmin(int id, String password, String name, String email) {
-
         try {
-
             Administrator admin = new Administrator(id, password, name, email);
             em.persist(em);
-
         } catch (Exception e) {
             throw new EJBException(e.getMessage());
         }

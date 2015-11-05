@@ -5,11 +5,13 @@
  */
 package entity;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
@@ -18,6 +20,11 @@ import javax.validation.constraints.Pattern;
  * @author Francisco
  */
 @Entity
+@Table(name = "USERS")
+    @NamedQueries({
+        @NamedQuery(name = "getAllUsers",
+                query = "SELECT u FROM Users u ORDER BY u.name")
+    })
 
 public class User {
     @Id
