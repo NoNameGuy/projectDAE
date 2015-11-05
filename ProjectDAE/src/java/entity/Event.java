@@ -10,6 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -21,10 +22,11 @@ public class Event {
     private int id;
     
     protected Date date;
+    @NotNull
     protected String name;
     protected String type;
     protected String local;
-    protected List<Participant> participantIds;
+    protected List<Participant> participants;
     protected long responsableId;
    
     
@@ -33,7 +35,7 @@ public class Event {
     // "Insert Code > Add Business Method")
 
     public Event() {
-        this.participantIds = new LinkedList<Participant>();
+        this.participants = new LinkedList<Participant>();
     }
 
     public Event(int id, Date date, String name, String type, String local, long responsableId) {
@@ -42,7 +44,7 @@ public class Event {
         this.name = name;
         this.type = type;
         this.local = local;
-        this.participantIds = new LinkedList<Participant>();
+        this.participants = new LinkedList<Participant>();
         this.responsableId = responsableId;
     }
 
@@ -86,12 +88,12 @@ public class Event {
         this.local = local;
     }
 
-    public List<Participant> getParticipantIds() {
-        return participantIds;
+    public List<Participant> getParticipants() {
+        return participants;
     }
 
-    public void setParticipantIds(List<Participant> participantIds) {
-        this.participantIds = participantIds;
+    public void setParticipants(List<Participant> participants) {
+        this.participants = participants;
     }
 
     public long getResponsableId() {

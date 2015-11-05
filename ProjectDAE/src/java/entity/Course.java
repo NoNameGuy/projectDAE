@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -23,18 +24,23 @@ public class Course implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
+    @NotNull
     private String name;
     private List<Participant> participants;
+    private List<Subject> subjects;
     private Long idResponsable;
 
     public Course() {
         participants = new LinkedList<>();
+        subjects = new LinkedList<>();
     }
 
     public Course(Long id, String name, List<Participant> participants, Long idResponsable) {
         this.id = id;
         this.name = name;
         this.participants = new LinkedList<>();
+        this.subjects = new LinkedList<>();
         this.idResponsable = idResponsable;
     }
     
@@ -64,6 +70,14 @@ public class Course implements Serializable {
 
     public Long getIdResponsable() {
         return idResponsable;
+    }
+
+    public List<Subject> getSubjects() {
+        return subjects;
+    }
+
+    public void setSubjects(List<Subject> subjects) {
+        this.subjects = subjects;
     }
 
     
