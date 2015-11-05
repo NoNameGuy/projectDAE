@@ -6,6 +6,7 @@
 package entity;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -42,7 +43,7 @@ public class User {
         this.password = password;
         this.name = name;
         this.email = email;
-        this.events = new ArrayList<>();
+        this.events = new LinkedList<>();
         //this.role = role;
     }
 

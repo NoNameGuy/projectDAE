@@ -35,7 +35,7 @@ public class Event {
     // "Insert Code > Add Business Method")
 
     public Event() {
-        this.participantIds = new ArrayList<Participant>();
+        this.participantIds = new LinkedList<Participant>();
     }
 
     public Event(int id, Date date, String name, String type, String local, long responsableId) {
@@ -44,7 +44,7 @@ public class Event {
         this.name = name;
         this.type = type;
         this.local = local;
-        this.participantIds = new ArrayList<Participant>();
+        this.participantIds = new LinkedList<Participant>();
         this.responsableId = responsableId;
     }
 

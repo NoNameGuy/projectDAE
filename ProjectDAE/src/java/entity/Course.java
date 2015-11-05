@@ -7,6 +7,7 @@ package entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,13 +29,13 @@ public class Course implements Serializable {
     private Long idResponsable;
 
     public Course() {
-        participants = new ArrayList<>();
+        participants = new LinkedList<>();
     }
 
     public Course(Long id, String name, List<Participant> participants, Long idResponsable) {
         this.id = id;
         this.name = name;
-        this.participants = new ArrayList<>();
+        this.participants = new LinkedList<>();
         this.idResponsable = idResponsable;
     }
     
