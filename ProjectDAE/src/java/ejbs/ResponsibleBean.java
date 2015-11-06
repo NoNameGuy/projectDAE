@@ -34,7 +34,7 @@ public class ResponsibleBean {
         try {
 
             Responsible responsible = new Responsible(id, password, name, email);
-            em.persist(em);
+            em.persist(responsible);
 
         } catch (Exception e) {
             throw new EJBException(e.getMessage());

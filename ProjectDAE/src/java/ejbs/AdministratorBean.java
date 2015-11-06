@@ -26,7 +26,7 @@ public class AdministratorBean {
     public void createAdmin(int id, String password, String name, String email) {
         try {
             Administrator admin = new Administrator(id, password, name, email);
-            em.persist(em);
+            em.persist(admin);
         } catch (Exception e) {
             throw new EJBException(e.getMessage());
         }

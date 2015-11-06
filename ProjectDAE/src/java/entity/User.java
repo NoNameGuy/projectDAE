@@ -20,11 +20,6 @@ import javax.validation.constraints.Pattern;
  * @author Francisco
  */
 @Entity
-@Table(name = "USERS")
-    @NamedQueries({
-        @NamedQuery(name = "getAllUsers",
-                query = "SELECT u FROM Users u ORDER BY u.name")
-    })
 
 public class User {
     @Id

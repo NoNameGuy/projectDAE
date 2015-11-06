@@ -29,7 +29,7 @@ public class ParticipantBean implements Serializable {
         try {
 
             Participant participant = new Participant(id, password, name, email);
-            em.persist(em);
+            em.persist(participant);
 
         } catch (Exception e) {
             throw new EJBException(e.getMessage());

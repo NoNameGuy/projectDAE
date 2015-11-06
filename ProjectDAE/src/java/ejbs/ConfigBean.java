@@ -5,6 +5,7 @@
  */
 package ejbs;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
@@ -26,18 +27,20 @@ public class ConfigBean {
     
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
-    
+   
+   @PostConstruct
    public void populateBD() {
        
        try {
            
             // Create Administrator
        
-           administratorBean.createAdmin(1, "xxx", "DAE", "DAE@DAE.pt");
-       
+            administratorBean.createAdmin(1, "administrator1", "DAE1", "Admistrator1@DAE.pt");
+            administratorBean.createAdmin(2, "administrator2", "DAE2", "Admistrator2@DAE.pt");
             // Create Responsible
-       
-       
+            
+            participantBean.createParticipant(1, "participant1", "DAE1", "Participant1@DAE.pt");
+            participantBean.createParticipant(2, "participant2", "DAE2", "Participant2@DAE.pt");
             // Create Participant
          
 
