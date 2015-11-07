@@ -5,10 +5,12 @@
  */
 package entity;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
@@ -17,8 +19,8 @@ import javax.validation.constraints.Pattern;
  * @author Francisco
  */
 @Entity
-
-public class User {
+@Table(name = "USER")
+public abstract class User implements Serializable {
     @Id
     protected int id;
     @NotNull
