@@ -10,6 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -20,6 +21,9 @@ import javax.validation.constraints.Pattern;
  */
 @Entity
 @Table(name = "USERS")
+@NamedQuery(
+    name="getAllUsers",
+    query="SELECT u FROM User u ORDER BY u.name")
 public class User implements Serializable {
     @Id
     protected int id;
