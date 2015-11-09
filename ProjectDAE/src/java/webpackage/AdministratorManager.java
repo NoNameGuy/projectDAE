@@ -45,6 +45,46 @@ public String createAdmin() {
         
         
     }
+
+    public AdministratorBean getAdminBean() {
+        return adminBean;
+    }
+
+    public void setAdminBean(AdministratorBean adminBean) {
+        this.adminBean = adminBean;
+    }
+
+    public int getIdAdmin() {
+        return idAdmin;
+    }
+
+    public void setIdAdmin(int idAdmin) {
+        this.idAdmin = idAdmin;
+    }
+
+    public String getPasswordAdmin() {
+        return passwordAdmin;
+    }
+
+    public void setPasswordAdmin(String passwordAdmin) {
+        this.passwordAdmin = passwordAdmin;
+    }
+
+    public String getNameAdmin() {
+        return nameAdmin;
+    }
+
+    public void setNameAdmin(String nameAdmin) {
+        this.nameAdmin = nameAdmin;
+    }
+
+    public String getEmailAdmin() {
+        return emailAdmin;
+    }
+
+    public void setEmailAdmin(String emailAdmin) {
+        this.emailAdmin = emailAdmin;
+    }
     
     
     

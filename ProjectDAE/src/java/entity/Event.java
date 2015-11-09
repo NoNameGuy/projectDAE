@@ -11,6 +11,8 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -22,7 +24,7 @@ import javax.validation.constraints.NotNull;
 public class Event {
     @Id
     private int id;
-    
+    @Temporal(TemporalType.DATE)
     protected Date date;
     @NotNull
     protected String name;
