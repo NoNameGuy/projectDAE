@@ -24,6 +24,8 @@ public class ConfigBean {
     ResponsibleBean responsibleBean;
     @EJB
     ParticipantBean participantBean;
+    @EJB
+    EventBean eventBean;
     
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
@@ -48,7 +50,7 @@ public class ConfigBean {
        
        
             // Create Event
-       
+            eventBean.createEvent(1, null, "Evento 1", "Aula", "ESTG", 1);
        
             // Create Subject
             

@@ -19,8 +19,8 @@ import javax.validation.constraints.Pattern;
  * @author Francisco
  */
 @Entity
-@Table(name = "USER")
-public abstract class User implements Serializable {
+@Table(name = "USERS")
+public class User implements Serializable {
     @Id
     protected int id;
     @NotNull
