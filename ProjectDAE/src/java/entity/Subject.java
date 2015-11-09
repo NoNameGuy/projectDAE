@@ -12,7 +12,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -20,7 +25,10 @@ import javax.validation.constraints.NotNull;
  * @author franc
  */
 @Entity
-@Table(name = "SUBJECT")
+@Table(name = "SUBJECTS",
+    uniqueConstraints
+        = @UniqueConstraint(columnNames = {"NAME", "COURSE_CODE", "SCHOLARYEAR"}))
+
 public class Subject implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -29,11 +37,16 @@ public class Subject implements Serializable {
     private Long id;
     @NotNull
     private String name;
+    
+    @ManyToOne
+    @JoinColumn(name = "COURSE_CODE")
     @NotNull
     private Course course;
+    
     private int courseYear;
     @NotNull
     private String scholarYear;
+    @ManyToMany
     private List<Participant> particitants;
 
     public Subject() {

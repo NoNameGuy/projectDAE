@@ -25,15 +25,13 @@ public class User implements Serializable {
     protected int id;
     @NotNull
     protected String password;
-    @NotNull
+    @NotNull(message = "Name must not be empty")
     protected String name;
     @NotNull
     @Pattern(regexp = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\." + "[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@" + "(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message = "{invalid.email}")
     protected String email;
     
     protected List<Event> events;
-    //@NotNull
-    //protected String role;
 
     public User() {
         this.events = new LinkedList<>();
@@ -44,8 +42,6 @@ public class User implements Serializable {
         this.password = password;
         this.name = name;
         this.email = email;
-        this.events = new LinkedList<>();
-        //this.role = role;
     }
 
     public int getId() {

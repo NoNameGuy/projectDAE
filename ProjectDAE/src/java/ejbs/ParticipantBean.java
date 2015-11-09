@@ -5,6 +5,7 @@
  */
 package ejbs;
 
+import entity.Course;
 import entity.Participant;
 import java.io.Serializable;
 import javax.ejb.EJBException;
@@ -24,11 +25,15 @@ public class ParticipantBean implements Serializable {
     
     //Create Participant
 
-    public void createParticipant(int id, String password, String name, String email) {
+    public void createParticipant(int id, String password, String name, String email, int courseID) {
 
         try {
+            Course course = em.find(Course.class, courseID);
+            if (course == null) {
+                throw new EJBException();
+            }
 
-            Participant participant = new Participant(id, password, name, email);
+            Participant participant = new Participant(id, password, name, email, course);
             em.persist(participant);
 
         } catch (Exception e) {
@@ -80,7 +85,7 @@ public class ParticipantBean implements Serializable {
         
     }
     
-    public void enrollInEvent () {
+    public void enrollParticipant () {
         
     }
 }

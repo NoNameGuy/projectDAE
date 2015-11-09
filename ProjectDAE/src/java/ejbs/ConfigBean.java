@@ -41,8 +41,8 @@ public class ConfigBean {
             administratorBean.createAdmin(2, "administrator2", "DAE2", "Admistrator2@DAE.pt");
             // Create Responsible
             
-            participantBean.createParticipant(1, "participant1", "DAE1", "Participant1@DAE.pt");
-            participantBean.createParticipant(2, "participant2", "DAE2", "Participant2@DAE.pt");
+            participantBean.createParticipant(1, "participant1", "DAE1", "Participant1@DAE.pt", 1);
+            participantBean.createParticipant(2, "participant2", "DAE2", "Participant2@DAE.pt", 1);
             // Create Participant
          
 
