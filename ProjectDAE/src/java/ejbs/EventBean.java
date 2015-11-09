@@ -31,7 +31,7 @@ public class EventBean {
         try {
             
             Event event = new Event(id, date, name, type, local, responsableId);
-            em.persist(em);
+            em.persist(event);
 
         } catch (Exception e) {
             throw new EJBException(e.getMessage());
