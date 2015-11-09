@@ -6,6 +6,8 @@
 package webpackage;
 
 import ejbs.AdministratorBean;
+import entity.User;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -87,6 +89,8 @@ public String createAdmin() {
     }
     
     
-    
+    public List<User> getAllUsers() {
+        return adminBean.getAll();
+    }
     
 }

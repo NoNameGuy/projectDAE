@@ -6,6 +6,8 @@
 package ejbs;
 
 import entity.Administrator;
+import entity.User;
+import java.util.List;
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -71,5 +73,11 @@ public class AdministratorBean {
             throw new EJBException(e.getMessage());
         }
     }
+    
+    public List<User> getAll() {
+        return em.createNamedQuery("getAllUsers").getResultList();
+    }
+
+
 
 }
