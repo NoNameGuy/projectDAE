@@ -25,7 +25,7 @@ public class SubjectBean {
 
     public void createSubject(Long id, String name, int courseYear, String scholarYear) {
         try {
-            if (em.find(SubjectBean.class, id) != null) {
+            if (em.find(Subject.class, id) != null) {
                 return;
             }
             Subject subject = new Subject(id, name, courseYear, scholarYear);

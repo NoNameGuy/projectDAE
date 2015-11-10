@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
@@ -25,10 +26,13 @@ import javax.validation.constraints.NotNull;
 @Table(name = "SUBJECTS",
     uniqueConstraints
         = @UniqueConstraint(columnNames = {"NAME", "SCHOLARYEAR"}))
+@NamedQuery(
+    name="getAllSubjects",
+    query="SELECT s FROM Subject s ORDER BY s.name")
 
 public class Subject implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+
     @Id
     //@GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
