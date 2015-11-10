@@ -65,6 +65,14 @@ public class Participant extends User implements Serializable {
     public void setEvents(List<Event> events) {
         this.events = events;
     }
+    
+    public void addEvent(Event event) {
+        events.add(event);
+    }
+    
+    public void removeEvent(Event event) {
+        events.remove(event);
+    }
 
     public List<Subject> getSubjects() {
         return subjects;

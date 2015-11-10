@@ -7,6 +7,7 @@ package ejbs;
 
 import entity.Administrator;
 import entity.Event;
+import entity.Participant;
 import entity.Responsible;
 import java.util.Date;
 import javax.ejb.EJBException;
@@ -50,7 +51,24 @@ public class EventBean {
         
     }
     
-    public void deleteEvent() {
-        
+    public void deleteEvent(int id) {
+        try {
+            Event event = em.find(Event.class, id);
+            if (event == null) {
+                return;
+            }
+
+            event.getResponsible().removeEvent(event);
+            
+            for (Participant participant : event.getParticipants()) {
+                event.removeParticipant(participant);
+            }
+            
+            em.remove(event);
+            
+        } catch (Exception e) {
+            throw e;
+        }
     }
+
 }

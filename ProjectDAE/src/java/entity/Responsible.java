@@ -38,6 +38,14 @@ public class Responsible extends User implements Serializable {
         this.events = events;
     }
     
+    public void addEvent(Event event) {
+        events.add(event);
+    }
+    
+    public void removeEvent(Event event) {
+        events.remove(event);
+    }
+    
     
 
 

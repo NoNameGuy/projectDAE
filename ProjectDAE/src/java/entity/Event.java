@@ -99,6 +99,14 @@ public class Event {
     public void setParticipants(List<Participant> participants) {
         this.participants = participants;
     }
+    
+    public void addParticipant(Participant participant) {
+        participants.add(participant);
+    }
+    
+    public void removeParticipant(Participant participant) {
+        participants.remove(participant);
+    }
 
     public Responsible getResponsible() {
         return responsible;
@@ -107,8 +115,5 @@ public class Event {
     public void setResponsible(Responsible responsible) {
         this.responsible = responsible;
     }
-
-
-    
-    
+ 
 }
