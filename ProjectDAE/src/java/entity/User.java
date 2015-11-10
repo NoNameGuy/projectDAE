@@ -8,7 +8,10 @@ package entity;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.SEQUENCE;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -26,6 +29,8 @@ import javax.validation.constraints.Pattern;
     query="SELECT u FROM User u ORDER BY u.name")
 public class User implements Serializable {
     @Id
+    @GeneratedValue(strategy=SEQUENCE, generator = "CUST_SEQ")
+    @Column(name="ID")
     protected int id;
     @NotNull
     protected String password;

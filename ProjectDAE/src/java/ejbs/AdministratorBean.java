@@ -27,6 +27,10 @@ public class AdministratorBean {
 
     public void createAdmin(int id, String password, String name, String email) {
         try {
+            
+            if(em.find(Administrator.class, id) != null){
+                return;
+            }
             Administrator admin = new Administrator(id, password, name, email);
             em.persist(admin);
         } catch (Exception e) {
