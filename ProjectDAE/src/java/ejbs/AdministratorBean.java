@@ -41,17 +41,16 @@ public class AdministratorBean {
 
     //Admin Update
     
-    public void updateAdmin(int id, String password, String name, String email, String role) {
+    public void updateAdmin(int id, String name, String email, String password) {
         try {
-            Administrator admin = em.find(Administrator.class, id);
-            if (admin == null) {
+            Administrator administrator = em.find(Administrator.class, id);
+            if (administrator == null) {
                 return;
-            }
-            admin.setPassword(password);
-            admin.setName(name);
-            admin.setEmail(email);
-            //admin.setRole(role);
-            em.merge(admin);
+            }   
+            administrator.setPassword(password);
+            administrator.setName(name);
+            administrator.setEmail(email);
+            em.merge(administrator);
         } catch (Exception e) {
             throw new EJBException(e.getMessage());
         }
@@ -81,6 +80,7 @@ public class AdministratorBean {
     public List<User> getAll() {
         return em.createNamedQuery("getAllUsers").getResultList();
     }
+
 
 
 

@@ -5,12 +5,15 @@
  */
 package webpackage;
 
+import static com.sun.xml.ws.security.addressing.impl.policy.Constants.logger;
 import ejbs.AdministratorBean;
 import entity.User;
+import java.awt.event.ActionEvent;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIParameter;
 
 /**
  *
@@ -28,7 +31,10 @@ public class AdministratorManager {
     private String passwordAdmin;
     private String nameAdmin;
     private String emailAdmin;
+    private User currentUser;
 
+    
+    
 public String createAdmin() {
         
         try{
@@ -46,6 +52,30 @@ public String createAdmin() {
         
         
         
+    }
+    
+    public String updateAdmin() {
+        try {
+            adminBean.updateAdmin(
+                currentUser.getId(),
+                currentUser.getName(),
+                currentUser.getEmail(),
+                currentUser.getPassword());
+            return "index?faces-redirect=true";
+        } catch (Exception e) {
+            logger.warning("Problem updating user in method updateUser().");
+        }
+        return "admin_update_user";
+    }
+    
+    public void removeUser (ActionEvent event) {
+       /* try {
+            UIParameter param = (UIParameter) event.getComponent().findComponent("deleteUserId");
+            int id = param.getValue().toString();
+            adminBean.removeAdmin(id);
+        } catch (Exception e) {
+            logger.warning("Problem removing user in method removeUser().");
+        }*/
     }
 
     public AdministratorBean getAdminBean() {
@@ -88,6 +118,13 @@ public String createAdmin() {
         this.emailAdmin = emailAdmin;
     }
     
+    public User getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
+    }
     
     public List<User> getAllUsers() {
         return adminBean.getAll();
