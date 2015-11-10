@@ -24,8 +24,8 @@ import javax.persistence.Table;
 
 public class Administrator extends User implements Serializable {
 
-    public Administrator(int id, String password, String name, String email) {
-        super(id, password, name, email);
+    public Administrator(int id, String username, String password, String name, String email) {
+        super(id, username, password, name, email);
     }
     
     public Administrator() {

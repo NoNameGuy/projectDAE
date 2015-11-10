@@ -43,8 +43,8 @@ public class Participant extends User implements Serializable {
         subjects = new LinkedList<>();
     }
 
-    public Participant(int id, String password, String name, String email, Course course) {
-        super(id, password, name, email);
+    public Participant(int id, String username, String password, String name, String email, Course course) {
+        super(id, username, password, name, email);
         this.course = course;
         events = new LinkedList<>();
         subjects = new LinkedList<>();

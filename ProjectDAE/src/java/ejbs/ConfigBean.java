@@ -36,12 +36,12 @@ public class ConfigBean {
        try {
             // Create Administrator
        
-            administratorBean.createAdmin(1, "administrator1", "DAE1", "Admistrator1@DAE.pt");
-            administratorBean.createAdmin(2, "administrator2", "DAE2", "Admistrator2@DAE.pt");
+            administratorBean.createAdmin(1, "admin1", "administrator1", "DAE1", "Admistrator1@DAE.pt");
+            administratorBean.createAdmin(2, "admin2", "administrator2", "DAE2", "Admistrator2@DAE.pt");
             // Create Responsible
             
-            participantBean.createParticipant(3, "participant1", "DAE1", "Participant1@DAE.pt", 1);
-            participantBean.createParticipant(4, "participant2", "DAE2", "Participant2@DAE.pt", 1);
+            participantBean.createParticipant(3, "participant1", "participant1", "DAE1", "Participant1@DAE.pt", 1);
+            participantBean.createParticipant(4, "participant2", "participant2", "DAE2", "Participant2@DAE.pt", 1);
             // Create Participant
          
 

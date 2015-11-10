@@ -25,8 +25,8 @@ public class Responsible extends User implements Serializable {
         events = new LinkedList<>();
     }
  
-    public Responsible(int id, String password, String name, String email) {
-        super(id, password, name, email);
+    public Responsible(int id, String username, String password, String name, String email) {
+        super(id, username, password, name, email);
         events = new LinkedList<>();
     }
 

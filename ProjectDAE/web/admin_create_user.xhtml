@@ -16,6 +16,14 @@ and open the template in the editor.
         
         <h:form>
             <h:panelGrid columns="3">
+                <h:outputLabel for="username" value="Username: "/>
+                <h:inputText
+                    id="username"
+                    required ="true"
+                    requiredMessage="Username cannot be empty!"
+                    value="#{administratorManager.usernameAdmin}">
+                </h:inputText>
+                <h:message for="name" />
                 <h:outputLabel for="name" value="Name: "/>
                 <h:inputText
                     id="name"

@@ -25,13 +25,13 @@ public class AdministratorBean {
     
     //Create Admin
 
-    public void createAdmin(int id, String password, String name, String email) {
+    public void createAdmin(int id, String username, String password, String name, String email) {
         try {
             
             if(em.find(Administrator.class, id) != null){
                 return;
             }
-            Administrator admin = new Administrator(id, password, name, email);
+            Administrator admin = new Administrator(id, username, password, name, email);
             em.persist(admin);
         } catch (Exception e) {
             throw new EJBException(e.getMessage());
@@ -41,12 +41,13 @@ public class AdministratorBean {
 
     //Admin Update
     
-    public void updateAdmin(int id, String name, String email, String password) {
+    public void updateAdmin(int id, String username, String name, String email, String password) {
         try {
             Administrator administrator = em.find(Administrator.class, id);
             if (administrator == null) {
                 return;
-            }   
+            }
+            administrator.setUsername(username);
             administrator.setPassword(password);
             administrator.setName(name);
             administrator.setEmail(email);

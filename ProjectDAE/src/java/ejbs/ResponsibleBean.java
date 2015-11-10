@@ -30,13 +30,13 @@ public class ResponsibleBean {
     
     //Create Responsible
 
-    public void createResponsible(int id, String password, String name, String email) {
+    public void createResponsible(int id, String username, String password, String name, String email) {
 
         try {
             if(em.find(Responsible.class, id) != null){
                 return;
             }
-            Responsible responsible = new Responsible(id, password, name, email);
+            Responsible responsible = new Responsible(id, username, password, name, email);
             em.persist(responsible);
 
         } catch (Exception e) {

@@ -26,7 +26,7 @@ public class ParticipantBean implements Serializable {
     
     //Create Participant
 
-    public void createParticipant(int id, String password, String name, String email, int courseID) {
+    public void createParticipant(int id, String username, String password, String name, String email, int courseID) {
 
         try {
             Course course = em.find(Course.class, courseID);
@@ -36,7 +36,7 @@ public class ParticipantBean implements Serializable {
             if(em.find(Participant.class, id) != null){
                 return;
             }
-            Participant participant = new Participant(id, password, name, email, course);
+            Participant participant = new Participant(id, username, password, name, email, course);
             em.persist(participant);
 
         } catch (Exception e) {

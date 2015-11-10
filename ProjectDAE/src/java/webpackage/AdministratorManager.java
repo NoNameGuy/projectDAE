@@ -29,16 +29,18 @@ public class AdministratorManager {
     
     private int idAdmin;
     private String passwordAdmin;
+    private String username;
     private String nameAdmin;
     private String emailAdmin;
     private User currentUser;
 
     
     
+    
 public String createAdmin() {
         
         try{
-            adminBean.createAdmin(idAdmin, passwordAdmin, nameAdmin, emailAdmin);
+            adminBean.createAdmin(idAdmin, username, passwordAdmin, nameAdmin, emailAdmin);
             return "index?faces-redirect=true";
         } catch(Exception e){
             e.printStackTrace();
@@ -58,6 +60,7 @@ public String createAdmin() {
         try {
             adminBean.updateAdmin(
                 currentUser.getId(),
+                currentUser.getUsername(),
                 currentUser.getName(),
                 currentUser.getEmail(),
                 currentUser.getPassword());
@@ -68,14 +71,22 @@ public String createAdmin() {
         return "admin_update_user";
     }
     
-    public void removeUser (ActionEvent event) {
+    public void removeAdmin (ActionEvent event) {
        /* try {
             UIParameter param = (UIParameter) event.getComponent().findComponent("deleteUserId");
-            int id = param.getValue().toString();
+            int id = Integer.parseInt(param.getValue().toString());
             adminBean.removeAdmin(id);
         } catch (Exception e) {
             logger.warning("Problem removing user in method removeUser().");
         }*/
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public AdministratorBean getAdminBean() {
