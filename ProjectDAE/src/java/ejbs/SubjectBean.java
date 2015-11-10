@@ -29,7 +29,6 @@ public class SubjectBean {
             if (em.find(SubjectBean.class, id) != null) {
                 return;
             }
-            
             Subject subject = new Subject(id, name, courseYear, scholarYear);
             em.persist(subject);
             
