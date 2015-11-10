@@ -7,6 +7,7 @@ package ejbs;
 
 import entity.Participant;
 import java.io.Serializable;
+import java.util.List;
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -84,5 +85,9 @@ public class ParticipantBean implements Serializable {
     
     public void enrollParticipant () {
         
+    }
+
+    public List<Participant> getAllParticipants() {
+        return em.createNamedQuery("getAllParticipants").getResultList();
     }
 }

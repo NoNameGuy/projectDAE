@@ -53,11 +53,11 @@ public class ConfigBean {
             eventBean.createEvent(2, null, "Evento 2", "Aula", "ESTG", 4);
             
             // Create Subject
-            subjectBean.createSubject(1L, "IEI", 1, "2015/2016");
+            /*subjectBean.createSubject(1L, "IEI", 1, "2015/2016");
             subjectBean.createSubject(2L, "TC", 1, "2015/2016");
             subjectBean.createSubject(3L, "PA", 2, "2015/2016");
             subjectBean.createSubject(4L, "DAE", 3, "2015/2016");
-            subjectBean.createSubject(5L, "DAD", 3, "2015/2016");
+            subjectBean.createSubject(5L, "DAD", 3, "2015/2016");*/
             
             
             

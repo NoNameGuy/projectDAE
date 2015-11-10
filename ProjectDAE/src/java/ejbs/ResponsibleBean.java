@@ -5,7 +5,6 @@
  */
 package ejbs;
 
-import entity.Administrator;
 import entity.Event;
 import entity.Responsible;
 import java.util.List;
@@ -117,5 +116,9 @@ public class ResponsibleBean {
     
     public void unenrollResponsible () {
         
+    }
+
+    public List<Responsible> getAllResponsibles() {
+        return em.createNamedQuery("getAllResponsibles").getResultList();
     }
 }

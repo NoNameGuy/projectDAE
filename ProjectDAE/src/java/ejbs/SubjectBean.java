@@ -24,7 +24,6 @@ public class SubjectBean {
     private EntityManager em;
 
     public void createSubject(Long id, String name, int courseYear, String scholarYear) {
-
         try {
             if (em.find(SubjectBean.class, id) != null) {
                 return;
@@ -35,7 +34,6 @@ public class SubjectBean {
         } catch (Exception e) {
             throw new EJBException(e.getMessage());
         }
-
     }
    
 }

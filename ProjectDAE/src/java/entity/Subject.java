@@ -34,11 +34,11 @@ public class Subject implements Serializable {
     private Long id;
     @NotNull
     private String name;
-    
-    
+    @NotNull
     private int courseYear;
     @NotNull
     private String scholarYear;
+    
     @ManyToMany
     @JoinTable(name = "SUBJECT_PARTICIPANT",
             joinColumns
