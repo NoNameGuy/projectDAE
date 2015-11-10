@@ -32,7 +32,7 @@ public class User implements Serializable {
     /*@GeneratedValue(strategy=SEQUENCE, generator = "CUST_SEQ")
     @Column(name="ID")*/
     protected int id;
-    @NotNull
+    @NotNull(message = "Password must not be empty")
     protected String password;
     @NotNull(message = "Name must not be empty")
     protected String name;
@@ -42,11 +42,8 @@ public class User implements Serializable {
     @Pattern(regexp = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\." + "[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@" + "(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message = "{invalid.email}")
     protected String email;
 
-    
-    protected List<Event> events;
-
     public User() {
-        this.events = new LinkedList<>();
+        
     }
     
     public User(int id, String username, String password, String name, String email) {
