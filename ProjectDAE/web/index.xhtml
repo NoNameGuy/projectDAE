@@ -17,15 +17,15 @@ and open the template in the editor.
         
         <div>User management</div>
         
-        <h:dataTable value="#{administratorManager.getAllUsers()}" var="user">
+        <h:dataTable value="#{administratorManager.getAllAdministrators()}" var="administrator">
                 <h:column>
                     <f:facet name="header">Name</f:facet>
-                        <h:outputText value="#{user.name}"/>
+                        <h:outputText value="#{administrator.name}"/>
                     
                 </h:column>
                 <h:column>
                     <f:facet name="header">Email</f:facet>
-                        <h:outputText value="#{user.email}"/>
+                        <h:outputText value="#{administrator.email}"/>
                     
                 </h:column>
             

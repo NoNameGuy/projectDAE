@@ -21,7 +21,7 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class ResponsibleBean {
     
-    @PersistenceContext
+    @PersistenceContext(unitName = "ProjectDAEPU")
     private EntityManager em;
     
     public List<Event> listEvents () {
@@ -30,13 +30,13 @@ public class ResponsibleBean {
     
     //Create Responsible
 
-    public void createResponsible(int id, String username, String password, String name, String email) {
+    public void createResponsible(int id, String password, String name, String email) {
 
         try {
             if(em.find(Responsible.class, id) != null){
                 return;
             }
-            Responsible responsible = new Responsible(id, username, password, name, email);
+            Responsible responsible = new Responsible(id, password, name, email);
             em.persist(responsible);
 
         } catch (Exception e) {
@@ -47,7 +47,7 @@ public class ResponsibleBean {
 
     //Responsible Update
     
-    public void updateResponsible(int id, String password, String name, String email, String role) {
+    public void updateResponsible(int id, String password, String name, String email) {
         try {
             Responsible responsible = em.find(Responsible.class, id);
             if (responsible == null) {
@@ -76,9 +76,9 @@ public class ResponsibleBean {
 
     //Verify if responsible exists
     
-    public boolean existeResponsible(String username) {
+    public boolean existeResponsible(String id) {
         try {
-            return em.find(Responsible.class, username) != null;
+            return em.find(Responsible.class, id) != null;
         } catch (Exception e) {
             throw new EJBException(e.getMessage());
         }

@@ -9,6 +9,8 @@ import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -17,6 +19,10 @@ import javax.persistence.Table;
  */
 @Entity 
 @Table(name = "RESPONSIBLE")
+@NamedQueries({
+    @NamedQuery(name = "getAllResponsibles",
+            query = "SELECT r FROM Responsible r ORDER BY r.name")
+})
 public class Responsible extends User implements Serializable {
     
     private List<Event> events;
@@ -25,8 +31,8 @@ public class Responsible extends User implements Serializable {
         events = new LinkedList<>();
     }
  
-    public Responsible(int id, String username, String password, String name, String email) {
-        super(id, username, password, name, email);
+    public Responsible(int id, String password, String name, String email) {
+        super(id, password, name, email);
         events = new LinkedList<>();
     }
 

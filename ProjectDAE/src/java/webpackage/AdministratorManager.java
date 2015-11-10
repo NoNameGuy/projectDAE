@@ -7,6 +7,7 @@ package webpackage;
 
 import static com.sun.xml.ws.security.addressing.impl.policy.Constants.logger;
 import ejbs.AdministratorBean;
+import entity.Administrator;
 import entity.User;
 import java.awt.event.ActionEvent;
 import java.util.List;
@@ -29,7 +30,6 @@ public class AdministratorManager {
     
     private int idAdmin;
     private String passwordAdmin;
-    private String username;
     private String nameAdmin;
     private String emailAdmin;
     private User currentUser;
@@ -40,7 +40,7 @@ public class AdministratorManager {
     public String createAdmin() {
         
         try{
-            adminBean.createAdmin(idAdmin, username, passwordAdmin, nameAdmin, emailAdmin);
+            adminBean.createAdmin(idAdmin, passwordAdmin, nameAdmin, emailAdmin);
             return "index?faces-redirect=true";
         } catch(Exception e){
             e.printStackTrace();
@@ -50,9 +50,7 @@ public class AdministratorManager {
     /**
      * Creates a new instance of AdministratorManager
      */
-    public AdministratorManager() {
-        
-        
+    public AdministratorManager() { 
         
     }
     
@@ -60,7 +58,6 @@ public class AdministratorManager {
         try {
             adminBean.updateAdmin(
                 currentUser.getId(),
-                currentUser.getUsername(),
                 currentUser.getName(),
                 currentUser.getEmail(),
                 currentUser.getPassword());
@@ -79,14 +76,6 @@ public class AdministratorManager {
         } catch (Exception e) {
             logger.warning("Problem removing user in method removeUser().");
         }*/
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public AdministratorBean getAdminBean() {
@@ -137,8 +126,9 @@ public class AdministratorManager {
         this.currentUser = currentUser;
     }
     
-    public List<User> getAllUsers() {
-        return adminBean.getAll();
+    public List<Administrator> getAllAdministrators() {
+        return adminBean.getAllAdministrators();
+        
     }
     
 }

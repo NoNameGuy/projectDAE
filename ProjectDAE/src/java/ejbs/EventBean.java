@@ -23,7 +23,7 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class EventBean {
 
-    @PersistenceContext
+    @PersistenceContext(unitName = "ProjectDAEPU")
     private EntityManager em;
     
     /*public List<String> list() {

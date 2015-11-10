@@ -6,12 +6,7 @@
 package entity;
 
 import java.io.Serializable;
-import java.util.LinkedList;
-import java.util.List;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.SEQUENCE;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -29,15 +24,11 @@ import javax.validation.constraints.Pattern;
     query="SELECT u FROM User u ORDER BY u.name")
 public class User implements Serializable {
     @Id
-    /*@GeneratedValue(strategy=SEQUENCE, generator = "CUST_SEQ")
-    @Column(name="ID")*/
     protected int id;
     @NotNull(message = "Password must not be empty")
     protected String password;
     @NotNull(message = "Name must not be empty")
     protected String name;
-    @NotNull(message = "Username must not be empty")
-    protected String username;
     @NotNull
     @Pattern(regexp = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\." + "[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@" + "(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message = "{invalid.email}")
     protected String email;
@@ -46,9 +37,8 @@ public class User implements Serializable {
         
     }
     
-    public User(int id, String username, String password, String name, String email) {
+    public User(int id, String password, String name, String email) {
         this.id = id;
-        this.username = username;
         this.password = password;
         this.name = name;
         this.email = email;
@@ -84,13 +74,5 @@ public class User implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-    
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 }

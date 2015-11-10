@@ -17,18 +17,17 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "ADIMISTRATORS")
-    @NamedQueries({
-        @NamedQuery(name = "getAllAdministrators",
-                query = "SELECT a FROM Administrator a ORDER BY a.name")
-    })
+    @NamedQuery(name = "getAllAdministrators", query = "SELECT a FROM Administrator a ORDER BY a.name")
 
 public class Administrator extends User implements Serializable {
-
-    public Administrator(int id, String username, String password, String name, String email) {
-        super(id, username, password, name, email);
-    }
     
     public Administrator() {
-        
+
     }
+    
+    public Administrator(int id, String password, String name, String email) {
+        super(id, password, name, email);
+    }
+
+    
 }

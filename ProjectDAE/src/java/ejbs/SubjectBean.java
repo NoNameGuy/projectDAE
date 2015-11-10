@@ -21,7 +21,7 @@ public class SubjectBean {
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
-    @PersistenceContext
+    @PersistenceContext(unitName = "ProjectDAEPU")
     private EntityManager em;
 
     public void createSubject(Long id, String name, int courseId, int courseYear, String scholarYear) {

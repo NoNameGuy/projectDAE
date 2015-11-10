@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
@@ -33,7 +34,7 @@ public class Subject implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @NotNull
     private String name;
@@ -47,10 +48,15 @@ public class Subject implements Serializable {
     @NotNull
     private String scholarYear;
     @ManyToMany
-    private List<Participant> particitants;
+    @JoinTable(name = "SUBJECT_PARTICIPANT",
+            joinColumns
+            = @JoinColumn(name = "SUBJECT_ID", referencedColumnName = "ID"),
+            inverseJoinColumns
+            = @JoinColumn(name = "STUDENT_ID", referencedColumnName = "ID"))
+    private List<Participant> participants;
 
     public Subject() {
-        particitants = new LinkedList<>();
+        participants = new LinkedList<>();
     }
 
     public Subject(Long id, String name, Course course, int courseYear, String scholarYear) {
@@ -59,7 +65,7 @@ public class Subject implements Serializable {
         this.course = course;
         this.courseYear = courseYear;
         this.scholarYear = scholarYear;
-        this.particitants = new LinkedList<>();
+        this.participants = new LinkedList<>();
     }
 
     public Long getId() {
@@ -102,12 +108,12 @@ public class Subject implements Serializable {
         this.scholarYear = scholarYear;
     }
 
-    public List<Participant> getParticitants() {
-        return particitants;
+    public List<Participant> getParticipants() {
+        return participants;
     }
 
-    public void setParticitants(List<Participant> particitants) {
-        this.particitants = particitants;
+    public void setParticipants(List<Participant> participants) {
+        this.participants = participants;
     }
 
     @Override
