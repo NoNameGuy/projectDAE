@@ -49,9 +49,8 @@ public class ConfigBean {
        
        
             // Create Event
-            eventBean.createEvent(1, null, "Evento 1", "Aula", "ESTG", 1);
-       
-            // Create Subject
+            //eventBean.createEvent(1, null, "Evento 1", "Aula", "ESTG", 1);
+                   // Create Subject
             
             
            

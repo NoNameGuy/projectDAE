@@ -37,7 +37,7 @@ public class AdministratorManager {
     
     
     
-public String createAdmin() {
+    public String createAdmin() {
         
         try{
             adminBean.createAdmin(idAdmin, username, passwordAdmin, nameAdmin, emailAdmin);

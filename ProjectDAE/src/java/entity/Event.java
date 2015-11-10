@@ -10,6 +10,8 @@ import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -21,6 +23,10 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table(name = "EVENT")
+@NamedQueries({
+    @NamedQuery(name = "getAllEvents",
+            query = "SELECT e FROM Event e ORDER BY e.date")
+    })
 public class Event {
     @Id
     private int id;

@@ -10,6 +10,7 @@ import entity.Event;
 import entity.Participant;
 import entity.Responsible;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -29,7 +30,7 @@ public class EventBean {
         
     }*/
     
-    public void createEvent(int id, Date date, String name, String type, String local, long responsableId) {
+    public void createEvent(int id, Date date, String name, String type, String local, Responsible responsableId) {
         
         try {
             if(em.find(Event.class, id) != null){
@@ -69,6 +70,10 @@ public class EventBean {
         } catch (Exception e) {
             throw e;
         }
+    }
+
+    public List<Event> getAll() {
+        return em.createNamedQuery("getAllEvents").getResultList();
     }
 
 }
