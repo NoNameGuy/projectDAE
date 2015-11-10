@@ -33,16 +33,20 @@ public class Participant extends User implements Serializable {
     @JoinColumn(name = "COURSE_CODE")*/
     @NotNull(message="A student must have a course")
     private Course course;
+    
+    private List<Event> events;
     //@ManyToMany(mappedBy = "participants")
     private List<Subject> subjects;
-
+    
     public Participant() {
+        events = new LinkedList<>();
         subjects = new LinkedList<>();
     }
 
     public Participant(int id, String password, String name, String email, Course course) {
         super(id, password, name, email);
         this.course = course;
+        events = new LinkedList<>();
         subjects = new LinkedList<>();
     }
 

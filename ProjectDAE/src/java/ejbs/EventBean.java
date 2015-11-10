@@ -5,6 +5,7 @@
  */
 package ejbs;
 
+import entity.Administrator;
 import entity.Event;
 import java.util.Date;
 import javax.ejb.EJBException;
@@ -29,7 +30,9 @@ public class EventBean {
     public void createEvent(int id, Date date, String name, String type, String local, long responsableId) {
         
         try {
-            
+            if(em.find(Event.class, id) != null){
+                return;
+            }
             Event event = new Event(id, date, name, type, local, responsableId);
             em.persist(event);
 

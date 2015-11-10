@@ -14,18 +14,18 @@ import javax.ejb.Startup;
  *
  * @author paulovieira
  */
-@Singleton
 @Startup
+@Singleton
 public class ConfigBean {
     
     @EJB
-    AdministratorBean administratorBean;
+    private AdministratorBean administratorBean;
     @EJB
-    ResponsibleBean responsibleBean;
+    private ResponsibleBean responsibleBean;
     @EJB
-    ParticipantBean participantBean;
+    private ParticipantBean participantBean;
     @EJB
-    EventBean eventBean;
+    private EventBean eventBean;
     
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
@@ -34,15 +34,14 @@ public class ConfigBean {
    public void populateBD() {
        
        try {
-           
             // Create Administrator
        
             administratorBean.createAdmin(1, "administrator1", "DAE1", "Admistrator1@DAE.pt");
             administratorBean.createAdmin(2, "administrator2", "DAE2", "Admistrator2@DAE.pt");
             // Create Responsible
             
-            participantBean.createParticipant(1, "participant1", "DAE1", "Participant1@DAE.pt", 1);
-            participantBean.createParticipant(2, "participant2", "DAE2", "Participant2@DAE.pt", 1);
+            participantBean.createParticipant(3, "participant1", "DAE1", "Participant1@DAE.pt", 1);
+            participantBean.createParticipant(4, "participant2", "DAE2", "Participant2@DAE.pt", 1);
             // Create Participant
          
 
@@ -61,10 +60,5 @@ public class ConfigBean {
            System.err.println("Error: " + e.getMessage());
            
        }
-       
-
-       
-       
-       
    }
 }

@@ -24,13 +24,14 @@ import javax.validation.constraints.NotNull;
 public class Course implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
     @NotNull
     private String name;
     private List<Participant> participants;
     private List<Subject> subjects;
+    @NotNull
     private Long idResponsable;
 
     public Course() {

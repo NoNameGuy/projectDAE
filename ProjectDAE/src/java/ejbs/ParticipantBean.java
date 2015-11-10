@@ -5,6 +5,7 @@
  */
 package ejbs;
 
+import entity.Administrator;
 import entity.Course;
 import entity.Participant;
 import java.io.Serializable;
@@ -32,7 +33,9 @@ public class ParticipantBean implements Serializable {
             if (course == null) {
                 throw new EJBException();
             }
-
+            if(em.find(Participant.class, id) != null){
+                return;
+            }
             Participant participant = new Participant(id, password, name, email, course);
             em.persist(participant);
 

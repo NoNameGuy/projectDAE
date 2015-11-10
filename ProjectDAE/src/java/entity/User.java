@@ -29,8 +29,8 @@ import javax.validation.constraints.Pattern;
     query="SELECT u FROM User u ORDER BY u.name")
 public class User implements Serializable {
     @Id
-    @GeneratedValue(strategy=SEQUENCE, generator = "CUST_SEQ")
-    @Column(name="ID")
+    /*@GeneratedValue(strategy=SEQUENCE, generator = "CUST_SEQ")
+    @Column(name="ID")*/
     protected int id;
     @NotNull
     protected String password;

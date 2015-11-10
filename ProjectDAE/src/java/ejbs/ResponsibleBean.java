@@ -5,6 +5,7 @@
  */
 package ejbs;
 
+import entity.Administrator;
 import entity.Event;
 import entity.Responsible;
 import java.util.List;
@@ -32,7 +33,9 @@ public class ResponsibleBean {
     public void createResponsible(int id, String password, String name, String email) {
 
         try {
-
+            if(em.find(Responsible.class, id) != null){
+                return;
+            }
             Responsible responsible = new Responsible(id, password, name, email);
             em.persist(responsible);
 
