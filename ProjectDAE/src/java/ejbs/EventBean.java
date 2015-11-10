@@ -5,7 +5,6 @@
  */
 package ejbs;
 
-import entity.Administrator;
 import entity.Event;
 import entity.Participant;
 import entity.Responsible;
@@ -30,7 +29,7 @@ public class EventBean {
         
     }*/
     
-    public void createEvent(int id, Date date, String name, String type, String local, Responsible responsableId) {
+    public void createEvent(int id, Date date, String name, String type, String local, int responsableId) {
         
         try {
             if(em.find(Event.class, id) != null){

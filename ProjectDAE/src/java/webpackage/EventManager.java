@@ -30,7 +30,7 @@ public class EventManager {
     protected String type;
     protected String local;
     //protected List<Participant> participants; //lista de participantes necessaria?
-    protected Responsible responsible;
+    protected int responsible;
 
     public EventManager(){
     }
@@ -94,11 +94,11 @@ public class EventManager {
         this.local = local;
     }
 
-    public Responsible getResponsible() {
+    public int getResponsible() {
         return responsible;
     }
 
-    public void setResponsible(Responsible responsible) {
+    public void setResponsible(int responsible) {
         this.responsible = responsible;
     }
     

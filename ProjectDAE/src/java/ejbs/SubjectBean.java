@@ -5,7 +5,6 @@
  */
 package ejbs;
 
-import entity.Course;
 import entity.Subject;
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
@@ -24,18 +23,14 @@ public class SubjectBean {
     @PersistenceContext(unitName = "ProjectDAEPU")
     private EntityManager em;
 
-    public void createSubject(Long id, String name, int courseId, int courseYear, String scholarYear) {
+    public void createSubject(Long id, String name, int courseYear, String scholarYear) {
 
         try {
             if (em.find(SubjectBean.class, id) != null) {
                 return;
             }
-            Course course = em.find(Course.class, courseId);
-
-            if (course == null) {
-                return;
-            }
-            Subject subject = new Subject(id, name, course, courseYear, scholarYear);
+            
+            Subject subject = new Subject(id, name, courseYear, scholarYear);
             em.persist(subject);
             
         } catch (Exception e) {

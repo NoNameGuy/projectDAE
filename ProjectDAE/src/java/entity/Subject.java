@@ -9,14 +9,10 @@ import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
@@ -28,7 +24,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "SUBJECTS",
     uniqueConstraints
-        = @UniqueConstraint(columnNames = {"NAME", "COURSE_CODE", "SCHOLARYEAR"}))
+        = @UniqueConstraint(columnNames = {"NAME", "SCHOLARYEAR"}))
 
 public class Subject implements Serializable {
 
@@ -39,10 +35,6 @@ public class Subject implements Serializable {
     @NotNull
     private String name;
     
-    @ManyToOne
-    @JoinColumn(name = "COURSE_CODE")
-    @NotNull
-    private Course course;
     
     private int courseYear;
     @NotNull
@@ -52,17 +44,16 @@ public class Subject implements Serializable {
             joinColumns
             = @JoinColumn(name = "SUBJECT_ID", referencedColumnName = "ID"),
             inverseJoinColumns
-            = @JoinColumn(name = "STUDENT_ID", referencedColumnName = "ID"))
+            = @JoinColumn(name = "PARTICIPANT_ID", referencedColumnName = "ID"))
     private List<Participant> participants;
 
     public Subject() {
         participants = new LinkedList<>();
     }
 
-    public Subject(Long id, String name, Course course, int courseYear, String scholarYear) {
+    public Subject(Long id, String name, int courseYear, String scholarYear) {
         this.id = id;
         this.name = name;
-        this.course = course;
         this.courseYear = courseYear;
         this.scholarYear = scholarYear;
         this.participants = new LinkedList<>();
@@ -82,14 +73,6 @@ public class Subject implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Course getCourse() {
-        return course;
-    }
-
-    public void setCourse(Course course) {
-        this.course = course;
     }
 
     public int getCourseYear() {

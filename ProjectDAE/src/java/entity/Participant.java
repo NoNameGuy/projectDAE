@@ -28,12 +28,8 @@ import javax.validation.constraints.NotNull;
             query = "SELECT p FROM Participant p ORDER BY p.name")
 })
 public class Participant extends User implements Serializable {
-    
-    /*@ManyToOne
-    @JoinColumn(name = "COURSE_CODE")*/
-    @NotNull(message="A participant must have a course")
-    private Course course;
-    
+
+    @ManyToMany(mappedBy = "participants")
     private List<Event> events;
     
     @ManyToMany(mappedBy = "participants")
@@ -44,19 +40,10 @@ public class Participant extends User implements Serializable {
         subjects = new LinkedList<>();
     }
 
-    public Participant(int id, String password, String name, String email, Course course) {
+    public Participant(int id, String password, String name, String email) {
         super(id, password, name, email);
-        this.course = course;
         events = new LinkedList<>();
         subjects = new LinkedList<>();
-    }
-
-    public Course getCourse() {
-        return course;
-    }
-
-    public void setCourse(Course course) {
-        this.course = course;
     }
 
     public List<Event> getEvents() {

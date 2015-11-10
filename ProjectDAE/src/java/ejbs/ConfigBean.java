@@ -40,6 +40,7 @@ public class ConfigBean {
             administratorBean.createAdmin(2, "administrator2", "DAE2", "Admistrator2@DAE.pt");
             // Create Responsible
             
+            
             //participantBean.createParticipant(3, "participant1", "DAE1", "Participant1@DAE.pt", 1);
             //participantBean.createParticipant(4, "participant2", "DAE2", "Participant2@DAE.pt", 1);
             // Create Participant
@@ -49,7 +50,7 @@ public class ConfigBean {
        
        
             // Create Event
-            //eventBean.createEvent(1, null, "Evento 1", "Aula", "ESTG", 1);
+            //eventBean.createEvent(1, null, "Evento 1", "Aula", "ESTG", 3);
                    // Create Subject
             
             

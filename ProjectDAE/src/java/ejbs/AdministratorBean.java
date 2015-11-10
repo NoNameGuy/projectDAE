@@ -6,7 +6,6 @@
 package ejbs;
 
 import entity.Administrator;
-import entity.User;
 import java.util.List;
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;

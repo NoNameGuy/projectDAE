@@ -10,11 +10,15 @@ import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -22,7 +26,8 @@ import javax.validation.constraints.NotNull;
  * @author paulovieira
  */
 @Entity
-@Table(name = "EVENT")
+@Table(name = "EVENT", uniqueConstraints
+        = @UniqueConstraint(columnNames = {"NAME"}))
 @NamedQueries({
     @NamedQuery(name = "getAllEvents",
             query = "SELECT e FROM Event e ORDER BY e.date")
@@ -36,6 +41,13 @@ public class Event {
     protected String name;
     protected String type;
     protected String local;
+    
+    @ManyToMany
+    @JoinTable(name = "EVENT_PARTICIPANT",
+            joinColumns
+            = @JoinColumn(name = "EVENT_ID", referencedColumnName = "ID"),
+            inverseJoinColumns
+            = @JoinColumn(name = "PARTICIPANT_ID", referencedColumnName = "ID"))
     protected List<Participant> participants;
     protected Responsible responsible;
    
