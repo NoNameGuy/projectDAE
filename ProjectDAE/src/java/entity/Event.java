@@ -31,7 +31,7 @@ public class Event {
     protected String type;
     protected String local;
     protected List<Participant> participants;
-    protected long responsableId;
+    protected Responsible responsible;
    
     
 
@@ -42,14 +42,14 @@ public class Event {
         this.participants = new LinkedList<Participant>();
     }
 
-    public Event(int id, Date date, String name, String type, String local, long responsableId) {
+    public Event(int id, Date date, String name, String type, String local, Responsible responsible) {
         this.id = id;
         this.date = date;
         this.name = name;
         this.type = type;
         this.local = local;
         this.participants = new LinkedList<Participant>();
-        this.responsableId = responsableId;
+        this.responsible = responsible;
     }
 
     public int getId() {
@@ -100,13 +100,15 @@ public class Event {
         this.participants = participants;
     }
 
-    public long getResponsableId() {
-        return responsableId;
+    public Responsible getResponsible() {
+        return responsible;
     }
 
-    public void setResponsableId(long responsableId) {
-        this.responsableId = responsableId;
+    public void setResponsible(Responsible responsible) {
+        this.responsible = responsible;
     }
+
+
     
     
 }

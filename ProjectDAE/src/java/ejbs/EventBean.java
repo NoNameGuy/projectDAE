@@ -7,6 +7,7 @@ package ejbs;
 
 import entity.Administrator;
 import entity.Event;
+import entity.Responsible;
 import java.util.Date;
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
@@ -33,7 +34,11 @@ public class EventBean {
             if(em.find(Event.class, id) != null){
                 return;
             }
-            Event event = new Event(id, date, name, type, local, responsableId);
+            Responsible responsible = em.find(Responsible.class, responsableId);
+            if (responsible == null) {
+                return;
+            }
+            Event event = new Event(id, date, name, type, local, responsible);
             em.persist(event);
 
         } catch (Exception e) {

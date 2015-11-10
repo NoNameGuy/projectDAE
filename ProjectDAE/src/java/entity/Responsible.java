@@ -29,6 +29,15 @@ public class Responsible extends User implements Serializable {
         super(id, password, name, email);
         events = new LinkedList<>();
     }
+
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(List<Event> events) {
+        this.events = events;
+    }
+    
     
 
 
