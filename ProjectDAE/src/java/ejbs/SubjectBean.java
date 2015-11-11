@@ -6,6 +6,8 @@
 package ejbs;
 
 import entity.Subject;
+import exceptions.EntityAlreadyExistsException;
+import exceptions.EntityDoesNotExistsException;
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -23,10 +25,11 @@ public class SubjectBean {
     @PersistenceContext(unitName = "ProjectDAEPU")
     private EntityManager em;
 
-    public void createSubject(Long id, String name, int courseYear, String scholarYear) {
+    public void createSubject(Long id, String name, int courseYear, String scholarYear)
+        throws EntityAlreadyExistsException {
         try {
             if (em.find(Subject.class, id) != null) {
-                return;
+                throw new EntityAlreadyExistsException("A subject with that id already exists.");
             }
             Subject subject = new Subject(id, name, courseYear, scholarYear);
             em.persist(subject);

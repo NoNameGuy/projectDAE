@@ -34,10 +34,10 @@ public class AdministratorManager {
     @EJB
     private ParticipantBean participantBean;
     
-    private int idAdmin;
-    private String passwordAdmin;
-    private String nameAdmin;
-    private String emailAdmin;
+    private int id;
+    private String password;
+    private String name;
+    private String email;
     private User currentUser;
 
     
@@ -46,7 +46,7 @@ public class AdministratorManager {
     public String createAdmin() {
         
         try{
-            administratorBean.createAdmin(idAdmin, passwordAdmin, nameAdmin, emailAdmin);
+            administratorBean.createAdmin(id, password, name, email);
             return "index?faces-redirect=true";
         } catch(Exception e){
             e.printStackTrace();
@@ -92,36 +92,36 @@ public class AdministratorManager {
         this.administratorBean = administratorBean;
     }
 
-    public int getIdAdmin() {
-        return idAdmin;
+    public int getId() {
+        return id;
     }
 
-    public void setIdAdmin(int idAdmin) {
-        this.idAdmin = idAdmin;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getPasswordAdmin() {
-        return passwordAdmin;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPasswordAdmin(String passwordAdmin) {
-        this.passwordAdmin = passwordAdmin;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getNameAdmin() {
-        return nameAdmin;
+    public String getName() {
+        return name;
     }
 
-    public void setNameAdmin(String nameAdmin) {
-        this.nameAdmin = nameAdmin;
+    public void setNameAdmin(String name) {
+        this.name = name;
     }
 
-    public String getEmailAdmin() {
-        return emailAdmin;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEmailAdmin(String emailAdmin) {
-        this.emailAdmin = emailAdmin;
+    public void setEmail(String email) {
+        this.email = email;
     }
     
     public User getCurrentUser() {

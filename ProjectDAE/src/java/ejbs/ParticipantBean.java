@@ -6,6 +6,7 @@
 package ejbs;
 
 import entity.Participant;
+import exceptions.EntityAlreadyExistsException;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJBException;
@@ -25,11 +26,11 @@ public class ParticipantBean implements Serializable {
     
     //Create Participant
 
-    public void createParticipant(int id, String password, String name, String email) {
-
+    public void createParticipant(int id, String password, String name, String email)
+        throws EntityAlreadyExistsException {
         try {
             if(em.find(Participant.class, id) != null){
-                return;
+                throw new EntityAlreadyExistsException("A Responsible with that id already exists.");
             }
             Participant participant = new Participant(id, password, name, email);
             em.persist(participant);

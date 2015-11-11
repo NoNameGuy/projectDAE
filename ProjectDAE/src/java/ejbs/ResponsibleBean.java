@@ -7,6 +7,7 @@ package ejbs;
 
 import entity.Event;
 import entity.Responsible;
+import exceptions.EntityAlreadyExistsException;
 import java.util.List;
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
@@ -29,11 +30,11 @@ public class ResponsibleBean {
     
     //Create Responsible
 
-    public void createResponsible(int id, String password, String name, String email) {
-
+    public void createResponsible(int id, String password, String name, String email)
+        throws EntityAlreadyExistsException {
         try {
             if(em.find(Responsible.class, id) != null){
-                return;
+                throw new EntityAlreadyExistsException("A Responsible with that id already exists.");
             }
             Responsible responsible = new Responsible(id, password, name, email);
             em.persist(responsible);

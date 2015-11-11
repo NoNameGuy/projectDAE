@@ -9,13 +9,13 @@ package exceptions;
  *
  * @author franc
  */
-public class EntityAllReadyExists extends Exception {
+public class EntityAlreadyExistsException extends Exception {
 
     /**
      * Creates a new instance of <code>EntityAllReadyExists</code> without
      * detail message.
      */
-    public EntityAllReadyExists() {
+    public EntityAlreadyExistsException() {
     }
 
     /**
@@ -24,7 +24,7 @@ public class EntityAllReadyExists extends Exception {
      *
      * @param msg the detail message.
      */
-    public EntityAllReadyExists(String msg) {
+    public EntityAlreadyExistsException(String msg) {
         super(msg);
     }
 }

@@ -8,6 +8,8 @@ package ejbs;
 import entity.Event;
 import entity.Participant;
 import entity.Responsible;
+import exceptions.EntityAlreadyExistsException;
+import exceptions.EntityDoesNotExistsException;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJBException;
@@ -29,15 +31,16 @@ public class EventBean {
         
     }*/
     
-    public void createEvent(int id, Date date, String name, String type, String local, int responsableId) {
-        
+    public void createEvent(int id, Date date, String name, String type, String local, int responsableId)
+                throws EntityAlreadyExistsException, EntityDoesNotExistsException {
         try {
+         
             if(em.find(Event.class, id) != null){
-                return;
+                throw new EntityAlreadyExistsException("A Event with that id already exists.");
             }
             Responsible responsible = em.find(Responsible.class, responsableId);
             if (responsible == null) {
-                return;
+                throw new EntityDoesNotExistsException("There is no Responsible with that code.");
             }
             Event event = new Event(id, date, name, type, local, responsible);
             em.persist(event);

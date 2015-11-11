@@ -6,6 +6,7 @@
 package ejbs;
 
 import entity.Administrator;
+import exceptions.EntityAlreadyExistsException;
 import java.util.List;
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
@@ -24,10 +25,11 @@ public class AdministratorBean {
     
     //Create Admin
 
-    public void createAdmin(int id, String password, String name, String email) {
+    public void createAdmin(int id, String password, String name, String email) 
+        throws EntityAlreadyExistsException {
         try {
             if(em.find(Administrator.class, id) != null){
-                return;
+                throw new EntityAlreadyExistsException("A Administrator with that id already exists.");
             }
             em.persist(new Administrator(id, password, name, email));
         } catch (Exception e) {
@@ -37,7 +39,8 @@ public class AdministratorBean {
 
     //Admin Update
     
-    public void updateAdmin(int id, String name, String email, String password) {
+    public void updateAdmin(int id, String name, String email, String password)
+            throws EntityAlreadyExistsException {
         try {
             Administrator administrator = em.find(Administrator.class, id);
             if (administrator == null) {
