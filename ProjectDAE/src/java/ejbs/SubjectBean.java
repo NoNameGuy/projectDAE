@@ -7,7 +7,6 @@ package ejbs;
 
 import entity.Subject;
 import exceptions.EntityAlreadyExistsException;
-import exceptions.EntityDoesNotExistsException;
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

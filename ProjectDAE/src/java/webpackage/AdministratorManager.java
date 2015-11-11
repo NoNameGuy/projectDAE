@@ -38,27 +38,34 @@ public class AdministratorManager {
     private String password;
     private String name;
     private String email;
+    private String typeUser;
     private User currentUser;
 
-    
-    
-    
-    public String createAdmin() {
-        
-        try{
-            administratorBean.createAdmin(id, password, name, email);
-            return "index?faces-redirect=true";
-        } catch(Exception e){
-            e.printStackTrace();
-        }
-        return "index?faces-redirect=true";
-    }
     /**
      * Creates a new instance of AdministratorManager
      */
     public AdministratorManager() { 
         
     }
+    
+    public void createUser() {
+        System.err.println(typeUser);
+        try {
+            if ( typeUser == "administrator" ) {
+                createAdmin();
+            } else if ( typeUser == "responsible" ) {
+                createResponsible();
+            } else if ( typeUser == "participant" ) {
+                
+            } else {
+                return;
+            }
+        } catch (Exception e ){
+            e.printStackTrace();
+        }
+        
+    }
+    
     
     public String updateAdmin() {
         try {
@@ -83,7 +90,8 @@ public class AdministratorManager {
             logger.warning("Problem removing user in method removeUser().");
         }*/
     }
-
+    
+    // Administrator
     public AdministratorBean getAdministratorBean() {
         return administratorBean;
     }
@@ -91,6 +99,32 @@ public class AdministratorManager {
     public void setAdministratorBean(AdministratorBean administratorBean) {
         this.administratorBean = administratorBean;
     }
+    
+    
+    public String createAdmin() {
+        
+        try{
+            administratorBean.createAdmin(id, password, name, email);
+            return "index?faces-redirect=true";
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+        return "index?faces-redirect=true";
+    }
+    
+    
+    // Responsible
+    public String createResponsible() {
+        
+        try{
+            responsibleBean.createResponsible(id, password, name, email);
+            return "index?faces-redirect=true";
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+        return "index?faces-redirect=true";
+    }
+    
 
     public int getId() {
         return id;
@@ -112,7 +146,7 @@ public class AdministratorManager {
         return name;
     }
 
-    public void setNameAdmin(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -123,6 +157,16 @@ public class AdministratorManager {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public String getTypeUser() {
+        return typeUser;
+    }
+
+    public void setTypeUser(String typeUser) {
+        this.typeUser = typeUser;
+    }
+    
+    
     
     public User getCurrentUser() {
         return currentUser;
