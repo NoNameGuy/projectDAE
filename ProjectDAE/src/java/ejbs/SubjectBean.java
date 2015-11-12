@@ -5,10 +5,15 @@
  */
 package ejbs;
 
+import dtos.EventDTO;
+import dtos.SubjectDTO;
+import entity.Event;
 import entity.Subject;
 import exceptions.EntityAlreadyExistsException;
 import exceptions.MyConstraintViolationException;
 import exceptions.Utils;
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -43,5 +48,30 @@ public class SubjectBean {
         } catch (Exception e) {
             throw new EJBException(e.getMessage());
         }
+    }
+    
+    public List<SubjectDTO> getAllSubjects() {
+        try {
+            List<Subject> subjects = (List<Subject>) em.createNamedQuery("getAllSubjects").getResultList();
+            return subjectsToDTOs(subjects);
+        } catch (Exception e) {
+            throw new EJBException(e.getMessage());
+        }
+    }
+    
+    SubjectDTO subjectToDTO(Subject subject) {
+        return new SubjectDTO(
+                    subject.getId(),
+                    subject.getName(),
+                    subject.getCourseYear(),
+                    subject.getScholarYear());
+    }
+    
+    List<SubjectDTO> subjectsToDTOs(List<Subject> subjects) {
+        List<SubjectDTO> dtos = new ArrayList<>();
+        for(Subject s : subjects) {
+            dtos.add(subjectToDTO(s));
+        }
+        return dtos;
     }
 }

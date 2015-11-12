@@ -5,7 +5,9 @@
  */
 package entity;
 
+import dtos.SubjectDTO;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.Entity;
@@ -127,5 +129,6 @@ public class Subject implements Serializable {
     public String toString() {
         return "entity.Subject[ id=" + id + " ]";
     }
-
+    
+    
 }
