@@ -68,5 +68,11 @@ public class Participant extends User implements Serializable {
     public void setSubjects(List<Subject> subjects) {
         this.subjects = subjects;
     }
-
+    
+    @Override
+    public String toString() {
+        return "Participant{" + "username=" + id + ", password=" + password + ", name=" + name + ", email=" + email + '}';
+    }
+    
+    
 }

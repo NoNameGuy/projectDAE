@@ -11,6 +11,7 @@ import exceptions.EntityAlreadyExistsException;
 import exceptions.EntityDoesNotExistsException;
 import exceptions.MyConstraintViolationException;
 import exceptions.Utils;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
@@ -97,9 +98,26 @@ public class AdministratorBean {
     }
     
     public List<AdministratorDTO> getAllAdministrators() {
-        return em.createNamedQuery("getAllAdministrators").getResultList();
+        List<Administrator> administrators = (List<Administrator>) em.createNamedQuery("getAllAdministrators").getResultList();
+        return administratorsToDTOs(administrators);
+    }
+    
+    
+    AdministratorDTO administratorToDTO(Administrator administrator) {
+        return new AdministratorDTO(
+                administrator.getId(),
+                administrator.getPassword(),
+                administrator.getName(),
+                administrator.getEmail());
     }
 
+    List<AdministratorDTO> administratorsToDTOs(List<Administrator> administrators) {
+        List<AdministratorDTO> dtos = new ArrayList<>();
+        for (Administrator a : administrators) {
+            dtos.add(administratorToDTO(a));
+        }
+        return dtos;
+    }
 
 
 

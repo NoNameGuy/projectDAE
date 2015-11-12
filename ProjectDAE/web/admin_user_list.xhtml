@@ -13,17 +13,22 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
-        <h:dataTable value="#{administratorManager.getAllUsers()}" var="user">
-                <h:column>
-                    <f:facet name="header">Name</f:facet>
-                        <h:outputText value="#{user.name}"/>
-                    
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Email</f:facet>
-                        <h:outputText value="#{user.email}"/>
-                    
-                </h:column>
+        <h:dataTable value="#{administratorManager.allAdministrators}" var="administrator">
+            <h:column>
+                <f:facet name="header">Username</f:facet>
+                <h:outputText value="#{administrator.id}"/>
+
+            </h:column>    
+            <h:column>
+                <f:facet name="header">Name</f:facet>
+                <h:outputText value="#{administrator.name}"/>
+
+            </h:column>
+            <h:column>
+                <f:facet name="header">Email</f:facet>
+                <h:outputText value="#{administrator.email}"/>
+
+            </h:column>
         </h:dataTable>
     </body>
 </html>

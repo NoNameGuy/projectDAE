@@ -32,11 +32,11 @@ and open the template in the editor.
                 </f:facet>
                 <h:form>
                     <h:commandLink value="Update" action="admin_update_user?faces-redirect=true">
-                        <f:setPropertyActionListener target="#{administratorManager.current}" value="#{user}" />
+                        <f:setPropertyActionListener target="#{administratorManager.currentAdministrator}" value="#{administrator}" />
                     </h:commandLink>
 
-                    <h:commandLink value="Remove" actionListener="#{administratorManager.removeUser}">
-                        <f:param name="deleteUserId" id="deleteUser" value="#{user.id}" />
+                    <h:commandLink value="Remove" actionListener="#{administratorManager.removeAdministrator}">
+                        <f:param name="deleteUserId" id="deleteUser" value="#{administrator.id}" />
                     </h:commandLink>
                 </h:form>
             </h:column>

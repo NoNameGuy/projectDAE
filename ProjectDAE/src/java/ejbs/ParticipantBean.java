@@ -13,6 +13,7 @@ import exceptions.EntityDoesNotExistsException;
 import exceptions.MyConstraintViolationException;
 import exceptions.Utils;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
@@ -108,6 +109,23 @@ public class ParticipantBean implements Serializable {
     }
 
     public List<ParticipantDTO> getAllParticipants() {
-        return em.createNamedQuery("getAllParticipants").getResultList();
+        List<Participant> participants = (List<Participant>) em.createNamedQuery("getAllParticipants").getResultList();
+        return participantsToDTOs(participants);
+    }
+    
+    ParticipantDTO participantToDTO(Participant participant) {
+        return new ParticipantDTO(
+                participant.getId(),
+                participant.getPassword(),
+                participant.getName(),
+                participant.getEmail());
+    }
+
+    List<ParticipantDTO> participantsToDTOs(List<Participant> participants) {
+        List<ParticipantDTO> dtos = new ArrayList<>();
+        for (Participant p : participants) {
+            dtos.add(participantToDTO(p));
+        }
+        return dtos;
     }
 }

@@ -5,6 +5,7 @@
  */
 package ejbs;
 
+import dtos.ParticipantDTO;
 import dtos.ResponsibleDTO;
 import entity.Administrator;
 import entity.Event;
@@ -14,6 +15,7 @@ import exceptions.EntityAlreadyExistsException;
 import exceptions.EntityDoesNotExistsException;
 import exceptions.MyConstraintViolationException;
 import exceptions.Utils;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
@@ -136,6 +138,23 @@ public class ResponsibleBean {
     }
 
     public List<ResponsibleDTO> getAllResponsibles() {
-        return em.createNamedQuery("getAllResponsibles").getResultList();
+        List<Responsible> responsibles = (List<Responsible>) em.createNamedQuery("getAllResponsibles").getResultList();
+        return responsiblesToDTOs(responsibles);
+    }
+    
+    ResponsibleDTO responsibleToDTO(Responsible responsible) {
+        return new ResponsibleDTO(
+                responsible.getId(),
+                responsible.getPassword(),
+                responsible.getName(),
+                responsible.getEmail());
+    }
+
+    List<ResponsibleDTO> responsiblesToDTOs(List<Responsible> responsibles) {
+        List<ResponsibleDTO> dtos = new ArrayList<>();
+        for (Responsible r : responsibles) {
+            dtos.add(responsibleToDTO(r));
+        }
+        return dtos;
     }
 }

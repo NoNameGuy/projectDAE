@@ -52,8 +52,8 @@ public class Responsible extends User implements Serializable {
         events.remove(event);
     }
     
-    
-
-
-
+    @Override
+    public String toString() {
+        return "Responsible{" + "username=" + id + ", password=" + password + ", name=" + name + ", email=" + email + '}';
+    }
 }

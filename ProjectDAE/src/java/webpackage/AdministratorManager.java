@@ -17,6 +17,8 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIParameter;
 
 /**
  *
@@ -33,23 +35,20 @@ public class AdministratorManager {
     @EJB
     private ParticipantBean participantBean;
 
-    private AdministratorDTO newAdministator;
-    private AdministratorDTO currentAdministator;
+    private AdministratorDTO newAdministrator;
+    private AdministratorDTO currentAdministrator;
     private ResponsibleDTO newResponsible;
     private ResponsibleDTO currentResponsible;
     private ParticipantDTO newParticipant;
     private ParticipantDTO currentParticipant;
 
-    private int id;
-    private String password;
-    private String name;
-    private String email;
+    private UIComponent component;
 
     /**
      * Creates a new instance of AdministratorManager
      */
     public AdministratorManager() {
-        newAdministator = new AdministratorDTO();
+        newAdministrator = new AdministratorDTO();
         newResponsible = new ResponsibleDTO();
         newParticipant = new ParticipantDTO();
     }
@@ -58,7 +57,13 @@ public class AdministratorManager {
     public String createAdmininstrator() {
 
         try {
-            administratorBean.createAdmininstrator(id, password, name, email);
+            administratorBean.createAdmininstrator(
+                    newAdministrator.getId(),
+                    newAdministrator.getPassword(),
+                    newAdministrator.getName(),
+                    newAdministrator.getEmail());
+            newAdministrator.reset();
+
             return "index?faces-redirect=true";
         } catch (Exception e) {
             e.printStackTrace();
@@ -69,10 +74,10 @@ public class AdministratorManager {
     public String updateAdministrator() {
         try {
             administratorBean.updateAdministrator(
-                    currentAdministator.getId(),
-                    currentAdministator.getName(),
-                    currentAdministator.getEmail(),
-                    currentAdministator.getPassword());
+                    currentAdministrator.getId(),
+                    currentAdministrator.getName(),
+                    currentAdministrator.getEmail(),
+                    currentAdministrator.getPassword());
             return "index?faces-redirect=true";
         } catch (Exception e) {
             logger.warning("Problem updating user in method updateUser().");
@@ -81,7 +86,7 @@ public class AdministratorManager {
     }
 
     public void removeAdministrator(ActionEvent event) {
-        /*try {
+        /*try {   
             UIParameter param = (UIParameter) event.getComponent().findComponent("deleteUserId");
             int id = Integer.parseInt(param.getValue().toString());
             administratorBean.removeAdministrator(id);
@@ -89,8 +94,8 @@ public class AdministratorManager {
             logger.warning("Problem removing user in method removeUser().");
         }*/
     }
-    
-        public List<AdministratorDTO> getAllAdministrators() {
+
+    public List<AdministratorDTO> getAllAdministrators() {
         return administratorBean.getAllAdministrators();
     }
 
@@ -98,7 +103,11 @@ public class AdministratorManager {
     public String createResponsible() {
 
         try {
-            responsibleBean.createResponsible(id, password, name, email);
+            responsibleBean.createResponsible(
+                    newResponsible.getId(),
+                    newResponsible.getPassword(),
+                    newResponsible.getName(),
+                    newResponsible.getEmail());
             return "index?faces-redirect=true";
         } catch (Exception e) {
             e.printStackTrace();
@@ -114,7 +123,11 @@ public class AdministratorManager {
     public String createParticipant() {
 
         try {
-            participantBean.createParticipant(id, password, name, email);
+            participantBean.createParticipant(
+                    newParticipant.getId(),
+                    newParticipant.getPassword(),
+                    newParticipant.getName(),
+                    newParticipant.getEmail());
             return "index?faces-redirect=true";
         } catch (Exception e) {
             e.printStackTrace();
@@ -127,38 +140,76 @@ public class AdministratorManager {
 
     }
 
-    public int getId() {
-        return id;
+    public AdministratorBean getAdministratorBean() {
+        return administratorBean;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setAdministratorBean(AdministratorBean administratorBean) {
+        this.administratorBean = administratorBean;
     }
 
-    public String getPassword() {
-        return password;
+    public ResponsibleBean getResponsibleBean() {
+        return responsibleBean;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setResponsibleBean(ResponsibleBean responsibleBean) {
+        this.responsibleBean = responsibleBean;
     }
 
-    public String getName() {
-        return name;
+    public ParticipantBean getParticipantBean() {
+        return participantBean;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setParticipantBean(ParticipantBean participantBean) {
+        this.participantBean = participantBean;
     }
 
-    public String getEmail() {
-        return email;
+    public AdministratorDTO getNewAdministrator() {
+        return newAdministrator;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setNewAdministrator(AdministratorDTO newAdministrator) {
+        this.newAdministrator = newAdministrator;
     }
 
+    public AdministratorDTO getCurrentAdministrator() {
+        return currentAdministrator;
+    }
 
+    public void setCurrentAdministrator(AdministratorDTO currentAdministrator) {
+        this.currentAdministrator = currentAdministrator;
+    }
+
+    public ResponsibleDTO getNewResponsible() {
+        return newResponsible;
+    }
+
+    public void setNewResponsible(ResponsibleDTO newResponsible) {
+        this.newResponsible = newResponsible;
+    }
+
+    public ResponsibleDTO getCurrentResponsible() {
+        return currentResponsible;
+    }
+
+    public void setCurrentResponsible(ResponsibleDTO currentResponsible) {
+        this.currentResponsible = currentResponsible;
+    }
+
+    public ParticipantDTO getNewParticipant() {
+        return newParticipant;
+    }
+
+    public void setNewParticipant(ParticipantDTO newParticipant) {
+        this.newParticipant = newParticipant;
+    }
+
+    public ParticipantDTO getCurrentParticipant() {
+        return currentParticipant;
+    }
+
+    public void setCurrentParticipant(ParticipantDTO currentParticipant) {
+        this.currentParticipant = currentParticipant;
+    }
 
 }
