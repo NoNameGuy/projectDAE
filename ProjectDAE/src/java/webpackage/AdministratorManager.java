@@ -111,11 +111,11 @@ public class AdministratorManager {
                     newResponsible.getPassword(),
                     newResponsible.getName(),
                     newResponsible.getEmail());
-            return "index?faces-redirect=true";
+            return "AdminPage?faces-redirect=true";
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "index?faces-redirect=true";
+        return "AdminPage?faces-redirect=true";
     }
     
         public void removeResponsible(ActionEvent event) {
@@ -141,11 +141,11 @@ public class AdministratorManager {
                     newParticipant.getPassword(),
                     newParticipant.getName(),
                     newParticipant.getEmail());
-            return "index?faces-redirect=true";
+            return "AdminPage?faces-redirect=true";
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "index?faces-redirect=true";
+        return "AdminPage?faces-redirect=true";
     }
     
     public void removeParticipant(ActionEvent event) {
