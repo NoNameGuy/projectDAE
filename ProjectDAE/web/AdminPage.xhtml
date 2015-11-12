@@ -31,7 +31,7 @@ and open the template in the editor.
                     <h:outputText value="Actions" />
                 </f:facet>
                 <h:form>
-                    <h:commandLink value="Update" action="admin_update_user?faces-redirect=true">
+                    <h:commandLink value="Update" action="admin_user_update?faces-redirect=true">
                         <f:setPropertyActionListener target="#{administratorManager.currentAdministrator}" value="#{administrator}" />
                     </h:commandLink>
 

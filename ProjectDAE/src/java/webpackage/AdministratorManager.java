@@ -64,11 +64,11 @@ public class AdministratorManager {
                     newAdministrator.getEmail());
             newAdministrator.reset();
 
-            return "index?faces-redirect=true";
+            return "AdminPage?faces-redirect=true";
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "index?faces-redirect=true";
+        return "admin_user_create?faces-redirect=true";
     }
 
     public String updateAdministrator() {
@@ -78,7 +78,7 @@ public class AdministratorManager {
                     currentAdministrator.getName(),
                     currentAdministrator.getEmail(),
                     currentAdministrator.getPassword());
-            return "index?faces-redirect=true";
+            return "AdminPage?faces-redirect=true";
         } catch (Exception e) {
             logger.warning("Problem updating user in method updateUser().");
         }
