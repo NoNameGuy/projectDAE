@@ -38,8 +38,9 @@ and open the template in the editor.
                     </h:commandLink>
 
                     <h:commandLink value="Remove" actionListener="#{administratorManager.removeAdministrator}">
-                        <f:param name="deleteUserId" id="deleteUser" value="#{administrator.id}" />
-                    </h:commandLink>
+                        <f:param name="administratorID" id="administratorID" value="#{administrator.id}"/>
+                    </h:commandLink>´
+                    
                 </h:form>
             </h:column>
         </h:dataTable>
@@ -74,7 +75,7 @@ and open the template in the editor.
                     </h:commandLink>
 
                     <h:commandLink value="Remove" actionListener="#{administratorManager.removeResponsible}">
-                        <f:param name="deleteUserId" id="deleteUser" value="#{responsible.id}" />
+                        <f:param name="responsibleID" id="responsibleID" value="#{responsible.id}" />
                     </h:commandLink>
                 </h:form>
             </h:column>
@@ -110,7 +111,7 @@ and open the template in the editor.
                     </h:commandLink>
 
                     <h:commandLink value="Remove" actionListener="#{administratorManager.removeParticipant}">
-                        <f:param name="deleteUserId" id="deleteUser" value="#{user.id}" />
+                        <f:param name="participantID" id="participantID" value="#{user.id}" />
                     </h:commandLink>
                 </h:form>
             </h:column>
@@ -147,7 +148,7 @@ and open the template in the editor.
                     </h:commandLink>
 
                     <h:commandLink value="Remove" actionListener="#{eventManager.removeEvent}">
-                        <f:param name="deleteEventId" id="deleteEvent" value="#{event.id}" />
+                        <f:param name="eventID" id="eventID" value="#{event.id}" />
                     </h:commandLink>
                 </h:form>
             </h:column>

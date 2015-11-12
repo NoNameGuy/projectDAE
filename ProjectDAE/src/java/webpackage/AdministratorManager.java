@@ -12,12 +12,16 @@ import dtos.ResponsibleDTO;
 import ejbs.AdministratorBean;
 import ejbs.ParticipantBean;
 import ejbs.ResponsibleBean;
-import java.awt.event.ActionEvent;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
+import javax.faces.component.UIParameter;
+import javax.faces.event.ActionEvent;
+
+
+
 
 /**
  *
@@ -40,8 +44,8 @@ public class AdministratorManager {
     private ResponsibleDTO currentResponsible;
     private ParticipantDTO newParticipant;
     private ParticipantDTO currentParticipant;
-
     private UIComponent component;
+
 
     /**
      * Creates a new instance of AdministratorManager
@@ -85,13 +89,13 @@ public class AdministratorManager {
     }
 
     public void removeAdministrator(ActionEvent event) {
-        /*try {   
-            UIParameter param = (UIParameter) event.getComponent().findComponent("deleteUserId");
+        try {   
+           UIParameter param = (UIParameter) event.getComponent().findComponent("administratorID");
             int id = Integer.parseInt(param.getValue().toString());
-            administratorBean.removeAdministrator(id);
+           administratorBean.removeAdministrator(id);
         } catch (Exception e) {
             logger.warning("Problem removing user in method removeUser().");
-        }*/
+        }
     }
 
     public List<AdministratorDTO> getAllAdministrators() {
@@ -113,6 +117,16 @@ public class AdministratorManager {
         }
         return "index?faces-redirect=true";
     }
+    
+        public void removeResponsible(ActionEvent event) {
+        try {   
+           UIParameter param = (UIParameter) event.getComponent().findComponent("responsibleID");
+            int id = Integer.parseInt(param.getValue().toString());
+           responsibleBean.removeResponsible(id);
+        } catch (Exception e) {
+            logger.warning("Problem removing user in method removeUser().");
+        }
+    }
 
     public List<ResponsibleDTO> getAllResponsibles() {
         return responsibleBean.getAllResponsibles();
@@ -132,6 +146,16 @@ public class AdministratorManager {
             e.printStackTrace();
         }
         return "index?faces-redirect=true";
+    }
+    
+    public void removeParticipant(ActionEvent event) {
+        try {   
+           UIParameter param = (UIParameter) event.getComponent().findComponent("participantID");
+            int id = Integer.parseInt(param.getValue().toString());
+           participantBean.removeParticipant(id);
+        } catch (Exception e) {
+            logger.warning("Problem removing user in method removeUser().");
+        }
     }
 
     public List<ParticipantDTO> getAllParticipants() {
@@ -210,5 +234,13 @@ public class AdministratorManager {
     public void setCurrentParticipant(ParticipantDTO currentParticipant) {
         this.currentParticipant = currentParticipant;
     }
+
+        public UIComponent getComponent() {
+        return component;
+    }
+
+    public void setComponent(UIComponent component) {
+        this.component = component;
+    }  
 
 }
