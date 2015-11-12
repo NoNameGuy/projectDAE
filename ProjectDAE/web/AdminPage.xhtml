@@ -13,6 +13,8 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
+        <!-- //////////////////////////ADMINISTRATOR////////////////////////// -->
+        
         <div>Administrators:</div>
         <h:dataTable value="#{administratorManager.allAdministrators}" var="administrator">
             <h:column>
@@ -31,7 +33,7 @@ and open the template in the editor.
                     <h:outputText value="Actions" />
                 </f:facet>
                 <h:form>
-                    <h:commandLink value="Update" action="admin_user_update?faces-redirect=true">
+                    <h:commandLink value="Update" action="admin_administrator_update?faces-redirect=true">
                         <f:setPropertyActionListener target="#{administratorManager.currentAdministrator}" value="#{administrator}" />
                     </h:commandLink>
 
@@ -44,14 +46,86 @@ and open the template in the editor.
 
         <h:form>
             <h:commandLink action="admin_administrator_create" value="New Administator"></h:commandLink> 
-       <br></br>
-       <h:commandLink action="admin_responsible_create" value="New Responsible"></h:commandLink> 
-       <br></br>
-       <h:commandLink action="admin_participant_create" value="New Participant"></h:commandLink> 
-       <br></br>
-       <h:commandLink action="index" value="Back"></h:commandLink> 
-       
-       </h:form>
+            <br></br>
+        </h:form>
+
+        <br></br><br></br>
+<!-- //////////////////////////RESPONSIBLE////////////////////////// -->
+        <div>Responsibles:</div>
+        <h:dataTable value="#{administratorManager.allResponsibles}" var="responsible">
+            <h:column>
+                <f:facet name="header">Name</f:facet>
+                <h:outputText value="#{responsible.name}"/>
+
+            </h:column>
+            <h:column>
+                <f:facet name="header">Email</f:facet>
+                <h:outputText value="#{responsible.email}"/>
+
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Actions" />
+                </f:facet>
+                <h:form>
+                    <h:commandLink value="Update" action="admin_responsible_update?faces-redirect=true">
+                        <f:setPropertyActionListener target="#{administratorManager.currentResponsible}" value="#{responsible}" />
+                    </h:commandLink>
+
+                    <h:commandLink value="Remove" actionListener="#{administratorManager.removeResponsible}">
+                        <f:param name="deleteUserId" id="deleteUser" value="#{responsible.id}" />
+                    </h:commandLink>
+                </h:form>
+            </h:column>
+        </h:dataTable>
+
+        <h:form>
+            <h:commandLink action="admin_responsible_create" value="New Responsible"></h:commandLink> 
+            <br></br>
+        </h:form>
+
+        <br></br><br></br>
+<!-- //////////////////////////PARTICIPANT////////////////////////// -->
+        <div>Participants:</div>
+        <h:dataTable value="#{administratorManager.allParticipants}" var="participant">
+            <h:column>
+                <f:facet name="header">Name</f:facet>
+                <h:outputText value="#{participant.name}"/>
+
+            </h:column>
+            <h:column>
+                <f:facet name="header">Email</f:facet>
+                <h:outputText value="#{participant.email}"/>
+
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Actions" />
+                </f:facet>
+                <h:form>
+                    <h:commandLink value="Update" action="admin_participant_update?faces-redirect=true">
+                        <f:setPropertyActionListener target="#{administratorManager.currentParticipant}" value="#{participant}" />
+                    </h:commandLink>
+
+                    <h:commandLink value="Remove" actionListener="#{administratorManager.removeParticipant}">
+                        <f:param name="deleteUserId" id="deleteUser" value="#{user.id}" />
+                    </h:commandLink>
+                </h:form>
+            </h:column>
+        </h:dataTable>
+
+        <h:form>
+            <h:commandLink action="admin_participant_create" value="New Participant"></h:commandLink> 
+            <br></br>
+        </h:form>
+        
+        <h:form>
+        <br></br>
+        <h:commandLink action="index" value="Back"></h:commandLink> 
+
+        </h:form>
 
     </body>
 </html>

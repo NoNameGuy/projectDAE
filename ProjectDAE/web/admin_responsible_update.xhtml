@@ -21,7 +21,7 @@ and open the template in the editor.
                     id="name"
                     required ="true"
                     requiredMessage="Name cannot be empty!"
-                    value="#{administratorManager.currentAdministrator.name}">
+                    value="#{administratorManager.currentResponsible.name}">
                 </h:inputText>
                 <h:message for="name" />
                 <h:outputLabel for="email" value="Email: "/>
@@ -29,7 +29,7 @@ and open the template in the editor.
                     id="email"
                     required ="true"
                     requiredMessage="Email cannot be empty!"
-                    value="#{administratorManager.currentAdministrator.email}">
+                    value="#{administratorManager.currentResponsible.email}">
                     <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
                 </h:inputText>
                 <h:message for="email" />
@@ -38,7 +38,7 @@ and open the template in the editor.
                     id="password"
                     required ="true"
                     requiredMessage="Password cannot be empty!"
-                    value="#{administratorManager.currentAdministrator.password}">
+                    value="#{administratorManager.currentResponsible.password}">
                 </h:inputSecret>
                 <h:message for="password" />
             </h:panelGrid>
@@ -46,7 +46,7 @@ and open the template in the editor.
                 <h:commandButton 
                     id="submit"
                     value="Submit" 
-                    action="#{administratorManager.updateAdministrator}">
+                    action="#{administratorManager.updateResponsible}">
                 </h:commandButton>
                 <h:message for="submit" style="color: red"/>
             </h:panelGrid>
