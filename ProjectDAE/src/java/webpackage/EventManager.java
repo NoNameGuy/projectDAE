@@ -5,6 +5,7 @@
  */
 package webpackage;
 
+import dtos.EventDTO;
 import ejbs.EventBean;
 import entity.Event;
 import entity.Responsible;
@@ -102,7 +103,7 @@ public class EventManager {
         this.responsible = responsible;
     }
     
-    public List<Event> getAllEvents() {
-        return eventBean.getAll();
+    public List<EventDTO> getAllEvents() {
+        return eventBean.getAllEvents();
     }
 }

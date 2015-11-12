@@ -5,11 +5,8 @@
  */
 package ejbs;
 
-import dtos.ParticipantDTO;
 import dtos.ResponsibleDTO;
-import entity.Administrator;
 import entity.Event;
-import entity.Participant;
 import entity.Responsible;
 import exceptions.EntityAlreadyExistsException;
 import exceptions.EntityDoesNotExistsException;
@@ -141,7 +138,7 @@ public class ResponsibleBean {
         List<Responsible> responsibles = (List<Responsible>) em.createNamedQuery("getAllResponsibles").getResultList();
         return responsiblesToDTOs(responsibles);
     }
-    
+
     ResponsibleDTO responsibleToDTO(Responsible responsible) {
         return new ResponsibleDTO(
                 responsible.getId(),

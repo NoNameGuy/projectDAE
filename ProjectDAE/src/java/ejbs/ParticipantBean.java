@@ -6,7 +6,6 @@
 package ejbs;
 
 import dtos.ParticipantDTO;
-import entity.Administrator;
 import entity.Participant;
 import exceptions.EntityAlreadyExistsException;
 import exceptions.EntityDoesNotExistsException;
@@ -27,30 +26,28 @@ import javax.validation.ConstraintViolationException;
  */
 @Stateless
 public class ParticipantBean implements Serializable {
-    
+
     @PersistenceContext(unitName = "ProjectDAEPU")
     private EntityManager em;
-    
-    //Create Participant
 
+    //Create Participant
     public void createParticipant(int id, String password, String name, String email)
-        throws EntityAlreadyExistsException, MyConstraintViolationException {
+            throws EntityAlreadyExistsException, MyConstraintViolationException {
         try {
-            if(em.find(Participant.class, id) != null){
+            if (em.find(Participant.class, id) != null) {
                 throw new EntityAlreadyExistsException("A Participant with that usermane already exists.");
             }
             em.persist(new Participant(id, password, name, email));
         } catch (EntityAlreadyExistsException e) {
             throw e;
         } catch (ConstraintViolationException e) {
-            throw new MyConstraintViolationException(Utils.getConstraintViolationMessages(e));  
+            throw new MyConstraintViolationException(Utils.getConstraintViolationMessages(e));
         } catch (Exception e) {
             throw new EJBException(e.getMessage());
         }
     }
 
     //Participant Update
-    
     public void updateParticipant(int id, String password, String name, String email, String role)
             throws EntityDoesNotExistsException, MyConstraintViolationException {
         try {
@@ -65,14 +62,13 @@ public class ParticipantBean implements Serializable {
         } catch (EntityDoesNotExistsException e) {
             throw e;
         } catch (ConstraintViolationException e) {
-            throw new MyConstraintViolationException(Utils.getConstraintViolationMessages(e));  
+            throw new MyConstraintViolationException(Utils.getConstraintViolationMessages(e));
         } catch (Exception e) {
             throw new EJBException(e.getMessage());
         }
     }
 
     //remove Participant
-    
     public void removeParticipant(int id)
             throws EntityDoesNotExistsException, MyConstraintViolationException {
         try {
@@ -84,14 +80,13 @@ public class ParticipantBean implements Serializable {
         } catch (EntityDoesNotExistsException e) {
             throw e;
         } catch (ConstraintViolationException e) {
-            throw new MyConstraintViolationException(Utils.getConstraintViolationMessages(e));  
+            throw new MyConstraintViolationException(Utils.getConstraintViolationMessages(e));
         } catch (Exception e) {
             throw new EJBException(e.getMessage());
         }
     }
 
     //Verify if participant exists
-    
     public boolean existeParticipant(String username) {
         try {
             return em.find(Participant.class, username) != null;
@@ -99,20 +94,20 @@ public class ParticipantBean implements Serializable {
             throw new EJBException(e.getMessage());
         }
     }
-    
-    public void listEvents () {
-        
+
+    public void listEvents() {
+
     }
-    
-    public void enrollParticipant () {
-        
+
+    public void enrollParticipant() {
+
     }
 
     public List<ParticipantDTO> getAllParticipants() {
         List<Participant> participants = (List<Participant>) em.createNamedQuery("getAllParticipants").getResultList();
         return participantsToDTOs(participants);
     }
-    
+
     ParticipantDTO participantToDTO(Participant participant) {
         return new ParticipantDTO(
                 participant.getId(),

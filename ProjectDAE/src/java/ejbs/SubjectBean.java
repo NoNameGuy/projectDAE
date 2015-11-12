@@ -7,10 +7,13 @@ package ejbs;
 
 import entity.Subject;
 import exceptions.EntityAlreadyExistsException;
+import exceptions.MyConstraintViolationException;
+import exceptions.Utils;
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.validation.ConstraintViolationException;
 
 /**
  *
@@ -25,7 +28,7 @@ public class SubjectBean {
     private EntityManager em;
 
     public void createSubject(Long id, String name, int courseYear, String scholarYear)
-        throws EntityAlreadyExistsException {
+        throws EntityAlreadyExistsException, MyConstraintViolationException {
         try {
             if (em.find(Subject.class, id) != null) {
                 throw new EntityAlreadyExistsException("A subject with that id already exists.");
@@ -33,9 +36,12 @@ public class SubjectBean {
             Subject subject = new Subject(id, name, courseYear, scholarYear);
             em.persist(subject);
             
+        } catch (EntityAlreadyExistsException e) {
+            throw e;
+        } catch (ConstraintViolationException e) {
+            throw new MyConstraintViolationException(Utils.getConstraintViolationMessages(e));  
         } catch (Exception e) {
             throw new EJBException(e.getMessage());
         }
     }
-   
 }

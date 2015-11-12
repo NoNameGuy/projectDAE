@@ -5,17 +5,24 @@
  */
 package ejbs;
 
+import dtos.AdministratorDTO;
+import dtos.EventDTO;
+import entity.Administrator;
 import entity.Event;
 import entity.Participant;
 import entity.Responsible;
 import exceptions.EntityAlreadyExistsException;
 import exceptions.EntityDoesNotExistsException;
+import exceptions.MyConstraintViolationException;
+import exceptions.Utils;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.validation.ConstraintViolationException;
 
 /**
  *
@@ -26,16 +33,15 @@ public class EventBean {
 
     @PersistenceContext(unitName = "ProjectDAEPU")
     private EntityManager em;
-    
+
     /*public List<String> list() {
         
     }*/
-    
     public void createEvent(int id, Date date, String name, String type, String local, int responsableId)
-                throws EntityAlreadyExistsException, EntityDoesNotExistsException {
+            throws EntityAlreadyExistsException, EntityDoesNotExistsException, MyConstraintViolationException {
         try {
-         
-            if(em.find(Event.class, id) != null){
+
+            if (em.find(Event.class, id) != null) {
                 throw new EntityAlreadyExistsException("A Event with that id already exists.");
             }
             Responsible responsible = em.find(Responsible.class, responsableId);
@@ -45,15 +51,19 @@ public class EventBean {
             Event event = new Event(id, date, name, type, local, responsible);
             em.persist(event);
 
+        } catch (EntityAlreadyExistsException | EntityDoesNotExistsException e) {
+            throw e;
+        } catch (ConstraintViolationException e) {
+            throw new MyConstraintViolationException(Utils.getConstraintViolationMessages(e));
         } catch (Exception e) {
             throw new EJBException(e.getMessage());
         }
     }
-    
+
     public void updateEvent() {
-        
+
     }
-    
+
     public void deleteEvent(int id) {
         try {
             Event event = em.find(Event.class, id);
@@ -62,20 +72,38 @@ public class EventBean {
             }
 
             event.getResponsible().removeEvent(event);
-            
+
             for (Participant participant : event.getParticipants()) {
                 event.removeParticipant(participant);
             }
-            
+
             em.remove(event);
-            
+
         } catch (Exception e) {
             throw e;
         }
     }
 
-    public List<Event> getAll() {
-        return em.createNamedQuery("getAllEvents").getResultList();
+    public List<EventDTO> getAllEvents() {
+        List<Event> events = (List<Event>) em.createNamedQuery("getAllEvents").getResultList();
+        return eventsToDTOs(events);
+    }
+
+    EventDTO eventToDTO(Event event) {
+        return new EventDTO(
+                event.getId(),
+                event.getDate(),
+                event.getName(),
+                event.getType(),
+                event.getLocal());
+    }
+
+    List<EventDTO> eventsToDTOs(List<Event> events) {
+        List<EventDTO> dtos = new ArrayList<>();
+        for (Event e : events) {
+            dtos.add(eventToDTO(e));
+        }
+        return dtos;
     }
 
 }
