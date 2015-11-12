@@ -12,14 +12,13 @@ import java.io.Serializable;
  * @author franc
  */
 public class ParticipantDTO extends UserDTO implements Serializable {
-
+   
+    
     public ParticipantDTO() {
     }
 
     public ParticipantDTO(int id, String password, String name, String email) {
         super(id, password, name, email);
     }
-    
-    
-    
+
 }

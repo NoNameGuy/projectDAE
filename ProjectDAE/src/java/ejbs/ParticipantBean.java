@@ -11,7 +11,6 @@ import exceptions.EntityAlreadyExistsException;
 import exceptions.EntityDoesNotExistsException;
 import exceptions.MyConstraintViolationException;
 import exceptions.Utils;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJBException;
@@ -25,7 +24,7 @@ import javax.validation.ConstraintViolationException;
  * @author UTIL
  */
 @Stateless
-public class ParticipantBean implements Serializable {
+public class ParticipantBean {
 
     @PersistenceContext(unitName = "ProjectDAEPU")
     private EntityManager em;

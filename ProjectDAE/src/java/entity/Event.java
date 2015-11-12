@@ -5,6 +5,7 @@
  */
 package entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -32,7 +33,7 @@ import javax.validation.constraints.NotNull;
     @NamedQuery(name = "getAllEvents",
             query = "SELECT e FROM Event e ORDER BY e.date")
     })
-public class Event {
+public class Event implements Serializable {
     @Id
     private int id;
     @Temporal(TemporalType.DATE)

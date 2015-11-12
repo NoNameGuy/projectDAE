@@ -5,9 +5,7 @@
  */
 package ejbs;
 
-import dtos.AdministratorDTO;
 import dtos.EventDTO;
-import entity.Administrator;
 import entity.Event;
 import entity.Participant;
 import entity.Responsible;

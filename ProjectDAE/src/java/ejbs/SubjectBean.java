@@ -5,13 +5,12 @@
  */
 package ejbs;
 
-import dtos.EventDTO;
 import dtos.SubjectDTO;
-import entity.Event;
 import entity.Subject;
 import exceptions.EntityAlreadyExistsException;
 import exceptions.MyConstraintViolationException;
 import exceptions.Utils;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJBException;
