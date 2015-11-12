@@ -6,13 +6,12 @@
 package webpackage;
 
 import static com.sun.xml.ws.security.addressing.impl.policy.Constants.logger;
+import dtos.AdministratorDTO;
+import dtos.ParticipantDTO;
+import dtos.ResponsibleDTO;
 import ejbs.AdministratorBean;
 import ejbs.ParticipantBean;
 import ejbs.ResponsibleBean;
-import entity.Administrator;
-import entity.Participant;
-import entity.Responsible;
-import entity.User;
 import java.awt.event.ActionEvent;
 import java.util.List;
 import javax.ejb.EJB;
@@ -33,98 +32,100 @@ public class AdministratorManager {
     private ResponsibleBean responsibleBean;
     @EJB
     private ParticipantBean participantBean;
-    
+
+    private AdministratorDTO newAdministator;
+    private AdministratorDTO currentAdministator;
+    private ResponsibleDTO newResponsible;
+    private ResponsibleDTO currentResponsible;
+    private ParticipantDTO newParticipant;
+    private ParticipantDTO currentParticipant;
+
     private int id;
     private String password;
     private String name;
     private String email;
-    private String typeUser;
-    private User currentUser;
 
     /**
      * Creates a new instance of AdministratorManager
      */
-    public AdministratorManager() { 
-        
+    public AdministratorManager() {
+        newAdministator = new AdministratorDTO();
+        newResponsible = new ResponsibleDTO();
+        newParticipant = new ParticipantDTO();
     }
-    
-    public void createUser() {
-        System.err.println(typeUser);
+
+    //////////////////////////// Administrator \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    public String createAdmininstrator() {
+
         try {
-            if ( typeUser == "administrator" ) {
-                createAdmin();
-            } else if ( typeUser == "responsible" ) {
-                createResponsible();
-            } else if ( typeUser == "participant" ) {
-                
-            } else {
-                return;
-            }
-        } catch (Exception e ){
+            administratorBean.createAdmininstrator(id, password, name, email);
+            return "index?faces-redirect=true";
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        
+        return "index?faces-redirect=true";
     }
-    
-    
-    public String updateAdmin() {
+
+    public String updateAdministrator() {
         try {
-            administratorBean.updateAdmin(
-                currentUser.getId(),
-                currentUser.getName(),
-                currentUser.getEmail(),
-                currentUser.getPassword());
+            administratorBean.updateAdministrator(
+                    currentAdministator.getId(),
+                    currentAdministator.getName(),
+                    currentAdministator.getEmail(),
+                    currentAdministator.getPassword());
             return "index?faces-redirect=true";
         } catch (Exception e) {
             logger.warning("Problem updating user in method updateUser().");
         }
         return "admin_update_user";
     }
-    
-    public void removeAdmin (ActionEvent event) {
-       /* try {
+
+    public void removeAdministrator(ActionEvent event) {
+        /*try {
             UIParameter param = (UIParameter) event.getComponent().findComponent("deleteUserId");
             int id = Integer.parseInt(param.getValue().toString());
-            administratorBean.removeAdmin(id);
+            administratorBean.removeAdministrator(id);
         } catch (Exception e) {
             logger.warning("Problem removing user in method removeUser().");
         }*/
     }
     
-    // Administrator
-    public AdministratorBean getAdministratorBean() {
-        return administratorBean;
+        public List<AdministratorDTO> getAllAdministrators() {
+        return administratorBean.getAllAdministrators();
     }
 
-    public void setAdministratorBean(AdministratorBean administratorBean) {
-        this.administratorBean = administratorBean;
-    }
-    
-    
-    public String createAdmin() {
-        
-        try{
-            administratorBean.createAdmin(id, password, name, email);
-            return "index?faces-redirect=true";
-        } catch(Exception e){
-            e.printStackTrace();
-        }
-        return "index?faces-redirect=true";
-    }
-    
-    
-    // Responsible
+    //////////////////////////// Responsible \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     public String createResponsible() {
-        
-        try{
+
+        try {
             responsibleBean.createResponsible(id, password, name, email);
             return "index?faces-redirect=true";
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return "index?faces-redirect=true";
     }
-    
+
+    public List<ResponsibleDTO> getAllResponsibles() {
+        return responsibleBean.getAllResponsibles();
+    }
+
+    //////////////////////////// Participant \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    public String createParticipant() {
+
+        try {
+            participantBean.createParticipant(id, password, name, email);
+            return "index?faces-redirect=true";
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "index?faces-redirect=true";
+    }
+
+    public List<ParticipantDTO> getAllParticipants() {
+        return participantBean.getAllParticipants();
+
+    }
 
     public int getId() {
         return id;
@@ -158,37 +159,6 @@ public class AdministratorManager {
         this.email = email;
     }
 
-    public String getTypeUser() {
-        return typeUser;
-    }
 
-    public void setTypeUser(String typeUser) {
-        this.typeUser = typeUser;
-    }
-    
-    
-    
-    public User getCurrentUser() {
-        return currentUser;
-    }
 
-    public void setCurrentUser(User currentUser) {
-        this.currentUser = currentUser;
-    }
-    
-    public List<Administrator> getAllAdministrators() {
-        return administratorBean.getAllAdministrators();
-        
-    }
-    
-    public List<Responsible> getAllResponsibles() {
-        return responsibleBean.getAllResponsibles();
-        
-    }
-    
-    public List<Participant> getAllParticipants() {
-        return participantBean.getAllParticipants();
-        
-    }
-    
 }

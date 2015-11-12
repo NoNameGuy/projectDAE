@@ -12,28 +12,28 @@ import java.io.Serializable;
  * @author franc
  */
 public class UserDTO implements Serializable {
-    
+
     protected int id;
-    protected String password;    
+    protected String password;
     protected String name;
     protected String email;
 
     public UserDTO() {
-    }    
-    
+    }
+
     public UserDTO(int id, String password, String name, String email) {
         this.id = id;
         this.password = password;
         this.name = name;
         this.email = email;
     }
-    
+
     public void reset() {
         setId(0);
         setPassword(null);
         setName(null);
         setEmail(null);
-    }        
+    }
 
     public int getId() {
         return id;

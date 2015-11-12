@@ -23,15 +23,17 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "getAllParticipants",
             query = "SELECT p FROM Participant p ORDER BY p.name")
+
 })
+
 public class Participant extends User implements Serializable {
 
     @ManyToMany(mappedBy = "participants")
     private List<Event> events;
-    
+
     @ManyToMany(mappedBy = "participants")
     private List<Subject> subjects;
-    
+
     public Participant() {
         events = new LinkedList<>();
         subjects = new LinkedList<>();
@@ -50,11 +52,11 @@ public class Participant extends User implements Serializable {
     public void setEvents(List<Event> events) {
         this.events = events;
     }
-    
+
     public void addEvent(Event event) {
         events.add(event);
     }
-    
+
     public void removeEvent(Event event) {
         events.remove(event);
     }
@@ -66,7 +68,5 @@ public class Participant extends User implements Serializable {
     public void setSubjects(List<Subject> subjects) {
         this.subjects = subjects;
     }
-    
-    
 
 }

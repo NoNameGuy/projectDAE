@@ -50,19 +50,12 @@ and open the template in the editor.
                 </h:inputSecret>
                 <h:message for="password" />
 
-               <!--<h:selectOneMenu value="#{administratorManager.typeUser}">
-                    <f:selectItem itemValue="administrator" itemLabel="Administrator" />
-                    <f:selectItem itemValue="responsible" itemLabel="Responsible" />
-                    <f:selectItem itemValue="participant" itemLabel="Participant" />
-                </h:selectOneMenu>-->
-
-
             </h:panelGrid>
             <h:panelGrid>
                 <h:commandButton 
                     id="submit"
                     value="Submit" 
-                    action="#{administratorManager.createAdmin()}">
+                    action="#{administratorManager.createAdmininstrator}">
                 </h:commandButton>
                 <h:message for="submit" />
             </h:panelGrid>

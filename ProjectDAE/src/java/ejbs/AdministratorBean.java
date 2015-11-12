@@ -5,13 +5,18 @@
  */
 package ejbs;
 
+import dtos.AdministratorDTO;
 import entity.Administrator;
 import exceptions.EntityAlreadyExistsException;
+import exceptions.EntityDoesNotExistsException;
+import exceptions.MyConstraintViolationException;
+import exceptions.Utils;
 import java.util.List;
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.validation.ConstraintViolationException;
 
 /**
  *
@@ -25,13 +30,17 @@ public class AdministratorBean {
     
     //Create Admin
 
-    public void createAdmin(int id, String password, String name, String email) 
-        throws EntityAlreadyExistsException {
+    public void createAdmininstrator(int id, String password, String name, String email) 
+        throws EntityAlreadyExistsException, MyConstraintViolationException {
         try {
             if(em.find(Administrator.class, id) != null){
-                throw new EntityAlreadyExistsException("A Administrator with that id already exists.");
+                throw new EntityAlreadyExistsException("A Administrator with that usermane already exists.");
             }
             em.persist(new Administrator(id, password, name, email));
+        } catch (EntityAlreadyExistsException e) {
+            throw e;
+        } catch (ConstraintViolationException e) {
+            throw new MyConstraintViolationException(Utils.getConstraintViolationMessages(e));  
         } catch (Exception e) {
             throw new EJBException(e.getMessage());
         }
@@ -39,17 +48,21 @@ public class AdministratorBean {
 
     //Admin Update
     
-    public void updateAdmin(int id, String name, String email, String password)
-            throws EntityAlreadyExistsException {
+    public void updateAdministrator(int id, String name, String email, String password)
+            throws EntityDoesNotExistsException, MyConstraintViolationException {
         try {
             Administrator administrator = em.find(Administrator.class, id);
             if (administrator == null) {
-                return;
+                throw new EntityDoesNotExistsException("There is no adminstrator with that username.");
             }
             administrator.setPassword(password);
             administrator.setName(name);
             administrator.setEmail(email);
             em.merge(administrator);
+        } catch (EntityDoesNotExistsException e) {
+            throw e;
+        } catch (ConstraintViolationException e) {
+            throw new MyConstraintViolationException(Utils.getConstraintViolationMessages(e));  
         } catch (Exception e) {
             throw new EJBException(e.getMessage());
         }
@@ -57,10 +70,17 @@ public class AdministratorBean {
 
     //remove admin
     
-    public void removeAdmin(int id) {
+    public void removeAdministrator(int id) throws EntityDoesNotExistsException, MyConstraintViolationException {
         try {
-            Administrator admin = em.find(Administrator.class, id);
-            em.remove(admin);
+            Administrator administrator = em.find(Administrator.class, id);
+            if (administrator == null) {
+                throw new EntityDoesNotExistsException("There is no adminstrator with that username.");
+            }
+            em.remove(administrator);
+        } catch (EntityDoesNotExistsException e) {
+            throw e;
+        } catch (ConstraintViolationException e) {
+            throw new MyConstraintViolationException(Utils.getConstraintViolationMessages(e));  
         } catch (Exception e) {
             throw new EJBException(e.getMessage());
         }
@@ -68,7 +88,7 @@ public class AdministratorBean {
 
     //Verify if admin exists
     
-    public boolean existeAdmin(int id) {
+    public boolean existeAdministrator(int id) {
         try {
             return (em.find(Administrator.class, id) != null);
         } catch (Exception e) {
@@ -76,7 +96,7 @@ public class AdministratorBean {
         }
     }
     
-    public List<Administrator> getAllAdministrators() {
+    public List<AdministratorDTO> getAllAdministrators() {
         return em.createNamedQuery("getAllAdministrators").getResultList();
     }
 

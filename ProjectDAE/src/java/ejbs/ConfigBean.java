@@ -37,8 +37,8 @@ public class ConfigBean {
        
        try {
             // Create Administrator
-            administratorBean.createAdmin(1, "administrator1", "DAE1", "Admistrator1@DAE.pt");
-            administratorBean.createAdmin(2, "administrator2", "DAE2", "Admistrator2@DAE.pt");
+            administratorBean.createAdmininstrator(1, "administrator1", "DAE1", "Admistrator1@DAE.pt");
+            administratorBean.createAdmininstrator(2, "administrator2", "DAE2", "Admistrator2@DAE.pt");
             
             // Create Responsible
             responsibleBean.createResponsible(3, "responsible1", "DAE1", "Responsible1@DAE.pt");

@@ -5,14 +5,21 @@
  */
 package ejbs;
 
+import dtos.ResponsibleDTO;
+import entity.Administrator;
 import entity.Event;
+import entity.Participant;
 import entity.Responsible;
 import exceptions.EntityAlreadyExistsException;
+import exceptions.EntityDoesNotExistsException;
+import exceptions.MyConstraintViolationException;
+import exceptions.Utils;
 import java.util.List;
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.validation.ConstraintViolationException;
 
 /**
  *
@@ -20,62 +27,71 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class ResponsibleBean {
-    
+
     @PersistenceContext(unitName = "ProjectDAEPU")
     private EntityManager em;
-    
-    public List<Event> listEvents () {
+
+    public List<Event> listEvents() {
         return em.createNamedQuery("listEvents").getResultList();
     }
-    
+
     //Create Responsible
-
     public void createResponsible(int id, String password, String name, String email)
-        throws EntityAlreadyExistsException {
+            throws EntityAlreadyExistsException, MyConstraintViolationException {
         try {
-            if(em.find(Responsible.class, id) != null){
-                throw new EntityAlreadyExistsException("A Responsible with that id already exists.");
+            if (em.find(Responsible.class, id) != null) {
+                throw new EntityAlreadyExistsException("A Responsible with that usermane already exists.");
             }
-            Responsible responsible = new Responsible(id, password, name, email);
-            em.persist(responsible);
-
+            em.persist(new Responsible(id, password, name, email));
+        } catch (EntityAlreadyExistsException e) {
+            throw e;
+        } catch (ConstraintViolationException e) {
+            throw new MyConstraintViolationException(Utils.getConstraintViolationMessages(e));
         } catch (Exception e) {
             throw new EJBException(e.getMessage());
         }
-
     }
 
     //Responsible Update
-    
-    public void updateResponsible(int id, String password, String name, String email) {
+    public void updateResponsible(int id, String password, String name, String email)
+            throws EntityDoesNotExistsException, MyConstraintViolationException {
         try {
             Responsible responsible = em.find(Responsible.class, id);
             if (responsible == null) {
-                return;
+                throw new EntityDoesNotExistsException("There is no responsible with that username.");
             }
             responsible.setPassword(password);
             responsible.setName(name);
             responsible.setEmail(email);
-            //responsible.setRole(role);
             em.merge(responsible);
+        } catch (EntityDoesNotExistsException e) {
+            throw e;
+        } catch (ConstraintViolationException e) {
+            throw new MyConstraintViolationException(Utils.getConstraintViolationMessages(e));
         } catch (Exception e) {
             throw new EJBException(e.getMessage());
         }
     }
 
     //remove Responsible
-    
-    public void removeResponsible(int id) {
+    public void removeResponsible(int id)
+            throws EntityDoesNotExistsException, MyConstraintViolationException {
         try {
             Responsible responsible = em.find(Responsible.class, id);
+            if (responsible == null) {
+                throw new EntityDoesNotExistsException("There is no participant with that username.");
+            }
             em.remove(responsible);
+        } catch (EntityDoesNotExistsException e) {
+            throw e;
+        } catch (ConstraintViolationException e) {
+            throw new MyConstraintViolationException(Utils.getConstraintViolationMessages(e));
         } catch (Exception e) {
             throw new EJBException(e.getMessage());
         }
     }
 
     //Verify if responsible exists
-    
     public boolean existeResponsible(String id) {
         try {
             return em.find(Responsible.class, id) != null;
@@ -83,43 +99,43 @@ public class ResponsibleBean {
             throw new EJBException(e.getMessage());
         }
     }
-    
-    public void createEvent () {
+
+    public void createEvent() {
         try {
-           // Event event = new Event();
-           // entityManager.persist(event);
+            // Event event = new Event();
+            // entityManager.persist(event);
         } catch (Exception e) {
             throw new EJBException(e.getMessage());
         }
     }
-    
-    public void removeEvent () {
+
+    public void removeEvent() {
         try {
-           
+
             //Event event = entityManager.find(Event.class, this);
             //entityManager.remove(event);
         } catch (Exception e) {
             throw new EJBException(e.getMessage());
         }
     }
-    
-    public void openEventAttendance () {
-        
-    }
-    
-    public void closeEventAttendance () {
-        
-    }
-    
-    public void enrollResponsible () {
-        
-    }
-    
-    public void unenrollResponsible () {
-        
+
+    public void openEventAttendance() {
+
     }
 
-    public List<Responsible> getAllResponsibles() {
+    public void closeEventAttendance() {
+
+    }
+
+    public void enrollResponsible() {
+
+    }
+
+    public void unenrollResponsible() {
+
+    }
+
+    public List<ResponsibleDTO> getAllResponsibles() {
         return em.createNamedQuery("getAllResponsibles").getResultList();
     }
 }

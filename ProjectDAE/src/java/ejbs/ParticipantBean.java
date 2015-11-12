@@ -5,14 +5,20 @@
  */
 package ejbs;
 
+import dtos.ParticipantDTO;
+import entity.Administrator;
 import entity.Participant;
 import exceptions.EntityAlreadyExistsException;
+import exceptions.EntityDoesNotExistsException;
+import exceptions.MyConstraintViolationException;
+import exceptions.Utils;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.validation.ConstraintViolationException;
 
 /**
  *
@@ -27,33 +33,38 @@ public class ParticipantBean implements Serializable {
     //Create Participant
 
     public void createParticipant(int id, String password, String name, String email)
-        throws EntityAlreadyExistsException {
+        throws EntityAlreadyExistsException, MyConstraintViolationException {
         try {
             if(em.find(Participant.class, id) != null){
-                throw new EntityAlreadyExistsException("A Responsible with that id already exists.");
+                throw new EntityAlreadyExistsException("A Participant with that usermane already exists.");
             }
-            Participant participant = new Participant(id, password, name, email);
-            em.persist(participant);
-
+            em.persist(new Participant(id, password, name, email));
+        } catch (EntityAlreadyExistsException e) {
+            throw e;
+        } catch (ConstraintViolationException e) {
+            throw new MyConstraintViolationException(Utils.getConstraintViolationMessages(e));  
         } catch (Exception e) {
             throw new EJBException(e.getMessage());
         }
-
     }
 
     //Participant Update
     
-    public void updateParticipant(int id, String password, String name, String email, String role) {
+    public void updateParticipant(int id, String password, String name, String email, String role)
+            throws EntityDoesNotExistsException, MyConstraintViolationException {
         try {
             Participant participant = em.find(Participant.class, id);
             if (participant == null) {
-                return;
+                throw new EntityDoesNotExistsException("There is no participant with that username.");
             }
             participant.setPassword(password);
             participant.setName(name);
             participant.setEmail(email);
-            //participant.setRole(role);
             em.merge(participant);
+        } catch (EntityDoesNotExistsException e) {
+            throw e;
+        } catch (ConstraintViolationException e) {
+            throw new MyConstraintViolationException(Utils.getConstraintViolationMessages(e));  
         } catch (Exception e) {
             throw new EJBException(e.getMessage());
         }
@@ -61,10 +72,18 @@ public class ParticipantBean implements Serializable {
 
     //remove Participant
     
-    public void removeParticipant(int id) {
+    public void removeParticipant(int id)
+            throws EntityDoesNotExistsException, MyConstraintViolationException {
         try {
             Participant participant = em.find(Participant.class, id);
+            if (participant == null) {
+                throw new EntityDoesNotExistsException("There is no participant with that username.");
+            }
             em.remove(participant);
+        } catch (EntityDoesNotExistsException e) {
+            throw e;
+        } catch (ConstraintViolationException e) {
+            throw new MyConstraintViolationException(Utils.getConstraintViolationMessages(e));  
         } catch (Exception e) {
             throw new EJBException(e.getMessage());
         }
@@ -88,7 +107,7 @@ public class ParticipantBean implements Serializable {
         
     }
 
-    public List<Participant> getAllParticipants() {
+    public List<ParticipantDTO> getAllParticipants() {
         return em.createNamedQuery("getAllParticipants").getResultList();
     }
 }
