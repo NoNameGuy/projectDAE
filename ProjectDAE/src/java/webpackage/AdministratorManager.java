@@ -15,6 +15,7 @@ import ejbs.EventBean;
 import ejbs.ParticipantBean;
 import ejbs.ResponsibleBean;
 import ejbs.SubjectBean;
+import exceptions.EntityDoesNotExistsException;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -232,6 +233,10 @@ public class AdministratorManager {
 
     public List<EventDTO> getAllEvents() {
         return eventBean.getAllEvents();
+    }
+    
+     public List<EventDTO> getEventsByParticipant(int id) throws EntityDoesNotExistsException {
+        return eventBean.getParticipantEvents(id);
     }
 
     public AdministratorBean getAdministratorBean() {

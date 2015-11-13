@@ -124,6 +124,9 @@ and open the template in the editor.
                     <h:outputText value="Actions" />
                 </f:facet>
                 <h:form>
+                    <h:commandLink value="Details" action="participant_details?faces-redirect=true">
+                        <f:setPropertyActionListener target="#{administratorManager.currentParticipant}" value="#{participant}" />
+                    </h:commandLink>
                     <h:commandLink value="Update" action="admin_participant_update?faces-redirect=true">
                         <f:setPropertyActionListener target="#{administratorManager.currentParticipant}" value="#{participant}" />
                     </h:commandLink>

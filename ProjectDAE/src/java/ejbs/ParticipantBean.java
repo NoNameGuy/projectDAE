@@ -97,8 +97,19 @@ public class ParticipantBean {
         }
     }
 
-    public void listEvents() {
-
+    public void listEvents( long idParticipant) {
+       /* try {
+            Participant participant = em.find(Participant.class, idParticipant);
+            if( participant == null){
+                throw new EntityDoesNotExistsException("There is no event with that id.");
+            }            
+            List<Event> events = (List<Event>) participant.getEvents();
+            return eventsToDTOs(events);
+        } catch (EntityDoesNotExistsException e) {
+            throw e;             
+        } catch (Exception e) {
+            throw new EJBException(e.getMessage());
+        }*/
     }
 
     public void enrollParticipant(int id, long id_event)

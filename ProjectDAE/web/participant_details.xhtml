@@ -9,37 +9,27 @@ and open the template in the editor.
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <head>
-        <title>Responsible Detais</title>
+        <title>Participant Detail</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
-        <div>Responsible Details</div>
-        <h:dataTable value="#{administratorManager.currentResponsible}" var="responsible">
+        <div>Participant Details</div>
+        <h:dataTable value="#{administratorManager.currentParticipant}" var="participant">
             <h:column>
                 <f:facet name="header">Id</f:facet>
-                <h:outputText value="#{responsible.id}"/>
+                <h:outputText value="#{participant.id}"/>
             </h:column>    
             <h:column>
                 <f:facet name="header">Name</f:facet>
-                <h:outputText value="#{responsible.name}"/>
+                <h:outputText value="#{participant.name}"/>
             </h:column>
             <h:column>
                 <f:facet name="header">Email</f:facet>
-                <h:outputText value="#{responsible.email}"/>
+                <h:outputText value="#{participant.email}"/>
             </h:column>
         </h:dataTable>
-        <h:form>
-            <h:commandLink action="admin_responsible_update" value="Criar Responsavel"></h:commandLink>
-        </h:form>
         
-        <br></br><br></br>
-        <div>Responsible Events</div>
-        <h:dataTable value="#{administratorManager.currentResponsibleEvents}" 
-                     var="event"
-                     summary="List of all events of the Responsible"
-                     rules="all"
-                     cellpadding="5"
-                     >
+        <h:dataTable value="#{administratorManager.getEventsByParticipant(administratorManager.currentParticipant.id)}" var="event">
             <h:column>
                 <f:facet name="header">Date</f:facet>
                 <h:outputText value="#{event.date}"/>
@@ -57,15 +47,8 @@ and open the template in the editor.
                 <h:outputText value="#{event.local}"/>
             </h:column>
         </h:dataTable>
-        <br></br><br></br>
         <h:form>
-            <h:commandLink action="create_event" value="Create event">
-                <f:setPropertyActionListener target="#{administratorManager.currentResponsible}" value="#{responsible}" />
-            </h:commandLink>
-            <br></br>
-            <h:commandLink action="create_event" value="Remover Responsavel"></h:commandLink>
-            <br></br>
-            <h:commandLink action="AdminPage" value="Back"></h:commandLink>
+            <h:commandLink action="admin_responsible_update" value="Criar Responsavel"></h:commandLink>
         </h:form>
     </body>
 </html>
