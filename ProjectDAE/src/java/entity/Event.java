@@ -143,5 +143,12 @@ public class Event implements Serializable {
     public void setResponsible(Responsible responsible) {
         this.responsible = responsible;
     }
+    
+    
+    public String toString() {
+        return "Administrator{" + "username=" + id + ", date=" + date +
+                ", name=" + name + ", type=" + type + ", local=" + local + 
+                ", responsible=" + responsible.toString() +'}';
+    }
  
 }

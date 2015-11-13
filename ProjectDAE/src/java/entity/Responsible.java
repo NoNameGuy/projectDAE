@@ -20,7 +20,7 @@ import javax.persistence.Table;
  * @author paulovieira
  */
 @Entity 
-@Table(name = "RESPONSIBLE")
+@Table(name = "RESPONSIBLES")
 @NamedQueries({
     @NamedQuery(name = "getAllResponsibles",
             query = "SELECT r FROM Responsible r ORDER BY r.name")

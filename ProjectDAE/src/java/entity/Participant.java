@@ -8,6 +8,7 @@ package entity;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
@@ -30,10 +31,10 @@ import javax.persistence.Table;
 
 public class Participant extends User implements Serializable {
 
-    @ManyToMany(mappedBy = "participants")
+    @ManyToMany(mappedBy = "participants", cascade = CascadeType.REMOVE)
     private List<Event> events;
 
-    @ManyToMany(mappedBy = "participants")
+    @ManyToMany(mappedBy = "participants", cascade = CascadeType.REMOVE)
     private List<Subject> subjects;
 
     public Participant() {

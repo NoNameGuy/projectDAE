@@ -44,9 +44,13 @@ public class EventBean {
             }
             Responsible responsible = em.find(Responsible.class, responsableId);
             if (responsible == null) {
-                throw new EntityDoesNotExistsException("There is no Responsible with that code.");
+                throw new EntityDoesNotExistsException("There is no Responsible with that id.");
             }
+            
+            
             Event event = new Event(id, date, name, type, local, responsible);
+            
+            System.out.println(event.toString());
             em.persist(event);
 
         } catch (EntityAlreadyExistsException | EntityDoesNotExistsException e) {
