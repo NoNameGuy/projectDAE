@@ -13,7 +13,7 @@ import java.io.Serializable;
  */
 public class SubjectDTO implements Serializable {
 
-    private Long id;
+    private int id;
     private String name;
     private int courseYear;
     private String scholarYear;
@@ -22,7 +22,7 @@ public class SubjectDTO implements Serializable {
 
     }
 
-    public SubjectDTO(Long id, String name, int courseYear, String scholarYear) {
+    public SubjectDTO(int id, String name, int courseYear, String scholarYear) {
         this.id = id;
         this.name = name;
         this.courseYear = courseYear;
@@ -30,17 +30,17 @@ public class SubjectDTO implements Serializable {
     }
     
     public void reset() {
-        this.id = 0L;
+        this.id = 0;
         this.name = null;
         this.courseYear = 0;
         this.scholarYear = null;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

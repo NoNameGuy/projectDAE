@@ -31,7 +31,7 @@ public class SubjectBean {
     @PersistenceContext(unitName = "ProjectDAEPU")
     private EntityManager em;
 
-    public void createSubject(Long id, String name, int courseYear, String scholarYear)
+    public void createSubject(int id, String name, int courseYear, String scholarYear)
         throws EntityAlreadyExistsException, MyConstraintViolationException {
         try {
             if (em.find(Subject.class, id) != null) {

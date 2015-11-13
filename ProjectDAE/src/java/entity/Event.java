@@ -49,8 +49,6 @@ public class Event implements Serializable {
     private String local;
     private boolean attendace;
 
-    
-    
     @ManyToMany
     @JoinTable(name = "EVENT_PARTICIPANT",
             joinColumns
@@ -70,7 +68,7 @@ public class Event implements Serializable {
     // "Insert Code > Add Business Method")
 
     public Event() {
-        this.participants = new LinkedList<Participant>();
+        this.participants = new LinkedList<>();
     }
 
     public Event(int id, Date date, String name, String type, String local, Responsible responsible) {
@@ -79,7 +77,7 @@ public class Event implements Serializable {
         this.name = name;
         this.type = type;
         this.local = local;
-        this.participants = new LinkedList<Participant>();
+        this.participants = new LinkedList<>();
         this.responsible = responsible;
         this.attendace = false;
     }

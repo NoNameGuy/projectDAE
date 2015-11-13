@@ -48,17 +48,18 @@ public class ConfigBean {
             // Create Participant
             participantBean.createParticipant(5, "participant1", "DAE1", "Participant1@DAE.pt");
             participantBean.createParticipant(6, "participant2", "DAE2", "Participant2@DAE.pt");
-         
+            participantBean.createParticipant(7, "participant3", "DAE3", "Participant3@DAE.pt");
+            participantBean.createParticipant(8, "participant4", "DAE4", "Participant4@DAE.pt");
             // Create Event
             eventBean.createEvent(1, formatter.parse("21/01/2016"), "Evento 1", "Aula", "ESTG", 3);
             eventBean.createEvent(2, formatter.parse("05/05/2016"), "Evento 2", "Aula", "ESTG", 4);
             
             // Create Subject
-            subjectBean.createSubject(1L, "IEI", 1, "2015/2016");
-            subjectBean.createSubject(2L, "TC", 1, "2015/2016");
-            subjectBean.createSubject(3L, "PA", 2, "2015/2016");
-            subjectBean.createSubject(4L, "DAE", 3, "2015/2016");
-            subjectBean.createSubject(5L, "DAD", 3, "2015/2016");
+            subjectBean.createSubject(1, "IEI", 1, "2015/2016");
+            subjectBean.createSubject(2, "TC", 1, "2015/2016");
+            subjectBean.createSubject(3, "PA", 2, "2015/2016");
+            subjectBean.createSubject(4, "DAE", 3, "2015/2016");
+            subjectBean.createSubject(5, "DAD", 3, "2015/2016");
             
             
             
