@@ -42,7 +42,7 @@ public class EventDTO implements Serializable {
         this.date = null;
         this.name = null;
         this.type = null;
-        this.type = null;
+        this.local = null;
         this.responsible_id = 0;
         this.responsible_name = null;
      
