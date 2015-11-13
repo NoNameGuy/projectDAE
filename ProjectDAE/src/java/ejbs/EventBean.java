@@ -123,7 +123,8 @@ public class EventBean {
                 event.getName(),
                 event.getType(),
                 event.getLocal(),
-                event.getResponsible().getId());
+                event.getResponsible().getId(),
+                event.getResponsible().getName());
     }
 
     List<EventDTO> eventsToDTOs(List<Event> events) {

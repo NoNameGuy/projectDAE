@@ -21,13 +21,13 @@ public class EventDTO implements Serializable {
     private String type;
     private String local;
     private int responsible_id;
-    
+    private String responsible_name;
     
     public EventDTO() {
         
     }
 
-    public EventDTO(int id, Date date, String name, String type, String local, int responsible_id) {
+    public EventDTO(int id, Date date, String name, String type, String local, int responsible_id, String responsible_name) {
         this.id = id;
         this.date = date;
         this.name = name;
@@ -43,6 +43,7 @@ public class EventDTO implements Serializable {
         this.type = null;
         this.type = null;
         this.responsible_id = 0;
+        this.responsible_name = null;
      
     }
 
@@ -93,6 +94,16 @@ public class EventDTO implements Serializable {
     public void setResponsible_id(int responsible_id) {
         this.responsible_id = responsible_id;
     }
+
+    public String getResponsible_name() {
+        return responsible_name;
+    }
+
+    public void setResponsible_name(String responsible_name) {
+        this.responsible_name = responsible_name;
+    }
+    
+    
     
     
     

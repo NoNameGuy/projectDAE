@@ -117,6 +117,7 @@ public class AdministratorManager {
                     newResponsible.getPassword(),
                     newResponsible.getName(),
                     newResponsible.getEmail());
+            newResponsible.reset();
             return "AdminPage?faces-redirect=true";
         } catch (Exception e) {
             e.printStackTrace();
@@ -147,6 +148,7 @@ public class AdministratorManager {
                     newParticipant.getPassword(),
                     newParticipant.getName(),
                     newParticipant.getEmail());
+            newParticipant.reset();
             return "AdminPage?faces-redirect=true";
         } catch (Exception e) {
             e.printStackTrace();
@@ -180,6 +182,7 @@ public class AdministratorManager {
                     newEvent.getType(),
                     newEvent.getLocal(),
                     newEvent.getResponsible_id());
+            newEvent.reset();
             return "index?faces-redirect=true";
         } catch (Exception e) {
             e.printStackTrace();

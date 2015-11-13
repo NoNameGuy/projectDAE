@@ -28,8 +28,8 @@ import javax.validation.constraints.NotNull;
  * @author paulovieira
  */
 @Entity
-@Table(name = "EVENT", uniqueConstraints
-        = @UniqueConstraint(columnNames = {"NAME"}))
+@Table(name = "EVENTS", uniqueConstraints
+        = @UniqueConstraint(columnNames = {"NAME", "RESPONSIBLE_ID"}))
 @NamedQueries({
     @NamedQuery(name = "getAllEvents",
             query = "SELECT e FROM Event e ORDER BY e.date")
@@ -38,11 +38,14 @@ public class Event implements Serializable {
     
     @Id
     private int id;
+    @NotNull
     @Temporal(TemporalType.DATE)
     private Date date;
     @NotNull
     private String name;
+    @NotNull
     private String type;
+    @NotNull
     private String local;
     
     @ManyToMany
