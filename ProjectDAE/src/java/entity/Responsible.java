@@ -8,9 +8,11 @@ package entity;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -25,6 +27,7 @@ import javax.persistence.Table;
 })
 public class Responsible extends User implements Serializable {
     
+    @OneToMany(mappedBy = "responsible", cascade = CascadeType.REMOVE)
     private List<Event> events;
     
     public Responsible() {

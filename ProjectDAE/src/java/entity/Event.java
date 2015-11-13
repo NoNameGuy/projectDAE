@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -37,11 +38,11 @@ public class Event implements Serializable {
     @Id
     private int id;
     @Temporal(TemporalType.DATE)
-    protected Date date;
+    private Date date;
     @NotNull
-    protected String name;
-    protected String type;
-    protected String local;
+    private String name;
+    private String type;
+    private String local;
     
     @ManyToMany
     @JoinTable(name = "EVENT_PARTICIPANT",
@@ -50,6 +51,10 @@ public class Event implements Serializable {
             inverseJoinColumns
             = @JoinColumn(name = "PARTICIPANT_ID", referencedColumnName = "ID"))
     protected List<Participant> participants;
+    
+    @ManyToOne
+    @JoinColumn(name = "RESPONSIBLE_ID")
+    @NotNull
     protected Responsible responsible;
    
     

@@ -5,6 +5,7 @@
  */
 package dtos;
 
+import entity.Responsible;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -15,21 +16,24 @@ import java.util.Date;
 public class EventDTO implements Serializable {
     
     private int id;
-    protected Date date;
-    protected String name;
-    protected String type;
-    protected String local;
+    private Date date;
+    private String name;
+    private String type;
+    private String local;
+    private int responsible_id;
+    
     
     public EventDTO() {
         
     }
 
-    public EventDTO(int id, Date date, String name, String type, String local) {
+    public EventDTO(int id, Date date, String name, String type, String local, int responsible_id) {
         this.id = id;
         this.date = date;
         this.name = name;
         this.type = type;
         this.local = local;
+        this.responsible_id = responsible_id;
     }
     
     public void reset(){
@@ -38,6 +42,7 @@ public class EventDTO implements Serializable {
         this.name = null;
         this.type = null;
         this.type = null;
+        this.responsible_id = 0;
      
     }
 
@@ -79,6 +84,14 @@ public class EventDTO implements Serializable {
 
     public void setLocal(String local) {
         this.local = local;
+    }
+
+    public int getResponsible_Id() {
+        return responsible_id;
+    }
+
+    public void setResponsible_id(int responsible_id) {
+        this.responsible_id = responsible_id;
     }
     
     

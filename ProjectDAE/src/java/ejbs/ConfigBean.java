@@ -5,6 +5,7 @@
  */
 package ejbs;
 
+import static com.sun.xml.bind.util.CalendarConv.formatter;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
@@ -49,8 +50,8 @@ public class ConfigBean {
             participantBean.createParticipant(6, "participant2", "DAE2", "Participant2@DAE.pt");
          
             // Create Event
-            eventBean.createEvent(1, null, "Evento 1", "Aula", "ESTG", 3);
-            eventBean.createEvent(2, null, "Evento 2", "Aula", "ESTG", 4);
+            eventBean.createEvent(1, formatter.parse("21/01/2016"), "Evento 1", "Aula", "ESTG", 3);
+            eventBean.createEvent(2, formatter.parse("05/05/2016"), "Evento 2", "Aula", "ESTG", 4);
             
             // Create Subject
             subjectBean.createSubject(1L, "IEI", 1, "2015/2016");

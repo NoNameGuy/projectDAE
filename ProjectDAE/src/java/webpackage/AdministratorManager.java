@@ -7,11 +7,15 @@ package webpackage;
 
 import static com.sun.xml.ws.security.addressing.impl.policy.Constants.logger;
 import dtos.AdministratorDTO;
+import dtos.EventDTO;
 import dtos.ParticipantDTO;
 import dtos.ResponsibleDTO;
 import ejbs.AdministratorBean;
+import ejbs.EventBean;
 import ejbs.ParticipantBean;
 import ejbs.ResponsibleBean;
+import ejbs.SubjectBean;
+import entity.Subject;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -19,9 +23,6 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIParameter;
 import javax.faces.event.ActionEvent;
-
-
-
 
 /**
  *
@@ -37,6 +38,10 @@ public class AdministratorManager {
     private ResponsibleBean responsibleBean;
     @EJB
     private ParticipantBean participantBean;
+    @EJB
+    private EventBean eventBean;
+    @EJB
+    private SubjectBean subjectBean;
 
     private AdministratorDTO newAdministrator;
     private AdministratorDTO currentAdministrator;
@@ -44,8 +49,9 @@ public class AdministratorManager {
     private ResponsibleDTO currentResponsible;
     private ParticipantDTO newParticipant;
     private ParticipantDTO currentParticipant;
+    private EventDTO newEvent;
+    private EventDTO currentEvent;
     private UIComponent component;
-
 
     /**
      * Creates a new instance of AdministratorManager
@@ -54,6 +60,7 @@ public class AdministratorManager {
         newAdministrator = new AdministratorDTO();
         newResponsible = new ResponsibleDTO();
         newParticipant = new ParticipantDTO();
+        newEvent = new EventDTO();
     }
 
     //////////////////////////// Administrator \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -89,10 +96,10 @@ public class AdministratorManager {
     }
 
     public void removeAdministrator(ActionEvent event) {
-        try {   
-           UIParameter param = (UIParameter) event.getComponent().findComponent("administratorID");
+        try {
+            UIParameter param = (UIParameter) event.getComponent().findComponent("administratorID");
             int id = Integer.parseInt(param.getValue().toString());
-           administratorBean.removeAdministrator(id);
+            administratorBean.removeAdministrator(id);
         } catch (Exception e) {
             logger.warning("Problem removing user in method removeUser().");
         }
@@ -117,12 +124,12 @@ public class AdministratorManager {
         }
         return "AdminPage?faces-redirect=true";
     }
-    
-        public void removeResponsible(ActionEvent event) {
-        try {   
-           UIParameter param = (UIParameter) event.getComponent().findComponent("responsibleID");
+
+    public void removeResponsible(ActionEvent event) {
+        try {
+            UIParameter param = (UIParameter) event.getComponent().findComponent("responsibleID");
             int id = Integer.parseInt(param.getValue().toString());
-           responsibleBean.removeResponsible(id);
+            responsibleBean.removeResponsible(id);
         } catch (Exception e) {
             logger.warning("Problem removing user in method removeUser().");
         }
@@ -147,12 +154,12 @@ public class AdministratorManager {
         }
         return "AdminPage?faces-redirect=true";
     }
-    
+
     public void removeParticipant(ActionEvent event) {
-        try {   
-           UIParameter param = (UIParameter) event.getComponent().findComponent("participantID");
+        try {
+            UIParameter param = (UIParameter) event.getComponent().findComponent("participantID");
             int id = Integer.parseInt(param.getValue().toString());
-           participantBean.removeParticipant(id);
+            participantBean.removeParticipant(id);
         } catch (Exception e) {
             logger.warning("Problem removing user in method removeUser().");
         }
@@ -161,6 +168,39 @@ public class AdministratorManager {
     public List<ParticipantDTO> getAllParticipants() {
         return participantBean.getAllParticipants();
 
+    }
+
+    //////////////////////////// Event \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    public String createEvent() {
+
+        try {
+            eventBean.createEvent(
+                    newEvent.getId(),
+                    newEvent.getDate(),
+                    newEvent.getName(),
+                    newEvent.getType(),
+                    newEvent.getLocal(),
+                    newEvent.getResponsible_Id());
+            return "index?faces-redirect=true";
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "index?faces-redirect=true";
+    }
+
+    public void removeEvent(ActionEvent event) {
+        try {
+            UIParameter param = (UIParameter) event.getComponent().findComponent("eventID");
+            int id = Integer.parseInt(param.getValue().toString());
+            eventBean.removeEvent(id);
+        } catch (Exception e) {
+            logger.warning("Problem removing user in method removeUser().");
+            //System.err.println("Es um cabrao");
+        }
+    }
+
+    public List<EventDTO> getAllEvents() {
+        return eventBean.getAllEvents();
     }
 
     public AdministratorBean getAdministratorBean() {
@@ -235,12 +275,44 @@ public class AdministratorManager {
         this.currentParticipant = currentParticipant;
     }
 
-        public UIComponent getComponent() {
+    public UIComponent getComponent() {
         return component;
     }
 
     public void setComponent(UIComponent component) {
         this.component = component;
-    }  
+    }
+
+    public EventBean getEventBean() {
+        return eventBean;
+    }
+
+    public void setEventBean(EventBean eventBean) {
+        this.eventBean = eventBean;
+    }
+
+    public SubjectBean getSubjectBean() {
+        return subjectBean;
+    }
+
+    public void setSubjectBean(SubjectBean subjectBean) {
+        this.subjectBean = subjectBean;
+    }
+
+    public EventDTO getNewEvent() {
+        return newEvent;
+    }
+
+    public void setNewEvent(EventDTO newEvent) {
+        this.newEvent = newEvent;
+    }
+
+    public EventDTO getCurrentEvent() {
+        return currentEvent;
+    }
+
+    public void setCurrentEvent(EventDTO currentEvent) {
+        this.currentEvent = currentEvent;
+    }
 
 }

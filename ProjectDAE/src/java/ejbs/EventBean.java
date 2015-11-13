@@ -62,13 +62,12 @@ public class EventBean {
 
     }
 
-    public void removeEvent(int id) {
+    public void removeEvent(int id) throws EntityDoesNotExistsException {
         try {
             Event event = em.find(Event.class, id);
             if (event == null) {
-                return;
+                throw new EntityDoesNotExistsException("There is no event with that id.");
             }
-
             event.getResponsible().removeEvent(event);
 
             for (Participant participant : event.getParticipants()) {
@@ -77,8 +76,10 @@ public class EventBean {
 
             em.remove(event);
 
-        } catch (Exception e) {
+        } catch (EntityDoesNotExistsException e) {
             throw e;
+        } catch (Exception e) {
+            throw new EJBException(e.getMessage());
         }
     }
 
@@ -121,7 +122,8 @@ public class EventBean {
                 event.getDate(),
                 event.getName(),
                 event.getType(),
-                event.getLocal());
+                event.getLocal(),
+                event.getResponsible().getId());
     }
 
     List<EventDTO> eventsToDTOs(List<Event> events) {
