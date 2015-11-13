@@ -119,7 +119,7 @@ public class ResponsibleBean {
     }
 
     public void openEventAttendance() {
-
+        
     }
 
     public void closeEventAttendance() {
