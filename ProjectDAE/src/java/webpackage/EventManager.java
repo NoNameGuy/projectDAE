@@ -8,8 +8,6 @@ package webpackage;
 import static com.sun.xml.ws.security.addressing.impl.policy.Constants.logger;
 import dtos.EventDTO;
 import ejbs.EventBean;
-import entity.Event;
-import entity.Responsible;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
@@ -25,9 +23,10 @@ import javax.faces.event.ActionEvent;
 @ManagedBean
 @SessionScoped
 public class EventManager {
+
     @EJB
     private EventBean eventBean;
-    
+
     private int id;
     protected Date date;
     protected String name;
@@ -39,30 +38,39 @@ public class EventManager {
 
     
 
-    public EventManager(){
+    public EventManager() {
     }
 
     public String createEvent() {
-        
-        try{
+
+        try {
             eventBean.createEvent(id, date, name, type, local, responsible);
             return "index?faces-redirect=true";
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return "index?faces-redirect=true";
     }
+
     
     public void removeEvent(ActionEvent event) {
         try {   
            UIParameter param = (UIParameter) event.getComponent().findComponent("administratorID");
             int id = Integer.parseInt(param.getValue().toString());
            eventBean.deleteEvent(id);
+
+
+    public void removeEvent(ActionEvent event) {
+        try {
+            UIParameter param = (UIParameter) event.getComponent().findComponent("eventID");
+            int id = Integer.parseInt(param.getValue().toString());
+            eventBean.removeEvent(id);
+
         } catch (Exception e) {
             logger.warning("Problem removing user in method removeUser().");
         }
     }
-    
+
     public EventBean getEventBean() {
         return eventBean;
     }
@@ -118,7 +126,7 @@ public class EventManager {
     public void setResponsible(int responsible) {
         this.responsible = responsible;
     }
-    
+
     public List<EventDTO> getAllEvents() {
         return eventBean.getAllEvents();
     }
