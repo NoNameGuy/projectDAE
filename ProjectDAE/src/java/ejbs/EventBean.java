@@ -62,7 +62,7 @@ public class EventBean {
 
     }
 
-    public void deleteEvent(int id) {
+    public void removeEvent(int id) {
         try {
             Event event = em.find(Event.class, id);
             if (event == null) {

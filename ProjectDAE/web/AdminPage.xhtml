@@ -111,11 +111,12 @@ and open the template in the editor.
                     </h:commandLink>
 
                     <h:commandLink value="Remove" actionListener="#{administratorManager.removeParticipant}">
-                        <f:param name="participantID" id="participantID" value="#{user.id}" />
+                        <f:param name="participantID" id="participantID" value="#{participant.id}" />
                     </h:commandLink>
                 </h:form>
             </h:column>
         </h:dataTable>
+        <br></br>
 
         <!-- //////////////////////////Event////////////////////////// -->
         <div>Events:</div>
