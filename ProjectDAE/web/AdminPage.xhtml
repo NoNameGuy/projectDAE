@@ -169,13 +169,13 @@ and open the template in the editor.
                 </f:facet>
                 <h:form>
                     <h:commandLink value="Details" action="event_details?faces-redirect=true">
-                        <f:setPropertyActionListener target="#{eventManager.currentEvent}" value="#{event}" />
+                        <f:setPropertyActionListener target="#{administratorManager.currentEvent}" value="#{event}" />
                     </h:commandLink>
                     <h:commandLink value="Update" action="update-event?faces-redirect=true">
-                        <f:setPropertyActionListener target="#{eventManager.currentEvent}" value="#{event}" />
+                        <f:setPropertyActionListener target="#{administratorManager.currentEvent}" value="#{event}" />
                     </h:commandLink>
 
-                    <h:commandLink value="Remove" actionListener="#{eventManager.removeEvent}">
+                    <h:commandLink value="Remove" actionListener="#{administratorManager.removeEvent}">
                         <f:param name="eventID" id="eventID" value="#{event.id}" />
                     </h:commandLink>
                 </h:form>

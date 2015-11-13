@@ -15,7 +15,6 @@ import ejbs.EventBean;
 import ejbs.ParticipantBean;
 import ejbs.ResponsibleBean;
 import ejbs.SubjectBean;
-import entity.Subject;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -195,7 +194,6 @@ public class AdministratorManager {
             eventBean.removeEvent(id);
         } catch (Exception e) {
             logger.warning("Problem removing user in method removeUser().");
-            //System.err.println("Es um cabrao");
         }
     }
 
