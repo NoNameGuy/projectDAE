@@ -9,6 +9,7 @@ import dtos.EventDTO;
 import entity.Event;
 import entity.Participant;
 import entity.Responsible;
+import static entity.User_.id;
 import exceptions.EntityAlreadyExistsException;
 import exceptions.EntityDoesNotExistsException;
 import exceptions.MyConstraintViolationException;
@@ -34,7 +35,7 @@ public class EventBean {
 
     /*public List<String> list() {
         
-    }*/
+     }*/
     public void createEvent(int id, Date date, String name, String type, String local, int responsableId)
             throws EntityAlreadyExistsException, EntityDoesNotExistsException, MyConstraintViolationException {
         try {
@@ -46,10 +47,9 @@ public class EventBean {
             if (responsible == null) {
                 throw new EntityDoesNotExistsException("There is no Responsible with that id.");
             }
-            
-            
+
             Event event = new Event(id, date, name, type, local, responsible);
-            
+
             System.out.println(event.toString());
             em.persist(event);
 
@@ -62,11 +62,36 @@ public class EventBean {
         }
     }
 
-    public void updateEvent() {
+    public void updateEvent(int id, Date date, String name, String type, String local, int responsibleId) throws EntityDoesNotExistsException {
+        
+        try {
+            Event event = em.find(Event.class, id);
+            
+            Responsible responsible = em.find(Responsible.class, responsibleId);
+            if (responsible == null) {
+                throw new EntityDoesNotExistsException("There is no Responsible with that id.");
+            }
+            
+            if (event == null) {
+            }
+            event.setDate(date);
+            event.setName(name);
+            event.setType(type);
+            event.setLocal(local);
+            event.setResponsible(responsible);
+
+            em.merge(event);
+            
+        } catch (EntityDoesNotExistsException e) {
+            throw e;
+        }catch (Exception e) {
+            throw new EJBException(e.getMessage());
+        }
 
     }
 
-    public void removeEvent(int id) throws EntityDoesNotExistsException {
+    public
+            void removeEvent(int id) throws EntityDoesNotExistsException {
         try {
             Event event = em.find(Event.class, id);
             if (event == null) {
@@ -91,7 +116,7 @@ public class EventBean {
         List<Event> events = (List<Event>) em.createNamedQuery("getAllEvents").getResultList();
         return eventsToDTOs(events);
     }
-    
+
     public List<EventDTO> getParticipantEvents(int id) throws EntityDoesNotExistsException {
         try {
             Participant participant = em.find(Participant.class, id);
@@ -105,7 +130,7 @@ public class EventBean {
             throw new EJBException(e.getMessage());
         }
     }
-    
+
     public List<EventDTO> getResponsibleEvents(int id) throws EntityDoesNotExistsException {
         try {
             Responsible responsible = em.find(Responsible.class, id);

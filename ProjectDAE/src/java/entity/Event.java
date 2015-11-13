@@ -150,5 +150,5 @@ public class Event implements Serializable {
                 ", name=" + name + ", type=" + type + ", local=" + local + 
                 ", responsible=" + responsible.toString() +'}';
     }
- 
+
 }

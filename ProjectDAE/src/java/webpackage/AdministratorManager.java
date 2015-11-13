@@ -200,6 +200,23 @@ public class AdministratorManager {
         }
     }
 
+    public String updateEvent() {
+        try {
+            eventBean.updateEvent(
+                    currentEvent.getId(),
+                    currentEvent.getDate(),
+                    currentEvent.getName(),
+                    currentEvent.getType(),
+                    currentEvent.getLocal(),
+                    currentEvent.getResponsible_id());
+
+            return "AdminPage?faces-redirect=true";
+        } catch (Exception e) {
+            logger.warning("Problem updating user in method updateEvent().");
+        }
+        return "index?faces-redirect=true";
+    }
+
     public List<EventDTO> getAllEvents() {
         return eventBean.getAllEvents();
     }
