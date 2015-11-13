@@ -34,6 +34,7 @@ public class EventDTO implements Serializable {
         this.type = type;
         this.local = local;
         this.responsible_id = responsible_id;
+        this.responsible_name = responsible_name;
     }
     
     public void reset(){

@@ -58,12 +58,17 @@ and open the template in the editor.
                 </h:inputText>
                 <h:message for="local" />
                 <h:outputLabel for="responsible" value="Responsible: "/>
-                <h:inputText
+                <h:selectOneMenu
                     id="responsible"
-                    required ="true"
-                    requiredMessage="Responsible cannot be empty!"
-                    value="#{administratorManager.newEvent.responsible_id}">
-                </h:inputText>
+                    value="#{administratorManager.newEvent.responsible_id}" >
+                    <f:selectItems
+                        value="#{administratorManager.allResponsibles}"
+                        var="responsible"
+                        itemValue="#{responsible.id}"
+                        itemLabel="#{responsible.name}" />
+                </h:selectOneMenu>
+                
+
                 <h:message for="responsible" />
             </h:panelGrid>
             <h:panelGrid>

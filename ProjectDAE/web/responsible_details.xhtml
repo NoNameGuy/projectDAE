@@ -9,7 +9,7 @@ and open the template in the editor.
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <head>
-        <title>TODO supply a title</title>
+        <title>Responsible Detais</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
@@ -34,7 +34,12 @@ and open the template in the editor.
         
         
         <div>Responsible Events</div>
-        <h:dataTable value="#{eventManager.currentEvent}" var="event">
+        <h:dataTable value="#{administratorManager.currentResponsibleEvents}" 
+                     var="event"
+                     summary="List of all events of the Responsible"
+                     rules="all"
+                     cellpadding="5"
+                     >
             <h:column>
                 <f:facet name="header">Date</f:facet>
                 <h:outputText value="#{event.date}"/>

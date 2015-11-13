@@ -9,7 +9,6 @@ import dtos.EventDTO;
 import entity.Event;
 import entity.Participant;
 import entity.Responsible;
-import static entity.User_.id;
 import exceptions.EntityAlreadyExistsException;
 import exceptions.EntityDoesNotExistsException;
 import exceptions.MyConstraintViolationException;
@@ -49,6 +48,8 @@ public class EventBean {
             }
 
             Event event = new Event(id, date, name, type, local, responsible);
+            
+            responsible.addEvent(event);
 
             System.out.println(event.toString());
             em.persist(event);
@@ -74,6 +75,7 @@ public class EventBean {
             
             if (event == null) {
             }
+            event.setId(id);
             event.setDate(date);
             event.setName(name);
             event.setType(type);

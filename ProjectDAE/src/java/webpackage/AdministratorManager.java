@@ -138,7 +138,17 @@ public class AdministratorManager {
     public List<ResponsibleDTO> getAllResponsibles() {
         return responsibleBean.getAllResponsibles();
     }
-
+    
+    
+    public List<EventDTO> getCurrentResponsibleEvents() {
+        
+        try {
+            return eventBean.getResponsibleEvents(currentResponsible.getId());
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    
     //////////////////////////// Participant \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     public String createParticipant() {
 
@@ -170,6 +180,9 @@ public class AdministratorManager {
         return participantBean.getAllParticipants();
 
     }
+    
+    
+
 
     //////////////////////////// Event \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     public String createEvent() {
