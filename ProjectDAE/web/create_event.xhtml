@@ -15,7 +15,7 @@ and open the template in the editor.
     <h:body>
     
     <h:form>
-            <h:panelGrid columns="5">
+            <h:panelGrid columns="3">
                 <h:outputLabel for="id" value="ID: "/>
                 <h:inputText
                     id="id"
@@ -23,6 +23,7 @@ and open the template in the editor.
                     requiredMessage="ID cannot be empty!"
                     value="#{administratorManager.newEvent.id}">
                 </h:inputText>
+                <h:message for="id" />
                 <h:outputLabel for="date" value="Date: "/>
                 <h:inputText
                     id="date"
