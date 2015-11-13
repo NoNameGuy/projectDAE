@@ -56,6 +56,12 @@ and open the template in the editor.
                 <f:facet name="header">Local</f:facet>
                 <h:outputText value="#{event.local}"/>
             </h:column>
+            <h:column>
+                <f:facet name="header">Add Participants</f:facet>
+                <h:form>
+                    <h:commandLink action="add_participant_event" value="Add Participant"></h:commandLink>
+                </h:form>
+            </h:column>
         </h:dataTable>
         <br></br><br></br>
         <h:form>
