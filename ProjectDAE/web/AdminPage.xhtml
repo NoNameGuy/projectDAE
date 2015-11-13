@@ -119,23 +119,23 @@ and open the template in the editor.
 
         <!-- //////////////////////////Event////////////////////////// -->
         <div>Events:</div>
-        <h:dataTable value="#{eventManager.allEvents}" var="events">
+        <h:dataTable value="#{eventManager.allEvents}" var="event">
             <h:column>
                 <f:facet name="header">Date</f:facet>
-                <h:outputText value="#{events.date}"/>
+                <h:outputText value="#{event.date}"/>
 
             </h:column>
             <h:column>
                 <f:facet name="header">Name</f:facet>
-                <h:outputText value="#{events.name}"/>
+                <h:outputText value="#{event.name}"/>
             </h:column>
             <h:column>
                 <f:facet name="header">Type</f:facet>
-                <h:outputText value="#{events.type}"/>
+                <h:outputText value="#{event.type}"/>
             </h:column>
             <h:column>
                 <f:facet name="header">Local</f:facet>
-                <h:outputText value="#{events.local}"/>
+                <h:outputText value="#{event.local}"/>
             </h:column>
 
             <h:column>
@@ -143,6 +143,9 @@ and open the template in the editor.
                     <h:outputText value="Actions" />
                 </f:facet>
                 <h:form>
+                    <h:commandLink value="Details" action="event_details?faces-redirect=true">
+                        <f:setPropertyActionListener target="#{eventManager.currentEvent}" value="#{event}" />
+                    </h:commandLink>
                     <h:commandLink value="Update" action="update-event?faces-redirect=true">
                         <f:setPropertyActionListener target="#{eventManager.currentEvent}" value="#{event}" />
                     </h:commandLink>

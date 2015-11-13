@@ -5,6 +5,7 @@
  */
 package webpackage;
 
+import static com.sun.xml.ws.security.addressing.impl.policy.Constants.logger;
 import dtos.EventDTO;
 import ejbs.EventBean;
 import entity.Event;
@@ -14,6 +15,8 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIParameter;
+import javax.faces.event.ActionEvent;
 
 /**
  *
@@ -32,6 +35,9 @@ public class EventManager {
     protected String local;
     //protected List<Participant> participants; //lista de participantes necessaria?
     protected int responsible;
+    private EventDTO currentEvent;
+
+    
 
     public EventManager(){
     }
@@ -45,6 +51,16 @@ public class EventManager {
             e.printStackTrace();
         }
         return "index?faces-redirect=true";
+    }
+    
+    public void removeEvent(ActionEvent event) {
+        try {   
+           UIParameter param = (UIParameter) event.getComponent().findComponent("administratorID");
+            int id = Integer.parseInt(param.getValue().toString());
+           eventBean.deleteEvent(id);
+        } catch (Exception e) {
+            logger.warning("Problem removing user in method removeUser().");
+        }
     }
     
     public EventBean getEventBean() {
@@ -105,5 +121,13 @@ public class EventManager {
     
     public List<EventDTO> getAllEvents() {
         return eventBean.getAllEvents();
+    }
+    
+    public EventDTO getCurrentEvent() {
+        return currentEvent;
+    }
+
+    public void setCurrentEvent(EventDTO currentEvent) {
+        this.currentEvent = currentEvent;
     }
 }
