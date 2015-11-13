@@ -16,6 +16,13 @@ and open the template in the editor.
     
     <h:form>
             <h:panelGrid columns="3">
+                <h:outputLabel for="id" value="ID: "/>
+                <h:inputText
+                    id="id"
+                    required ="true"
+                    requiredMessage="ID cannot be empty!"
+                    value="#{eventManager.id}">
+                </h:inputText>
                 <h:outputLabel for="date" value="Date: "/>
                 <h:inputText
                     id="date"

@@ -14,9 +14,14 @@ and open the template in the editor.
     </head>
     <body>
         <!-- //////////////////////////ADMINISTRATOR////////////////////////// -->
-        
+
         <div>Administrators:</div>
         <h:dataTable value="#{administratorManager.allAdministrators}" var="administrator">
+            <h:column>
+                <f:facet name="header">ID</f:facet>
+                <h:outputText value="#{administrator.id}"/>
+
+            </h:column>
             <h:column>
                 <f:facet name="header">Name</f:facet>
                 <h:outputText value="#{administrator.name}"/>
@@ -40,7 +45,7 @@ and open the template in the editor.
                     <h:commandLink value="Remove" actionListener="#{administratorManager.removeAdministrator}">
                         <f:param name="administratorID" id="administratorID" value="#{administrator.id}"/>
                     </h:commandLink>´
-                    
+
                 </h:form>
             </h:column>
         </h:dataTable>
@@ -51,9 +56,14 @@ and open the template in the editor.
         </h:form>
 
         <br></br><br></br>
-<!-- //////////////////////////RESPONSIBLE////////////////////////// -->
+        <!-- //////////////////////////RESPONSIBLE////////////////////////// -->
         <div>Responsibles:</div>
         <h:dataTable value="#{administratorManager.allResponsibles}" var="responsible">
+            <h:column>
+                <f:facet name="header">ID</f:facet>
+                <h:outputText value="#{responsible.id}"/>
+
+            </h:column>
             <h:column>
                 <f:facet name="header">Name</f:facet>
                 <h:outputText value="#{responsible.name}"/>
@@ -87,9 +97,14 @@ and open the template in the editor.
         </h:form>
 
         <br></br><br></br>
-<!-- //////////////////////////PARTICIPANT////////////////////////// -->
+        <!-- //////////////////////////PARTICIPANT////////////////////////// -->
         <div>Participants:</div>
         <h:dataTable value="#{administratorManager.allParticipants}" var="participant">
+            <h:column>
+                <f:facet name="header">ID</f:facet>
+                <h:outputText value="#{participant.id}"/>
+
+            </h:column>
             <h:column>
                 <f:facet name="header">Name</f:facet>
                 <h:outputText value="#{participant.name}"/>
@@ -116,11 +131,20 @@ and open the template in the editor.
                 </h:form>
             </h:column>
         </h:dataTable>
-        <br></br>
 
+        <h:form>
+            <h:commandLink action="admin_participant_create" value="New Participant"></h:commandLink> 
+            <br></br>
+        </h:form>
+        <br></br>
         <!-- //////////////////////////Event////////////////////////// -->
         <div>Events:</div>
         <h:dataTable value="#{eventManager.allEvents}" var="event">
+            <h:column>
+                <f:facet name="header">ID</f:facet>
+                <h:outputText value="#{event.id}"/>
+
+            </h:column>
             <h:column>
                 <f:facet name="header">Date</f:facet>
                 <h:outputText value="#{event.date}"/>
@@ -157,16 +181,14 @@ and open the template in the editor.
                 </h:form>
             </h:column>
         </h:dataTable>
-        
+
         <h:form>
-            <h:commandLink action="admin_participant_create" value="New Participant"></h:commandLink> 
-            <br></br>
             <h:commandLink action="create_event" value="Create Event"></h:commandLink>
         </h:form>
-        
+
         <h:form>
-        <br></br>
-        <h:commandLink action="index" value="Back"></h:commandLink> 
+            <br></br>
+            <h:commandLink action="index" value="Back"></h:commandLink> 
 
         </h:form>
 
