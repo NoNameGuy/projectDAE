@@ -22,7 +22,9 @@ import javax.persistence.Table;
 @Table(name = "PARTICIPANTS")
 @NamedQueries({
     @NamedQuery(name = "getAllParticipants",
-            query = "SELECT p FROM Participant p ORDER BY p.name")
+            query = "SELECT p FROM Participant p ORDER BY p.name"),
+       /*@NamedQuery(name = "getAllEventParticipants",
+    query = "SELECT p FROM Participant p WHERE p.events.id = :eventId ORDER BY p.name")*/
 
 })
 

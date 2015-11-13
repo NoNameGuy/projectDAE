@@ -6,10 +6,13 @@
 package ejbs;
 
 import dtos.ParticipantDTO;
+import entity.Event;
 import entity.Participant;
 import exceptions.EntityAlreadyExistsException;
 import exceptions.EntityDoesNotExistsException;
 import exceptions.MyConstraintViolationException;
+import exceptions.ParticipantEnrolledException;
+import exceptions.ParticipantNotEnrolledException;
 import exceptions.Utils;
 import java.util.ArrayList;
 import java.util.List;
@@ -98,14 +101,99 @@ public class ParticipantBean {
 
     }
 
-    public void enrollParticipant() {
+    public void enrollParticipant(int id, long id_event)
+            throws EntityDoesNotExistsException, ParticipantEnrolledException {
+        try {
+            Event event = em.find(Event.class, id_event);
+            if (event == null) {
+                throw new EntityDoesNotExistsException("There is no event with that id.");
+            }
 
+            Participant participant = em.find(Participant.class, id);
+            if (participant == null) {
+                throw new EntityDoesNotExistsException("There is no participant with that username.");
+            }
+            if (event.getParticipants().contains(participant)) {
+                throw new ParticipantEnrolledException("Participant is already enrolled in that event.");
+            }
+            
+            participant.addEvent(event);
+            event.addParticipant(participant);
+            
+        } catch (EntityDoesNotExistsException | ParticipantEnrolledException e ) {
+            throw e;
+        } catch (Exception e) {
+            throw new EJBException(e.getMessage());
+        }
     }
+    
+    public void unrollParticipant(int id, long id_event)
+            throws EntityDoesNotExistsException, ParticipantNotEnrolledException {
+        try {
+            Event event = em.find(Event.class, id_event);
+            if (event == null) {
+                throw new EntityDoesNotExistsException("There is no event with that id.");
+            }
+
+            Participant participant = em.find(Participant.class, id);
+            if (participant == null) {
+                throw new EntityDoesNotExistsException("There is no participant with that username.");
+            }
+            
+            if (!event.getParticipants().contains(participant)) {
+                throw new ParticipantNotEnrolledException("Participant is not enrolled in that event.");
+            }
+            
+            participant.removeEvent(event);
+            event.removeParticipant(participant);
+            
+        } catch (EntityDoesNotExistsException | ParticipantNotEnrolledException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new EJBException(e.getMessage());
+        }
+    }
+    
+    public List<ParticipantDTO> getEnrolledParticipants(long id_event) throws EntityDoesNotExistsException{
+        try {
+            Event event = em.find(Event.class, id_event);
+            if( event == null){
+                throw new EntityDoesNotExistsException("There is no event with that id.");
+            }            
+            List<Participant> participants = (List<Participant>) event.getParticipants();
+            return participantsToDTOs(participants);
+        } catch (EntityDoesNotExistsException e) {
+            throw e;             
+        } catch (Exception e) {
+            throw new EJBException(e.getMessage());
+        }
+    }
+    
+    /*public List<ParticipantDTO> getUnrolledParticipants(long id_event) throws EntityDoesNotExistsException{
+        try {
+            Event event = em.find(Event.class, id_event);
+            if( event == null){
+                throw new EntityDoesNotExistsException("There is no event with that id.");
+            }            
+            List<Participant> participants = (List<Participant>) em.createNamedQuery("getAllEventParticipants")
+                    .setParameter("eventId", event.getId())
+                    .getResultList();
+            List<Participant> enrolled = em.find(Event.class, id_event).getParticipants();
+            participants.removeAll(enrolled);
+            return participantsToDTOs(participants);
+        } catch (EntityDoesNotExistsException e) {
+            throw e;             
+        } catch (Exception e) {
+            throw new EJBException(e.getMessage());
+        }
+    }*/
 
     public List<ParticipantDTO> getAllParticipants() {
         List<Participant> participants = (List<Participant>) em.createNamedQuery("getAllParticipants").getResultList();
         return participantsToDTOs(participants);
     }
+    
+    
 
     ParticipantDTO participantToDTO(Participant participant) {
         return new ParticipantDTO(

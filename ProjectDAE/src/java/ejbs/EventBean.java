@@ -86,6 +86,34 @@ public class EventBean {
         List<Event> events = (List<Event>) em.createNamedQuery("getAllEvents").getResultList();
         return eventsToDTOs(events);
     }
+    
+    public List<EventDTO> getParticipantEvents(int id) throws EntityDoesNotExistsException {
+        try {
+            Participant participant = em.find(Participant.class, id);
+            if (participant == null) {
+                throw new EntityDoesNotExistsException("Participant does not exists.");
+            }
+            return eventsToDTOs(participant.getEvents());
+        } catch (EntityDoesNotExistsException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new EJBException(e.getMessage());
+        }
+    }
+    
+    public List<EventDTO> getResponsibleEvents(int id) throws EntityDoesNotExistsException {
+        try {
+            Responsible responsible = em.find(Responsible.class, id);
+            if (responsible == null) {
+                throw new EntityDoesNotExistsException("Responsible does not exists.");
+            }
+            return eventsToDTOs(responsible.getEvents());
+        } catch (EntityDoesNotExistsException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new EJBException(e.getMessage());
+        }
+    }
 
     EventDTO eventToDTO(Event event) {
         return new EventDTO(
