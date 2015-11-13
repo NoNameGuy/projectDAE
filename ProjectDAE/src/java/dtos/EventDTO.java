@@ -86,7 +86,7 @@ public class EventDTO implements Serializable {
         this.local = local;
     }
 
-    public int getResponsible_Id() {
+    public int getResponsible_id() {
         return responsible_id;
     }
 

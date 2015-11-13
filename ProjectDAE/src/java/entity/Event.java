@@ -35,6 +35,7 @@ import javax.validation.constraints.NotNull;
             query = "SELECT e FROM Event e ORDER BY e.date")
     })
 public class Event implements Serializable {
+    
     @Id
     private int id;
     @Temporal(TemporalType.DATE)

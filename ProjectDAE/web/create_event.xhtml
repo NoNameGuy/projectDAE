@@ -61,7 +61,7 @@ and open the template in the editor.
                     id="responsible"
                     required ="true"
                     requiredMessage="Responsible cannot be empty!"
-                    value="#{administratorManager.newEvent.responsible_Id}">
+                    value="#{administratorManager.newEvent.responsible_id}">
                 </h:inputText>
                 <h:message for="responsible" />
             </h:panelGrid>
@@ -69,7 +69,7 @@ and open the template in the editor.
                 <h:commandButton 
                     id="submit"
                     value="Submit" 
-                    action="#{administratorManager.newEvent.createEvent}">
+                    action="#{administratorManager.createEvent}">
                 </h:commandButton>
                 <h:message for="submit" />
             </h:panelGrid>

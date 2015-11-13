@@ -179,7 +179,7 @@ public class AdministratorManager {
                     newEvent.getName(),
                     newEvent.getType(),
                     newEvent.getLocal(),
-                    newEvent.getResponsible_Id());
+                    newEvent.getResponsible_id());
             return "index?faces-redirect=true";
         } catch (Exception e) {
             e.printStackTrace();
