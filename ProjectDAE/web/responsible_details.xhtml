@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <div>Responsible Details</div>
+        <h:dataTable value="#{administratorManager.currentAdministrator}" var="admin">
+            <h:column>
+                <f:facet name="header">Id</f:facet>
+                <h:outputText value="#{admin.id}"/>
+            </h:column>    
+            <h:column>
+                <f:facet name="header">Name</f:facet>
+                <h:outputText value="#{admin.name}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Email</f:facet>
+                <h:outputText value="#{admin.email}"/>
+            </h:column>
+        </h:dataTable>
+        <h:form>
+            <h:commandLink action="admin_responsible_update" value="Criar Responsavel"></h:commandLink>
+        </h:form>
+        
+        
+        <div>Responsible Events</div>
+        <h:dataTable value="#{eventManager.currentEvent}" var="event">
+            <h:column>
+                <f:facet name="header">Date</f:facet>
+                <h:outputText value="#{event.date}"/>
+            </h:column>    
+            <h:column>
+                <f:facet name="header">Name</f:facet>
+                <h:outputText value="#{event.name}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Type</f:facet>
+                <h:outputText value="#{event.type}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Local</f:facet>
+                <h:outputText value="#{event.local}"/>
+            </h:column>
+        </h:dataTable>
+        <br></br><br></br>
+        <h:form>
+            <h:commandLink action="create_event" value="Create event">
+                <f:setPropertyActionListener target="#{administratorManager.currentResponsible}" value="#{responsible}" />
+            </h:commandLink>
+            <br></br>
+            <h:commandLink action="create_event" value="Remover Responsavel"></h:commandLink>
+            <br></br>
+            <h:commandLink action="AdminPage" value="Back"></h:commandLink>
+        </h:form>
+    </body>
+</html>
