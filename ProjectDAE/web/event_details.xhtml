@@ -46,7 +46,11 @@ and open the template in the editor.
                 <h:outputText value="#{event.responsible_name}"/>
             </h:column>
             <h:column>
-                 <h:form rendered="#{!event.openInscriptions}">
+                <f:facet name="header">Open Inscriptions</f:facet>
+                <h:outputText value="#{event.openInscriptions}"/>
+            </h:column>
+            <h:column>
+                <h:form rendered="#{!event.openInscriptions}">
                     <h:commandLink value="Open inscriptions" actionListener="#{administratorManager.openInscription}">
                         <f:param name="eventID" id="eventID" value="#{event.id}"/>
                     </h:commandLink>
@@ -87,7 +91,7 @@ and open the template in the editor.
                 <h:outputText value="#{participant.email}"/>
 
             </h:column>
-            
+
             <h:column>
                 <f:facet name="header">Present</f:facet>
                 <h:outputText value="No"/>
@@ -95,24 +99,16 @@ and open the template in the editor.
             </h:column>
 
             <h:column>
-                <h:form>
-                    <h:commandLink value="Add participant" actionListener="#{administratorManager.unrollParticipants}">
-                        <f:param name="participantId" id="participantId" value="#{participant}"/>
-                    </h:commandLink>
-                </h:form>
-            </h:column>
-
-            <h:column>
                 <f:facet name="header">
                     <h:outputText value="Actions" />
                 </f:facet>
                 <h:form>
-                    <h:commandLink value="Unenroll" action="event_details?faces-redirect=true">
-                        <f:setPropertyActionListener target="#{administratorManager.unEnrollParticipant(administratorManager.currentEvent.id, participant.id)}" value="#{participant}" />
+                    <h:commandLink value="Remove participant" actionListener="#{administratorManager.unrollParticipants}">
+                        <f:param name="participantId" id="participantId" value="#{participant.id}"/>
                     </h:commandLink>
                 </h:form>
-
             </h:column>
+
         </h:dataTable>
 
         <br></br>
@@ -139,24 +135,14 @@ and open the template in the editor.
 
             </h:column>
             <h:column>
-
-                <h:form>
-
-                    <h:commandLink value="Add participant" actionListener="#{administratorManager.enrollParticipants}">
-                        <f:param name="participantId" id="participantId" value="#{participant}"/>
-                    </h:commandLink>
-
-                </h:form>
-
                 <f:facet name="header">
                     <h:outputText value="Actions" />
                 </f:facet>
                 <h:form>
-                    <h:commandLink value="Enroll" action="event_details?faces-redirect=true">
-                        <f:setPropertyActionListener target="#{administratorManager.enrollParticipant(administratorManager.currentEvent.id, participant.id)}" value="#{participant}" />
+                    <h:commandLink value="Add participant" actionListener="#{administratorManager.unrollParticipants}">
+                        <f:param name="participantId" id="participantId" value="#{participant.id}"/>
                     </h:commandLink>
                 </h:form>
-
             </h:column>
         </h:dataTable>
 
