@@ -68,6 +68,7 @@ and open the template in the editor.
                 <f:facet name="header">
                     <h:outputText value="Actions" />
                 </f:facet>
+                <h:form rendered="#{!event.openInscriptions}">
                     <h:commandLink value="Open inscriptions" action="responsible_details?faces-redirect=true">
                         <f:setPropertyActionListener target="#{administratorManager.openInscriptions}" value="#{event}" />
                     </h:commandLink>
