@@ -229,10 +229,7 @@ public class AdministratorManager {
 
     //////////////////////////// Event \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-
-       
-
-    public void enrollParticipant() throws EntityDoesNotExistsException {
+    /*public void enrollParticipant() throws EntityDoesNotExistsException {
         if( eventBean.isOpenInscriptions(currentEvent.getId()))
             eventBean.enrollParticipant(currentEvent.getId(), currentParticipant.getId());
     }
@@ -240,7 +237,7 @@ public class AdministratorManager {
     public void unEnrollParticipant(int eventId, int participantId) throws EntityDoesNotExistsException {
         if( eventBean.isOpenInscriptions(eventId))
             eventBean.unEnrollParticipant(eventId, participantId);
-    }
+    }*/
     
     public void openInscription(ActionEvent event) throws EntityDoesNotExistsException {
         try {
@@ -320,25 +317,25 @@ public class AdministratorManager {
             
     }
     
-    /*public void enrollParticipants(ActionEvent event) throws EntityDoesNotExistsException, ParticipantEnrolledException {
+    public void enrollParticipants(ActionEvent event) throws EntityDoesNotExistsException, ParticipantEnrolledException {
         
         try{
             UIParameter param = (UIParameter) event.getComponent().findComponent("participantId");
             int id = Integer.parseInt(param.getValue().toString());
             
-            System.out.println("Participant Id: " + currentParticipant.getId() + "Event Id: " + currentEvent.getId());
-            participantBean.enrollParticipant(currentParticipant.getId(), currentEvent.getId());
+            //System.out.println("Participant Id: " + currentParticipant.getId() + "Event Id: " + currentEvent.getId());
+            participantBean.enrollParticipant(id, 1);
         } catch (Exception e) {
             logger.warning("Problem enrolling participant in method enrollParticipants().");
         }
         
-    }*/
+    }
     
     public void unrollParticipants(ActionEvent event) throws EntityDoesNotExistsException, ParticipantNotEnrolledException {
         try{
             UIParameter param = (UIParameter) event.getComponent().findComponent("participantId");
             int id = Integer.parseInt(param.getValue().toString());
-            participantBean.unrollParticipant(currentParticipant.getId(), currentEvent.getId());
+            participantBean.unrollParticipant(id, 1);
         } catch (Exception e) {
             logger.warning("Problem enrolling participant in method enrollParticipants().");
         }
