@@ -228,8 +228,25 @@ public class AdministratorManager {
     }
 
     //////////////////////////// Event \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
     public void openInscriptions() throws EntityDoesNotExistsException {
-       eventBean.openInscriptions(currentEvent.getId());
+        eventBean.openInscriptions(currentEvent.getId());
+    }
+       
+
+    public void enrollParticipant() throws EntityDoesNotExistsException {
+        if( eventBean.isOpenInscriptions(currentEvent.getId()))
+            eventBean.enrollParticipant(currentEvent.getId(), currentParticipant.getId());
+    }
+    
+    public void unEnrollParticipant(int eventId, int participantId) throws EntityDoesNotExistsException {
+        if( eventBean.isOpenInscriptions(eventId))
+            eventBean.unEnrollParticipant(eventId, participantId);
+    }
+    
+    public void openInscriptions(int eventId) throws EntityDoesNotExistsException {
+       eventBean.openInscriptions(eventId);
+
     }
     
     public void closeInscriptions() throws EntityDoesNotExistsException {
@@ -294,7 +311,7 @@ public class AdministratorManager {
             
     }
     
-    public void enrollParticipants(ActionEvent event) throws EntityDoesNotExistsException, ParticipantEnrolledException {
+    /*public void enrollParticipants(ActionEvent event) throws EntityDoesNotExistsException, ParticipantEnrolledException {
         
         try{
             UIParameter param = (UIParameter) event.getComponent().findComponent("participantId");
@@ -306,7 +323,7 @@ public class AdministratorManager {
             logger.warning("Problem enrolling participant in method enrollParticipants().");
         }
         
-    }
+    }*/
     
     public void unrollParticipants(ActionEvent event) throws EntityDoesNotExistsException, ParticipantNotEnrolledException {
         try{
