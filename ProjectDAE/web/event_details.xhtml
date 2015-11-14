@@ -13,7 +13,7 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
-        <div>Event Details</div>
+        <div>Event Details:</div>
         <h:dataTable value="#{administratorManager.currentEvent}" 
                      var="event"
                      summary="List of all Event"
@@ -50,15 +50,54 @@ and open the template in the editor.
                     <h:commandLink action="create_event" value="Alterar Responsavel"></h:commandLink>
                     <h:commandLink action="create_event" value="Open Attendance"></h:commandLink>
                     <br></br>
-                    <h:commandLink action="AdminPage" value="Back"></h:commandLink>
+
                 </h:form>
             </h:column>
         </h:dataTable>
 
         <br></br>
 
-        <div>Participants:</div>
-        <h:dataTable value="#{administratorManager.enrolledParticipants}" var="participant">
+        <div>Enrolled Participants:</div>
+        <h:dataTable value="#{administratorManager.enrolledParticipants}" 
+                     var="participant"
+                     summary="List of Enrolled Participants"
+                     rules="all"
+                     cellpadding="5">
+
+            <h:column>
+                <f:facet name="header">ID</f:facet>
+                <h:outputText value="#{participant.id}"/>
+
+            </h:column>
+            <h:column>
+                <f:facet name="header">Name</f:facet>
+                <h:outputText value="#{participant.name}"/>
+
+            </h:column>
+            <h:column>
+                <f:facet name="header">Email</f:facet>
+                <h:outputText value="#{participant.email}"/>
+
+            </h:column>
+
+            <h:form>
+                <h:commandLink value="Add participant" action="event_detais?faces-redirect=true">
+                    <f:setPropertyActionListener target="#{administratorManager.currentParticipant}" value="#{participant}" />
+                </h:commandLink>
+                <h:commandLink value="Add participant" actionListener="#{administratorManager.enrollParticipant}">
+                    <f:param name="administratorID" id="administratorID" value="#{administrator.id}"/>
+                </h:commandLink>
+            </h:form>
+        </h:dataTable>
+
+        <br></br>
+
+        <div>Unrolled Participants:</div>
+        <h:dataTable value="#{administratorManager.unrolledParticipants}"
+                     var="participant"
+                     summary="List of Unrolled Participants"
+                     rules="all"
+                     cellpadding="5">
             <h:column>
                 <f:facet name="header">ID</f:facet>
                 <h:outputText value="#{participant.id}"/>
@@ -75,6 +114,12 @@ and open the template in the editor.
 
             </h:column>
         </h:dataTable>
+
+        <br></br>
+        <h:form>
+            <h:commandLink action="AdminPage" value="Back"></h:commandLink>
+        </h:form>
+        
 
     </body>
 </html>

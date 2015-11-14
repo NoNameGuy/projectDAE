@@ -55,12 +55,12 @@ public class Event implements Serializable {
             = @JoinColumn(name = "EVENT_ID", referencedColumnName = "ID"),
             inverseJoinColumns
             = @JoinColumn(name = "PARTICIPANT_ID", referencedColumnName = "ID"))
-    protected List<Participant> participants;
+    private List<Participant> participants;
     
     @ManyToOne
     @JoinColumn(name = "RESPONSIBLE_ID")
     @NotNull
-    protected Responsible responsible;
+    private Responsible responsible;
    
     
 

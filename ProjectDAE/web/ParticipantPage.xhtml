@@ -13,9 +13,13 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
-        
+
         <div>Participants:</div>
-        <h:dataTable value="#{administratorManager.allParticipants}" var="participant">
+        <h:dataTable value="#{administratorManager.allParticipants}" 
+                     var="participant"
+                     summary="List of all Participant"
+                     rules="all"
+                     cellpadding="5">
             <h:column>
                 <f:facet name="header">Name</f:facet>
                 <h:outputText value="#{participant.name}"/>
@@ -26,7 +30,7 @@ and open the template in the editor.
                 <h:outputText value="#{participant.email}"/>
 
             </h:column>
-            
+
             <h:column>
                 <f:facet name="header">
                     <h:outputText value="Actions" />
@@ -35,24 +39,15 @@ and open the template in the editor.
                     <h:commandLink value="Details" action="responsible_details?faces-redirect=true">
                         <f:setPropertyActionListener target="#{administratorManager.currentResponsible}" value="#{responsible}" />
                     </h:commandLink>
-                    <h:commandLink value="Update" action="admin_update_user?faces-redirect=true">
-                        <f:setPropertyActionListener target="#{administratorManager.currentParticipant}" value="#{user}" />
-                    </h:commandLink>
-
-                    <h:commandLink value="Remove" actionListener="#{administratorManager.removeUser}">
-                        <f:param name="deleteUserId" id="deleteUser" value="#{user.id}" />
-                    </h:commandLink>
                 </h:form>
             </h:column>
         </h:dataTable>
 
         <h:form>
-            <h:commandLink action="admin_user_create" value="New Participant"></h:commandLink>
-        
-       <br></br>
-       <h:commandLink action="index" value="Back"></h:commandLink> 
-       
-       </h:form>
-        
+            <br></br>
+            <h:commandLink action="index" value="Back"></h:commandLink> 
+
+        </h:form>
+
     </body>
 </html>
