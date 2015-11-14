@@ -32,16 +32,10 @@ and open the template in the editor.
 
             <h:column>
                 <h:form>
-                    <h:commandLink value="Details" action="responsible_details?faces-redirect=true">
+                    <h:commandLink value="Entrar" action="responsible_details?faces-redirect=true">
                         <f:setPropertyActionListener target="#{administratorManager.currentResponsible}" value="#{responsible}" />
                     </h:commandLink>
-                    <h:commandLink value="Update" action="admin_update_user?faces-redirect=true">
-                        <f:setPropertyActionListener target="#{administratorManager.currentUser}" value="#{user}" />
-                    </h:commandLink>
-
-                    <h:commandLink value="Remove" actionListener="#{administratorManager.removeUser}">
-                        <f:param name="deleteUserId" id="deleteUser" value="#{user.id}" />
-                    </h:commandLink>
+                    
                     
                 </h:form>
             </h:column>

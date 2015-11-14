@@ -36,8 +36,8 @@ and open the template in the editor.
                     <h:outputText value="Actions" />
                 </f:facet>
                 <h:form>
-                    <h:commandLink value="Details" action="responsible_details?faces-redirect=true">
-                        <f:setPropertyActionListener target="#{administratorManager.currentResponsible}" value="#{responsible}" />
+                    <h:commandLink value="Entrar" action="participant_details?faces-redirect=true">
+                        <f:setPropertyActionListener target="#{administratorManager.currentParticipant}" value="#{participant}" />
                     </h:commandLink>
                 </h:form>
             </h:column>

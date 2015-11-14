@@ -31,11 +31,11 @@ and open the template in the editor.
                 <f:facet name="header">Email</f:facet>
                 <h:outputText value="#{participant.email}"/>
             </h:column>
-            
+
         </h:dataTable>
-        
+
         <br></br>
-        
+
         <div>Participant Events:</div>
         <h:dataTable value="#{administratorManager.currentParticipantEvents}"
                      var="event"
@@ -62,9 +62,20 @@ and open the template in the editor.
                 <f:facet name="header">Responsible</f:facet>
                 <h:outputText value="#{event.responsible_name}"/>
             </h:column>
+            <h:column>
+                <f:facet name="header">Responsible</f:facet>
+                <h:outputText value="#{event.responsible_name}"/>
+            </h:column>
+            <h:column>
+            <h:form rendered="#{event.openInscriptions}">
+                    <h:commandLink value="Open inscriptions" action="participant_details?faces-redirect=true">
+                        <f:setPropertyActionListener target="#{administratorManager.registPresence}" value="#{event}" />
+                    </h:commandLink>
+                </h:form>
+            </h:column>
         </h:dataTable>
         <h:form>
-        <h:commandLink action="AdminPage" value="Back"></h:commandLink>
+            <h:commandLink action="AdminPage" value="Back"></h:commandLink>
         </h:form>
     </body>
 </html>
