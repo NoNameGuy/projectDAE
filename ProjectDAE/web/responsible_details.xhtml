@@ -71,16 +71,16 @@ and open the template in the editor.
                         <f:setPropertyActionListener target="#{administratorManager.currentEvent}" value="#{event}" />
                     </h:commandLink>
                 </h:form>
-                
+
                 <h:form rendered="#{!event.openInscriptions}">
-                    <h:commandLink value="Open inscriptions" action="responsible_details?faces-redirect=true">
-                        <f:setPropertyActionListener target="#{administratorManager.openInscriptions}" value="#{event}" />
+                    <h:commandLink value="Open inscriptions" actionListener="#{administratorManager.openInscription}">
+                        <f:param name="eventID" id="eventID" value="#{event.id}"/>
                     </h:commandLink>
                 </h:form>    
 
                 <h:form rendered="#{event.openInscriptions}">
-                    <h:commandLink value="Close inscriptions" action="responsible_details?faces-redirect=true">
-                        <f:setPropertyActionListener target="#{administratorManager.closeInscriptions}" value="#{event}" />
+                    <h:commandLink value="Close inscriptions" actionListener="#{administratorManager.closeInscription}">
+                        <f:param name="eventID" id="eventID" value="#{event.id}"/>
                     </h:commandLink>
                 </h:form>
                 <h:form>

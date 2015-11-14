@@ -229,9 +229,7 @@ public class AdministratorManager {
 
     //////////////////////////// Event \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-    public void openInscriptions() throws EntityDoesNotExistsException {
-        eventBean.openInscriptions(currentEvent.getId());
-    }
+
        
 
     public void enrollParticipant() throws EntityDoesNotExistsException {
@@ -244,13 +242,24 @@ public class AdministratorManager {
             eventBean.unEnrollParticipant(eventId, participantId);
     }
     
-    public void openInscriptions(int eventId) throws EntityDoesNotExistsException {
-       eventBean.openInscriptions(eventId);
-
+    public void openInscription(ActionEvent event) throws EntityDoesNotExistsException {
+        try {
+            UIParameter param = (UIParameter) event.getComponent().findComponent("eventID");
+            int id = Integer.parseInt(param.getValue().toString());
+            eventBean.openInscriptions(id);
+        } catch (Exception e) {
+            logger.warning("Problem in method openInscription().");
+        }
     }
     
-    public void closeInscriptions() throws EntityDoesNotExistsException {
-       eventBean.closeInscriptions(currentEvent.getId());
+    public void closeInscription(ActionEvent event) throws EntityDoesNotExistsException {
+       try {
+            UIParameter param = (UIParameter) event.getComponent().findComponent("eventID");
+            int id = Integer.parseInt(param.getValue().toString());
+            eventBean.closeInscriptions(id);
+        } catch (Exception e) {
+            logger.warning("Problem in method closeInscription().");
+        }
     }
     
     public String createEvent() {
