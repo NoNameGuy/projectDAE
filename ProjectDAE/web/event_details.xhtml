@@ -65,6 +65,8 @@ and open the template in the editor.
                     <h:commandLink action="add_participant_event" value="Add Participant"></h:commandLink>
                 </h:form>
             </h:column>
+            
+            
         </h:dataTable>
 
         <br></br>
@@ -103,7 +105,7 @@ and open the template in the editor.
                     <h:outputText value="Actions" />
                 </f:facet>
                 <h:form>
-                    <h:commandLink value="Remove participant" actionListener="#{administratorManager.unrollParticipants}">
+                    <h:commandLink value="Remove participant" actionListener="#{administratorManager.unrollParticipants}" action="event_details?faces-redirect=true">
                         <f:param name="participantId" id="participantId" value="#{participant.id}"/>
                     </h:commandLink>
                 </h:form>
@@ -139,9 +141,10 @@ and open the template in the editor.
                     <h:outputText value="Actions" />
                 </f:facet>
                 <h:form>
-                    <h:commandLink value="Add participant" actionListener="#{administratorManager.unrollParticipants}">
+                    <h:commandLink value="Add participant" actionListener="#{administratorManager.enrollParticipants}" action="event_details?faces-redirect=true">
                         <f:param name="participantId" id="participantId" value="#{participant.id}"/>
                     </h:commandLink>
+                    
                 </h:form>
             </h:column>
         </h:dataTable>
