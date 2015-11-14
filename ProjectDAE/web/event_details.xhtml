@@ -15,10 +15,22 @@ and open the template in the editor.
     <body>
         <div>Event Details</div>
         <h:dataTable value="#{administratorManager.currentEvent}" var="event">
+        <div>Event Details:</div>
+        <h:dataTable value="#{administratorManager.currentEvent}" 
+                     var="event"
+                     summary="List of all Event"
+                     rules="all"
+                     cellpadding="5">
+            <h:column>
+                <f:facet name="header">ID</f:facet>
+                <h:outputText value="#{event.id}"/>
+
+            </h:column>
             <h:column>
                 <f:facet name="header">Date</f:facet>
                 <h:outputText value="#{event.date}"/>
-            </h:column>    
+
+            </h:column>
             <h:column>
                 <f:facet name="header">Name</f:facet>
                 <h:outputText value="#{event.name}"/>
@@ -31,13 +43,85 @@ and open the template in the editor.
                 <f:facet name="header">Local</f:facet>
                 <h:outputText value="#{event.local}"/>
             </h:column>
+            <h:column>
+                <f:facet name="header">Responsible</f:facet>
+                <h:outputText value="#{event.responsible_name}"/>
+            </h:column>
+            <h:column>
+                <h:form>
+                    <h:commandLink action="create_event" value="Alterar Responsavel"></h:commandLink>
+                    <h:commandLink action="create_event" value="Open Attendance"></h:commandLink>
+                    <br></br>
+
+                </h:form>
+            </h:column>
         </h:dataTable>
+
+        <br></br>
+
+        <div>Enrolled Participants:</div>
+        <h:dataTable value="#{administratorManager.enrolledParticipants}" 
+                     var="participant"
+                     summary="List of Enrolled Participants"
+                     rules="all"
+                     cellpadding="5">
+
+            <h:column>
+                <f:facet name="header">ID</f:facet>
+                <h:outputText value="#{participant.id}"/>
+
+            </h:column>
+            <h:column>
+                <f:facet name="header">Name</f:facet>
+                <h:outputText value="#{participant.name}"/>
+
+            </h:column>
+            <h:column>
+                <f:facet name="header">Email</f:facet>
+                <h:outputText value="#{participant.email}"/>
+
+            </h:column>
+
+            <h:form>
+                <h:commandLink value="Add participant" action="event_detais?faces-redirect=true">
+                    <f:setPropertyActionListener target="#{administratorManager.currentParticipant}" value="#{participant}" />
+                </h:commandLink>
+                <h:commandLink value="Add participant" actionListener="#{administratorManager.enrollParticipant}">
+                    <f:param name="administratorID" id="administratorID" value="#{administrator.id}"/>
+                </h:commandLink>
+            </h:form>
+        </h:dataTable>
+
+        <br></br>
+
+        <div>Unrolled Participants:</div>
+        <h:dataTable value="#{administratorManager.unrolledParticipants}"
+                     var="participant"
+                     summary="List of Unrolled Participants"
+                     rules="all"
+                     cellpadding="5">
+            <h:column>
+                <f:facet name="header">ID</f:facet>
+                <h:outputText value="#{participant.id}"/>
+
+            </h:column>
+            <h:column>
+                <f:facet name="header">Name</f:facet>
+                <h:outputText value="#{participant.name}"/>
+
+            </h:column>
+            <h:column>
+                <f:facet name="header">Email</f:facet>
+                <h:outputText value="#{participant.email}"/>
+
+            </h:column>
+        </h:dataTable>
+
+        <br></br>
         <h:form>
-            <h:commandLink action="create_event" value="Criar Responsavel"></h:commandLink>
-            <h:commandLink action="create_event" value="Alterar Responsavel"></h:commandLink>
-            <h:commandLink action="create_event" value="Open Attendance"></h:commandLink>
-            <br></br>
             <h:commandLink action="AdminPage" value="Back"></h:commandLink>
         </h:form>
+        
+
     </body>
 </html>

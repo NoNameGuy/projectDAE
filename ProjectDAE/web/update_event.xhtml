@@ -56,7 +56,7 @@ and open the template in the editor.
                 <h:outputLabel for="responsible" value="Responsible: "/>
                 <h:selectOneMenu
                     id="responsible"
-                    value="#{administratorManager.newEvent.responsible_id}" >
+                    value="#{administratorManager.currentEvent.responsible_id}" >
                     <f:selectItems
                         value="#{administratorManager.allResponsibles}"
                         var="responsible"

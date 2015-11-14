@@ -13,8 +13,12 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
-        <div>Participant Details</div>
-        <h:dataTable value="#{administratorManager.currentParticipant}" var="participant">
+        <div>Participant Details:</div>
+        <h:dataTable value="#{administratorManager.currentParticipant}" 
+                     var="participant"
+                     summary="List Participant detais"
+                     rules="all"
+                     cellpadding="5">>
             <h:column>
                 <f:facet name="header">Id</f:facet>
                 <h:outputText value="#{participant.id}"/>
@@ -27,9 +31,17 @@ and open the template in the editor.
                 <f:facet name="header">Email</f:facet>
                 <h:outputText value="#{participant.email}"/>
             </h:column>
+            
         </h:dataTable>
         
-        <h:dataTable value="#{administratorManager.getEventsByParticipant(administratorManager.currentParticipant.id)}" var="event">
+        <br></br>
+        
+        <div>Participant Events:</div>
+        <h:dataTable value="#{administratorManager.currentParticipantEvents}"
+                     var="event"
+                     summary="List of all events of the Responsible"
+                     rules="all"
+                     cellpadding="5">
             <h:column>
                 <f:facet name="header">Date</f:facet>
                 <h:outputText value="#{event.date}"/>
@@ -45,6 +57,10 @@ and open the template in the editor.
             <h:column>
                 <f:facet name="header">Local</f:facet>
                 <h:outputText value="#{event.local}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Responsible</f:facet>
+                <h:outputText value="#{event.responsible_name}"/>
             </h:column>
         </h:dataTable>
         <h:form>

@@ -31,9 +31,6 @@ and open the template in the editor.
             </h:column>
 
             <h:column>
-                <f:facet name="header">
-                    <h:outputText value="Actions" />
-                </f:facet>
                 <h:form>
                     <h:commandLink value="Details" action="responsible_details?faces-redirect=true">
                         <f:setPropertyActionListener target="#{administratorManager.currentResponsible}" value="#{responsible}" />
@@ -45,6 +42,7 @@ and open the template in the editor.
                     <h:commandLink value="Remove" actionListener="#{administratorManager.removeUser}">
                         <f:param name="deleteUserId" id="deleteUser" value="#{user.id}" />
                     </h:commandLink>
+                    
                 </h:form>
             </h:column>
         </h:dataTable>

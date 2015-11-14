@@ -5,9 +5,7 @@
  */
 package entity;
 
-import dtos.SubjectDTO;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.Entity;
@@ -26,25 +24,23 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table(name = "SUBJECTS",
-    uniqueConstraints
+        uniqueConstraints
         = @UniqueConstraint(columnNames = {"NAME", "SCHOLARYEAR"}))
 @NamedQuery(
-    name="getAllSubjects",
-    query="SELECT s FROM Subject s ORDER BY s.name")
+        name = "getAllSubjects",
+        query = "SELECT s FROM Subject s ORDER BY s.name")
 
 public class Subject implements Serializable {
 
-
     @Id
     //@GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private int id;
     @NotNull
     private String name;
     @NotNull
     private int courseYear;
     @NotNull
     private String scholarYear;
-    
     @ManyToMany
     @JoinTable(name = "SUBJECT_PARTICIPANT",
             joinColumns
@@ -57,7 +53,7 @@ public class Subject implements Serializable {
         participants = new LinkedList<>();
     }
 
-    public Subject(Long id, String name, int courseYear, String scholarYear) {
+    public Subject(int id, String name, int courseYear, String scholarYear) {
         this.id = id;
         this.name = name;
         this.courseYear = courseYear;
@@ -65,11 +61,11 @@ public class Subject implements Serializable {
         this.participants = new LinkedList<>();
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -106,29 +102,8 @@ public class Subject implements Serializable {
     }
 
     @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Subject)) {
-            return false;
-        }
-        Subject other = (Subject) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
     public String toString() {
         return "entity.Subject[ id=" + id + " ]";
     }
-    
-    
+
 }

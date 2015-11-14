@@ -14,7 +14,11 @@ and open the template in the editor.
     </head>
     <body>
         <div>Responsible Details</div>
-        <h:dataTable value="#{administratorManager.currentResponsible}" var="responsible">
+        <h:dataTable value="#{administratorManager.currentResponsible}" 
+                     var="responsible"
+                     summary="List Responsible detais"
+                     rules="all"
+                     cellpadding="5">
             <h:column>
                 <f:facet name="header">Id</f:facet>
                 <h:outputText value="#{responsible.id}"/>
@@ -71,6 +75,13 @@ and open the template in the editor.
                     <h:commandLink value="Close inscriptions" action="responsible_details?faces-redirect=true">
                         <f:setPropertyActionListener target="#{administratorManager.closeInscriptions(event.id)}" value="#{responsible}" />
                     </h:commandLink>
+                <f:facet name="header">Responsible</f:facet>
+                <h:outputText value="#{event.responsible_name}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Add Participants</f:facet>
+                <h:form>
+                    <h:commandLink action="add_participant_event" value="Add Participant"></h:commandLink>
                 </h:form>
             </h:column>
         </h:dataTable>

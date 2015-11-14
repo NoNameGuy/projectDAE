@@ -49,20 +49,18 @@ public class Event implements Serializable {
     private String local;
     private boolean openInscriptions;
 
-    
-    
     @ManyToMany
     @JoinTable(name = "EVENT_PARTICIPANT",
             joinColumns
             = @JoinColumn(name = "EVENT_ID", referencedColumnName = "ID"),
             inverseJoinColumns
             = @JoinColumn(name = "PARTICIPANT_ID", referencedColumnName = "ID"))
-    protected List<Participant> participants;
+    private List<Participant> participants;
     
     @ManyToOne
     @JoinColumn(name = "RESPONSIBLE_ID")
     @NotNull
-    protected Responsible responsible;
+    private Responsible responsible;
    
     
 
@@ -70,7 +68,7 @@ public class Event implements Serializable {
     // "Insert Code > Add Business Method")
 
     public Event() {
-        this.participants = new LinkedList<Participant>();
+        this.participants = new LinkedList<>();
     }
 
     public Event(int id, Date date, String name, String type, String local, Responsible responsible) {
@@ -79,7 +77,7 @@ public class Event implements Serializable {
         this.name = name;
         this.type = type;
         this.local = local;
-        this.participants = new LinkedList<Participant>();
+        this.participants = new LinkedList<>();
         this.responsible = responsible;
         this.openInscriptions = false;
     }
