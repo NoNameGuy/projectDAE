@@ -32,9 +32,7 @@ and open the template in the editor.
                 <h:outputText value="#{responsible.email}"/>
             </h:column>
         </h:dataTable>
-        <h:form>
-            <h:commandLink action="admin_responsible_update" value="Criar Responsavel"></h:commandLink>
-        </h:form>
+
 
         <br></br><br></br>
         <div>Responsible Events</div>
@@ -73,27 +71,21 @@ and open the template in the editor.
                         <f:setPropertyActionListener target="#{administratorManager.openInscriptions}" value="#{event}" />
                     </h:commandLink>
                 </h:form>    
-                <div></div>
+
                 <h:form rendered="#{event.openInscriptions}">
                     <h:commandLink value="Close inscriptions" action="responsible_details?faces-redirect=true">
                         <f:setPropertyActionListener target="#{administratorManager.closeInscriptions}" value="#{event}" />
                     </h:commandLink>
                 </h:form>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Add Participants</f:facet>
                 <h:form>
                     <h:commandLink action="add_participant_event" value="Add Participant"></h:commandLink>
                 </h:form>
+
             </h:column>
+
         </h:dataTable>
         <br></br><br></br>
-        <h:form>
-            <h:commandLink action="create_event" value="Create event">
-                <f:setPropertyActionListener target="#{administratorManager.currentResponsible}" value="#{responsible}" />
-            </h:commandLink>
-            <br></br>
-            <h:commandLink action="create_event" value="Remover Responsavel"></h:commandLink>
+        <h:form>          
             <br></br>
             <h:commandLink action="AdminPage" value="Back"></h:commandLink>
         </h:form>

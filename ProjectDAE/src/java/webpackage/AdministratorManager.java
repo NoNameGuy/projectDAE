@@ -268,7 +268,7 @@ public class AdministratorManager {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "index?faces-redirect=true";
+        return "create_event?faces-redirect=true";
     }
 
     public void removeEvent(ActionEvent event) {
@@ -295,7 +295,7 @@ public class AdministratorManager {
         } catch (Exception e) {
             logger.warning("Problem updating user in method updateEvent().");
         }
-        return "index?faces-redirect=true";
+        return "update_event?faces-redirect=true";
     }
 
     public List<EventDTO> getAllEvents() {
