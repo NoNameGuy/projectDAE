@@ -129,8 +129,8 @@ public class EventBean {
             if (event == null) {
                 throw new EntityDoesNotExistsException("There is no event with that id.");
             }
-            event.setOpenInscriptions(false);
             
+            em.remove(event);
         } catch (EntityDoesNotExistsException e) {
             throw e;
         } catch (Exception e) {
@@ -179,7 +179,8 @@ public class EventBean {
                 event.getType(),
                 event.getLocal(),
                 event.getResponsible().getId(),
-                event.getResponsible().getName());
+                event.getResponsible().getName(),
+                event.isOpenInscriptions());
     }
 
     List<EventDTO> eventsToDTOs(List<Event> events) {

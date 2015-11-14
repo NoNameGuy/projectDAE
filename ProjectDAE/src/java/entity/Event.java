@@ -47,7 +47,7 @@ public class Event implements Serializable {
     private String type;
     @NotNull
     private String local;
-    private boolean openInscriptions;
+    
 
     @ManyToMany
     @JoinTable(name = "EVENT_PARTICIPANT",
@@ -61,7 +61,7 @@ public class Event implements Serializable {
     @JoinColumn(name = "RESPONSIBLE_ID")
     @NotNull
     private Responsible responsible;
-   
+    private boolean openInscriptions;
     
 
     // Add business logic below. (Right-click in editor and choose

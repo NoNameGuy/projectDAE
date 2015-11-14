@@ -14,15 +14,14 @@ and open the template in the editor.
     </head>
     <body>
         <div>Lista de Utilizadores / Participantes : </div>
+        <br></br>
         <h:form>
-
             <h:column>
-                <h:selectManyMenu
+                <h:selectManyListbox 
                     id="participant"
-                    value="#{administratorManager.currentParticipant.id}"
-                    style="height: 500px"
+                    value="#{administratorManager.listParticipants}"
                     title="Add participants to Event"
-                    
+
                     >
                     <f:selectItems
                         value="#{administratorManager.allParticipants}"
@@ -30,9 +29,22 @@ and open the template in the editor.
                         itemValue="#{participant.id}"
                         itemLabel="#{participant.name}"
                         />
-                </h:selectManyMenu>
+                </h:selectManyListbox >
             </h:column>
-          
+
+            <br></br>
+            <h:commandButton value="Submit" action="result" />
+            <h:commandButton value="Reset" type="reset" />
+           <h:panelGrid>
+                <h:commandButton 
+                    id="submit"
+                    value="Submit" 
+                    action="#{administratorManager.printToScreen}">
+                </h:commandButton>
+                <h:message for="submit" />
+            </h:panelGrid>
+
+
         </h:form>
 
     </body>

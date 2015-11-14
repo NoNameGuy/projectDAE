@@ -13,8 +13,6 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
-        <div>Event Details</div>
-        <h:dataTable value="#{administratorManager.currentEvent}" var="event">
         <div>Event Details:</div>
         <h:dataTable value="#{administratorManager.currentEvent}" 
                      var="event"
@@ -81,15 +79,14 @@ and open the template in the editor.
                 <h:outputText value="#{participant.email}"/>
 
             </h:column>
-
+            
+            <h:column>
             <h:form>
-                <h:commandLink value="Add participant" action="event_detais?faces-redirect=true">
-                    <f:setPropertyActionListener target="#{administratorManager.currentParticipant}" value="#{participant}" />
-                </h:commandLink>
-                <h:commandLink value="Add participant" actionListener="#{administratorManager.enrollParticipant}">
-                    <f:param name="administratorID" id="administratorID" value="#{administrator.id}"/>
+                <h:commandLink value="Add participant" actionListener="#{administratorManager.unrollParticipants}">
+                    <f:param name="participantId" id="participantId" value="#{participant}"/>
                 </h:commandLink>
             </h:form>
+            </h:column>
         </h:dataTable>
 
         <br></br>
@@ -114,6 +111,15 @@ and open the template in the editor.
                 <f:facet name="header">Email</f:facet>
                 <h:outputText value="#{participant.email}"/>
 
+            </h:column>
+            <h:column>
+            <h:form>
+                
+                <h:commandLink value="Add participant" actionListener="#{administratorManager.enrollParticipants}">
+                    <f:param name="participantId" id="participantId" value="#{participant}"/>
+                </h:commandLink>
+                
+            </h:form>
             </h:column>
         </h:dataTable>
 

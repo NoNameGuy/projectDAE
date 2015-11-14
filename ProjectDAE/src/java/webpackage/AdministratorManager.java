@@ -16,6 +16,8 @@ import ejbs.ParticipantBean;
 import ejbs.ResponsibleBean;
 import ejbs.SubjectBean;
 import exceptions.EntityDoesNotExistsException;
+import exceptions.ParticipantEnrolledException;
+import exceptions.ParticipantNotEnrolledException;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -49,6 +51,7 @@ public class AdministratorManager {
     private ResponsibleDTO currentResponsible;
     private ParticipantDTO newParticipant;
     private ParticipantDTO currentParticipant;
+    private List<ParticipantDTO> listParticipants;
     private EventDTO newEvent;
     private EventDTO currentEvent;
     private UIComponent component;
@@ -204,6 +207,12 @@ public class AdministratorManager {
             logger.warning("Problem removing user in method removeUser().");
         }
     }
+    
+    public void printToScreen() {
+        
+            System.out.println("participant: " + listParticipants);
+            //System.out.println("event: " + currentEvent.getName());
+    }
 
     public List<ParticipantDTO> getAllParticipants() {
         return participantBean.getAllParticipants();
@@ -219,12 +228,12 @@ public class AdministratorManager {
     }
 
     //////////////////////////// Event \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-    public void openInscriptions(int eventId) throws EntityDoesNotExistsException {
-       eventBean.openInscriptions(eventId);
+    public void openInscriptions() throws EntityDoesNotExistsException {
+       eventBean.openInscriptions(currentEvent.getId());
     }
     
-    public void closeInscriptions(int eventId) throws EntityDoesNotExistsException {
-       eventBean.closeInscriptions(eventId);
+    public void closeInscriptions() throws EntityDoesNotExistsException {
+       eventBean.closeInscriptions(currentEvent.getId());
     }
     
     public String createEvent() {
@@ -281,7 +290,32 @@ public class AdministratorManager {
     }
     
     public List<ParticipantDTO> getUnrolledParticipants() throws EntityDoesNotExistsException {
-            return participantBean.getUnrolledParticipants(currentEvent.getId());
+        return participantBean.getUnrolledParticipants(currentEvent.getId()); 
+            
+    }
+    
+    public void enrollParticipants(ActionEvent event) throws EntityDoesNotExistsException, ParticipantEnrolledException {
+        
+        try{
+            UIParameter param = (UIParameter) event.getComponent().findComponent("participantId");
+            int id = Integer.parseInt(param.getValue().toString());
+            
+            System.out.println("Participant Id: " + currentParticipant.getId() + "Event Id: " + currentEvent.getId());
+            participantBean.enrollParticipant(currentParticipant.getId(), currentEvent.getId());
+        } catch (Exception e) {
+            logger.warning("Problem enrolling participant in method enrollParticipants().");
+        }
+        
+    }
+    
+    public void unrollParticipants(ActionEvent event) throws EntityDoesNotExistsException, ParticipantNotEnrolledException {
+        try{
+            UIParameter param = (UIParameter) event.getComponent().findComponent("participantId");
+            int id = Integer.parseInt(param.getValue().toString());
+            participantBean.unrollParticipant(currentParticipant.getId(), currentEvent.getId());
+        } catch (Exception e) {
+            logger.warning("Problem enrolling participant in method enrollParticipants().");
+        }
     }
 
     public AdministratorBean getAdministratorBean() {
@@ -395,5 +429,20 @@ public class AdministratorManager {
     public void setCurrentEvent(EventDTO currentEvent) {
         this.currentEvent = currentEvent;
     }
+
+    public List<ParticipantDTO> getListParticipants() {
+        return listParticipants;
+    }
+
+    public void setListParticipants(List<ParticipantDTO> listParticipants) {
+        this.listParticipants = listParticipants;
+    }
+
+
+
+
+
+    
+    
 
 }
