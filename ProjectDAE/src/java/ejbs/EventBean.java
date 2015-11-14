@@ -92,6 +92,54 @@ public class EventBean {
 
     }
     
+    public void enrollParticipant(int eventId, int participantId) throws EntityDoesNotExistsException {
+        try {
+            Event event = em.find(Event.class, eventId);
+            Participant participant = em.find(Participant.class, participantId);
+            if (event == null || participant == null) {
+                throw new EntityDoesNotExistsException("There is no event or participant with that id.");
+            }
+            event.addParticipant(participant);
+
+        } catch (EntityDoesNotExistsException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new EJBException(e.getMessage());
+        }
+    }
+    
+    public void unEnrollParticipant(int eventId, int participantId) throws EntityDoesNotExistsException {
+        try {
+            Event event = em.find(Event.class, eventId);
+            Participant participant = em.find(Participant.class, participantId);
+            if (event == null || participant == null) {
+                throw new EntityDoesNotExistsException("There is no event or participant with that id.");
+            }
+            event.removeParticipant(participant);
+        } catch (EntityDoesNotExistsException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new EJBException(e.getMessage());
+        }
+    }
+    
+    public boolean isOpenInscriptions (int eventId) throws EntityDoesNotExistsException {
+        try {
+            Event event = em.find(Event.class, eventId);
+            if (event == null) {
+                throw new EntityDoesNotExistsException("There is no event with that id.");
+            }
+            if( event.isOpenInscriptions() )
+                return true;
+
+        } catch (EntityDoesNotExistsException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new EJBException(e.getMessage());
+        }
+        return false;
+    }
+    
     public void openInscriptions (int eventId) throws EntityDoesNotExistsException {
         try {
             Event event = em.find(Event.class, eventId);

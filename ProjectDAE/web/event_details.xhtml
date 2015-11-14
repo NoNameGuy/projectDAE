@@ -13,8 +13,7 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
-        <div>Event Details</div>
-        <h:dataTable value="#{administratorManager.currentEvent}" var="event">
+        
         <div>Event Details:</div>
         <h:dataTable value="#{administratorManager.currentEvent}" 
                      var="event"
@@ -81,15 +80,16 @@ and open the template in the editor.
                 <h:outputText value="#{participant.email}"/>
 
             </h:column>
-
-            <h:form>
-                <h:commandLink value="Add participant" action="event_detais?faces-redirect=true">
-                    <f:setPropertyActionListener target="#{administratorManager.currentParticipant}" value="#{participant}" />
-                </h:commandLink>
-                <h:commandLink value="Add participant" actionListener="#{administratorManager.enrollParticipant}">
-                    <f:param name="administratorID" id="administratorID" value="#{administrator.id}"/>
-                </h:commandLink>
-            </h:form>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Actions" />
+                </f:facet>
+                <h:form>
+                    <h:commandLink value="Unenroll" action="event_details?faces-redirect=true">
+                        <f:setPropertyActionListener target="#{administratorManager.unEnrollParticipant(administratorManager.currentEvent.id, participant.id)}" value="#{participant}" />
+                    </h:commandLink>
+                </h:form>
+            </h:column>
         </h:dataTable>
 
         <br></br>
@@ -114,6 +114,16 @@ and open the template in the editor.
                 <f:facet name="header">Email</f:facet>
                 <h:outputText value="#{participant.email}"/>
 
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Actions" />
+                </f:facet>
+                <h:form>
+                    <h:commandLink value="Enroll" action="event_details?faces-redirect=true">
+                        <f:setPropertyActionListener target="#{administratorManager.enrollParticipant(administratorManager.currentEvent.id, participant.id)}" value="#{participant}" />
+                    </h:commandLink>
+                </h:form>
             </h:column>
         </h:dataTable>
 

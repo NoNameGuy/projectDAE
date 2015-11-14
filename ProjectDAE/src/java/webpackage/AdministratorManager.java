@@ -219,6 +219,16 @@ public class AdministratorManager {
     }
 
     //////////////////////////// Event \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    public void enrollParticipant(int eventId, int participantId) throws EntityDoesNotExistsException {
+        if( eventBean.isOpenInscriptions(eventId))
+            eventBean.enrollParticipant(eventId, participantId);
+    }
+    
+    public void unEnrollParticipant(int eventId, int participantId) throws EntityDoesNotExistsException {
+        if( eventBean.isOpenInscriptions(eventId))
+            eventBean.unEnrollParticipant(eventId, participantId);
+    }
+    
     public void openInscriptions(int eventId) throws EntityDoesNotExistsException {
        eventBean.openInscriptions(eventId);
     }

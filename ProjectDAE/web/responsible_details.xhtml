@@ -75,6 +75,7 @@ and open the template in the editor.
                     <h:commandLink value="Close inscriptions" action="responsible_details?faces-redirect=true">
                         <f:setPropertyActionListener target="#{administratorManager.closeInscriptions(event.id)}" value="#{responsible}" />
                     </h:commandLink>
+                </h:form>
                 <f:facet name="header">Responsible</f:facet>
                 <h:outputText value="#{event.responsible_name}"/>
             </h:column>
