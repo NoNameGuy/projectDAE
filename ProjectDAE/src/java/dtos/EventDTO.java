@@ -22,6 +22,7 @@ public class EventDTO implements Serializable {
     private String local;
     private int responsible_id;
     private String responsible_name;
+    private boolean openInscrptions;
     
     public EventDTO() {
         

@@ -91,22 +91,46 @@ public class EventBean {
         }
 
     }
+    
+    public void openInscriptions (int eventId) throws EntityDoesNotExistsException {
+        try {
+            Event event = em.find(Event.class, eventId);
+            if (event == null) {
+                throw new EntityDoesNotExistsException("There is no event with that id.");
+            }
+            event.setOpenInscriptions(true);
+            em.remove(event);
 
-    public
-            void removeEvent(int id) throws EntityDoesNotExistsException {
+        } catch (EntityDoesNotExistsException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new EJBException(e.getMessage());
+        }
+    }
+    
+    public void closeInscriptions (int eventId) throws EntityDoesNotExistsException {
+        try {
+            Event event = em.find(Event.class, eventId);
+            if (event == null) {
+                throw new EntityDoesNotExistsException("There is no event with that id.");
+            }
+            event.setOpenInscriptions(false);
+            
+        } catch (EntityDoesNotExistsException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new EJBException(e.getMessage());
+        }
+    }
+
+    public void removeEvent(int id) throws EntityDoesNotExistsException {
         try {
             Event event = em.find(Event.class, id);
             if (event == null) {
                 throw new EntityDoesNotExistsException("There is no event with that id.");
             }
-            event.getResponsible().removeEvent(event);
-
-            for (Participant participant : event.getParticipants()) {
-                event.removeParticipant(participant);
-            }
-
-            em.remove(event);
-
+            event.setOpenInscriptions(false);
+            
         } catch (EntityDoesNotExistsException e) {
             throw e;
         } catch (Exception e) {

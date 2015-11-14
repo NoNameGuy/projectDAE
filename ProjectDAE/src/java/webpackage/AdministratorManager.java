@@ -186,6 +186,14 @@ public class AdministratorManager {
 
 
     //////////////////////////// Event \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    public void openInscriptions(int eventId) throws EntityDoesNotExistsException {
+       eventBean.openInscriptions(eventId);
+    }
+    
+    public void closeInscriptions(int eventId) throws EntityDoesNotExistsException {
+       eventBean.closeInscriptions(eventId);
+    }
+    
     public String createEvent() {
 
         try {

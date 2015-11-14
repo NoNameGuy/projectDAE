@@ -47,7 +47,7 @@ public class Event implements Serializable {
     private String type;
     @NotNull
     private String local;
-    private boolean attendace;
+    private boolean openInscriptions;
 
     
     
@@ -81,7 +81,7 @@ public class Event implements Serializable {
         this.local = local;
         this.participants = new LinkedList<Participant>();
         this.responsible = responsible;
-        this.attendace = false;
+        this.openInscriptions = false;
     }
 
     public int getId() {
@@ -148,12 +148,12 @@ public class Event implements Serializable {
         this.responsible = responsible;
     }
     
-    public boolean isAttendace() {
-        return attendace;
+    public boolean isOpenInscriptions() {
+        return openInscriptions;
     }
 
-    public void setAttendace(boolean attendace) {
-        this.attendace = attendace;
+    public void setOpenInscriptions(boolean openInscriptions) {
+        this.openInscriptions = openInscriptions;
     }
     
     public String toString() {
