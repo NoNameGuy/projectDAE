@@ -100,6 +100,8 @@ public class EventBean {
                 throw new EntityDoesNotExistsException("There is no event or participant with that id.");
             }
             event.addParticipant(participant);
+            
+            em.merge(event);
 
         } catch (EntityDoesNotExistsException e) {
             throw e;
@@ -147,7 +149,7 @@ public class EventBean {
                 throw new EntityDoesNotExistsException("There is no event with that id.");
             }
             event.setOpenInscriptions(true);
-            em.remove(event);
+            em.merge(event);
 
         } catch (EntityDoesNotExistsException e) {
             throw e;
@@ -163,7 +165,7 @@ public class EventBean {
                 throw new EntityDoesNotExistsException("There is no event with that id.");
             }
             event.setOpenInscriptions(false);
-            
+            em.merge(event);
         } catch (EntityDoesNotExistsException e) {
             throw e;
         } catch (Exception e) {
