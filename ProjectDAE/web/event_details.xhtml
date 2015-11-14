@@ -14,11 +14,21 @@ and open the template in the editor.
     </head>
     <body>
         <div>Event Details</div>
-        <h:dataTable value="#{administratorManager.currentEvent}" var="event">
+        <h:dataTable value="#{administratorManager.currentEvent}" 
+                     var="event"
+                     summary="List of all Event"
+                     rules="all"
+                     cellpadding="5">
+            <h:column>
+                <f:facet name="header">ID</f:facet>
+                <h:outputText value="#{event.id}"/>
+
+            </h:column>
             <h:column>
                 <f:facet name="header">Date</f:facet>
                 <h:outputText value="#{event.date}"/>
-            </h:column>    
+
+            </h:column>
             <h:column>
                 <f:facet name="header">Name</f:facet>
                 <h:outputText value="#{event.name}"/>
@@ -31,14 +41,22 @@ and open the template in the editor.
                 <f:facet name="header">Local</f:facet>
                 <h:outputText value="#{event.local}"/>
             </h:column>
+            <h:column>
+                <f:facet name="header">Responsible</f:facet>
+                <h:outputText value="#{event.responsible_name}"/>
+            </h:column>
+            <h:column>
+                <h:form>
+                    <h:commandLink action="create_event" value="Alterar Responsavel"></h:commandLink>
+                    <h:commandLink action="create_event" value="Open Attendance"></h:commandLink>
+                    <br></br>
+                    <h:commandLink action="AdminPage" value="Back"></h:commandLink>
+                </h:form>
+            </h:column>
         </h:dataTable>
-        <h:form>
-            <h:commandLink action="create_event" value="Alterar Responsavel"></h:commandLink>
-            <h:commandLink action="create_event" value="Open Attendance"></h:commandLink>
-            <br></br>
-            <h:commandLink action="AdminPage" value="Back"></h:commandLink>
-        </h:form>
-        
+
+        <br></br>
+
         <div>Participants:</div>
         <h:dataTable value="#{administratorManager.enrolledParticipants}" var="participant">
             <h:column>
@@ -57,6 +75,6 @@ and open the template in the editor.
 
             </h:column>
         </h:dataTable>
-        
+
     </body>
 </html>

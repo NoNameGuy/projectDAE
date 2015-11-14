@@ -230,7 +230,7 @@ public class AdministratorManager {
                     newEvent.getLocal(),
                     newEvent.getResponsible_id());
             newEvent.reset();
-            return "index?faces-redirect=true";
+            return "AdminPage?faces-redirect=true";
         } catch (Exception e) {
             e.printStackTrace();
         }
