@@ -165,7 +165,7 @@ public class ParticipantBean {
         }
     }
     
-    public List<ParticipantDTO> getEnrolledParticipants(long id_event) throws EntityDoesNotExistsException{
+    public List<ParticipantDTO> getEnrolledParticipants(int id_event) throws EntityDoesNotExistsException{
         try {
             Event event = em.find(Event.class, id_event);
             if( event == null){

@@ -38,21 +38,37 @@ public class ConfigBean {
        
        try {
             // Create Administrator
-            administratorBean.createAdmininstrator(1, "administrator1", "DAE1", "Admistrator1@DAE.pt");
-            administratorBean.createAdmininstrator(2, "administrator2", "DAE2", "Admistrator2@DAE.pt");
+            administratorBean.createAdmininstrator(1, "administrator1", "administrator1", "Admistrator1@DAE.pt");
+            administratorBean.createAdmininstrator(2, "administrator2", "administrator2", "Admistrator2@DAE.pt");
             
             // Create Responsible
-            responsibleBean.createResponsible(3, "responsible1", "DAE1", "Responsible1@DAE.pt");
-            responsibleBean.createResponsible(4, "responsible2", "DAE2", "Responsible2@DAE.pt");
+            responsibleBean.createResponsible(3, "responsible1", "responsible1", "Responsible1@DAE.pt");
+            responsibleBean.createResponsible(4, "responsible2", "responsible2", "Responsible2@DAE.pt");
+            responsibleBean.createResponsible(5, "responsible3", "responsible3", "Responsible3@DAE.pt");
+            responsibleBean.createResponsible(6, "responsible4", "responsible2", "Responsible4@DAE.pt");
             
             // Create Participant
-            participantBean.createParticipant(5, "participant1", "DAE1", "Participant1@DAE.pt");
-            participantBean.createParticipant(6, "participant2", "DAE2", "Participant2@DAE.pt");
-            participantBean.createParticipant(7, "participant3", "DAE3", "Participant3@DAE.pt");
-            participantBean.createParticipant(8, "participant4", "DAE4", "Participant4@DAE.pt");
+            participantBean.createParticipant(7, "participant1", "participant1", "Participant1@DAE.pt");
+            participantBean.createParticipant(8, "participant2", "participant2", "Participant2@DAE.pt");
+            participantBean.createParticipant(9, "participant3", "participant3", "Participant3@DAE.pt");
+            participantBean.createParticipant(10, "participant4", "participant4", "Participant4@DAE.pt");
+            participantBean.createParticipant(11, "participant1", "participant1", "Participant1@DAE.pt");
+            participantBean.createParticipant(12, "participant2", "participant2", "Participant2@DAE.pt");
+            participantBean.createParticipant(13, "participant3", "participant3", "Participant3@DAE.pt");
+            participantBean.createParticipant(14, "participant4", "participant4", "Participant4@DAE.pt");
+            
             // Create Event
             eventBean.createEvent(1, formatter.parse("21/01/2016"), "Evento 1", "Aula", "ESTG", 3);
             eventBean.createEvent(2, formatter.parse("05/05/2016"), "Evento 2", "Aula", "ESTG", 4);
+            eventBean.createEvent(3, formatter.parse("05/05/2016"), "Evento 2", "Aula", "ESTG", 4);
+            eventBean.createEvent(3, formatter.parse("05/05/2016"), "Evento 2", "Aula", "ESTG", 5);
+            
+            participantBean.enrollParticipant(7, 1);
+            participantBean.enrollParticipant(8, 1);
+            participantBean.enrollParticipant(9, 1);
+            participantBean.enrollParticipant(10, 1);
+            participantBean.enrollParticipant(7, 2);
+            participantBean.enrollParticipant(12, 2);
             
             // Create Subject
             subjectBean.createSubject(1, "IEI", 1, "2015/2016");

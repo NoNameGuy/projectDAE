@@ -267,6 +267,10 @@ public class AdministratorManager {
     public List<EventDTO> getAllEvents() {
         return eventBean.getAllEvents();
     }
+    
+    public List<ParticipantDTO> getEnrolledParticipants() throws EntityDoesNotExistsException {
+            return participantBean.getEnrolledParticipants(currentEvent.getId());
+    }
 
     public AdministratorBean getAdministratorBean() {
         return administratorBean;

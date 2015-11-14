@@ -16,7 +16,11 @@ and open the template in the editor.
         <!-- //////////////////////////ADMINISTRATOR////////////////////////// -->
 
         <div>Administrators:</div>
-        <h:dataTable value="#{administratorManager.allAdministrators}" var="administrator">
+        <h:dataTable value="#{administratorManager.allAdministrators}" 
+                     var="administrator"   
+                     summary="List of all Administrators"
+                     rules="all"
+                     cellpadding="5">
             <h:column>
                 <f:facet name="header">ID</f:facet>
                 <h:outputText value="#{administrator.id}"/>
@@ -58,7 +62,11 @@ and open the template in the editor.
         <br></br><br></br>
         <!-- //////////////////////////RESPONSIBLE////////////////////////// -->
         <div>Responsibles:</div>
-        <h:dataTable value="#{administratorManager.allResponsibles}" var="responsible">
+        <h:dataTable value="#{administratorManager.allResponsibles}" 
+                     var="responsible"
+                     summary="List of all Responsible"
+                     rules="all"
+                     cellpadding="5">
             <h:column>
                 <f:facet name="header">ID</f:facet>
                 <h:outputText value="#{responsible.id}"/>
@@ -102,7 +110,11 @@ and open the template in the editor.
         <br></br><br></br>
         <!-- //////////////////////////PARTICIPANT////////////////////////// -->
         <div>Participants:</div>
-        <h:dataTable value="#{administratorManager.allParticipants}" var="participant">
+        <h:dataTable value="#{administratorManager.allParticipants}" 
+                     var="participant"
+                     summary="List of all Participant"
+                     rules="all"
+                     cellpadding="5">
             <h:column>
                 <f:facet name="header">ID</f:facet>
                 <h:outputText value="#{participant.id}"/>
@@ -145,7 +157,11 @@ and open the template in the editor.
         <br></br>
         <!-- //////////////////////////Event////////////////////////// -->
         <div>Events:</div>
-        <h:dataTable value="#{administratorManager.allEvents}" var="event">
+        <h:dataTable value="#{administratorManager.allEvents}" 
+                     var="event"
+                     summary="List of all Event"
+                     rules="all"
+                     cellpadding="5">>
             <h:column>
                 <f:facet name="header">ID</f:facet>
                 <h:outputText value="#{event.id}"/>
@@ -170,7 +186,7 @@ and open the template in the editor.
             </h:column>
             <h:column>
                 <f:facet name="header">Responsible</f:facet>
-                <h:outputText value="#{event.responsible_id}"/>
+                <h:outputText value="#{event.responsible_name}"/>
             </h:column>
 
             <h:column>

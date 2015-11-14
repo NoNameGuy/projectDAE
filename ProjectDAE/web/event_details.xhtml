@@ -33,11 +33,30 @@ and open the template in the editor.
             </h:column>
         </h:dataTable>
         <h:form>
-            <h:commandLink action="create_event" value="Criar Responsavel"></h:commandLink>
             <h:commandLink action="create_event" value="Alterar Responsavel"></h:commandLink>
             <h:commandLink action="create_event" value="Open Attendance"></h:commandLink>
             <br></br>
             <h:commandLink action="AdminPage" value="Back"></h:commandLink>
         </h:form>
+        
+        <div>Participants:</div>
+        <h:dataTable value="#{administratorManager.enrolledParticipants}" var="participant">
+            <h:column>
+                <f:facet name="header">ID</f:facet>
+                <h:outputText value="#{participant.id}"/>
+
+            </h:column>
+            <h:column>
+                <f:facet name="header">Name</f:facet>
+                <h:outputText value="#{participant.name}"/>
+
+            </h:column>
+            <h:column>
+                <f:facet name="header">Email</f:facet>
+                <h:outputText value="#{participant.email}"/>
+
+            </h:column>
+        </h:dataTable>
+        
     </body>
 </html>
