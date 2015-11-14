@@ -50,7 +50,7 @@ public class ParticipantBean {
     }
 
     //Participant Update
-    public void updateParticipant(int id, String password, String name, String email, String role)
+    public void updateParticipant(int id, String password, String name, String email)
             throws EntityDoesNotExistsException, MyConstraintViolationException {
         try {
             Participant participant = em.find(Participant.class, id);

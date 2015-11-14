@@ -19,12 +19,17 @@ and open the template in the editor.
             <h:column>
                 <h:selectManyMenu
                     id="participant"
-                    value="#{administratorManager.currentParticipant.id}" >
+                    value="#{administratorManager.currentParticipant.id}"
+                    style="height: 500px"
+                    title="Add participants to Event"
+                    
+                    >
                     <f:selectItems
                         value="#{administratorManager.allParticipants}"
                         var="participant"
                         itemValue="#{participant.id}"
-                        itemLabel="#{participant.name}" />
+                        itemLabel="#{participant.name}"
+                        />
                 </h:selectManyMenu>
             </h:column>
           

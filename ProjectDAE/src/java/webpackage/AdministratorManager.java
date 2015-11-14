@@ -78,7 +78,7 @@ public class AdministratorManager {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "admin_user_create?faces-redirect=true";
+        return "admin_administrator_create?faces-redirect=true";
     }
 
     public String updateAdministrator() {
@@ -92,7 +92,7 @@ public class AdministratorManager {
         } catch (Exception e) {
             logger.warning("Problem updating user in method updateUser().");
         }
-        return "admin_update_user";
+        return "admin_administrator_update?faces-redirect=true";
     }
 
     public void removeAdministrator(ActionEvent event) {
@@ -123,7 +123,22 @@ public class AdministratorManager {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "AdminPage?faces-redirect=true";
+        return "admin_responsible_create?faces-redirect=true";
+    }
+    
+    public String updateResponsible() {
+        try {
+            responsibleBean.updateResponsible(
+                    currentResponsible.getId(),
+                    currentResponsible.getPassword(),
+                    currentResponsible.getName(),
+                    currentResponsible.getEmail());
+            currentResponsible.reset();
+            return "AdminPage?faces-redirect=true";
+        } catch (Exception e) {
+            logger.warning("Problem updating user in method updateUser().");
+        }
+        return "admin_responsible_update?faces-redirect=true";
     }
 
     public void removeResponsible(ActionEvent event) {
@@ -162,9 +177,24 @@ public class AdministratorManager {
             newParticipant.reset();
             return "AdminPage?faces-redirect=true";
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.warning("Problem updating user in method createParticipant().");
         }
-        return "AdminPage?faces-redirect=true";
+        return "admin_participant_create?faces-redirect=true";
+    }
+    
+    public String updateParticipant() {
+        try {
+            participantBean.updateParticipant(
+                    currentParticipant.getId(),
+                    currentParticipant.getPassword(),
+                    currentParticipant.getName(),
+                    currentParticipant.getEmail());
+            currentParticipant.reset();
+            return "AdminPage?faces-redirect=true";
+        } catch (Exception e) {
+            logger.warning("Problem updating user in method updateParticipant().");
+        }
+        return "admin_participant_update?faces-redirect=true";
     }
 
     public void removeParticipant(ActionEvent event) {
