@@ -125,7 +125,7 @@ public class AdministratorManager {
         }
         return "admin_responsible_create?faces-redirect=true";
     }
-    
+
     public String updateResponsible() {
         try {
             responsibleBean.updateResponsible(
@@ -154,17 +154,15 @@ public class AdministratorManager {
     public List<ResponsibleDTO> getAllResponsibles() {
         return responsibleBean.getAllResponsibles();
     }
-    
-    
+
     public List<EventDTO> getCurrentResponsibleEvents() {
-        
         try {
             return eventBean.getResponsibleEvents(currentResponsible.getId());
         } catch (Exception e) {
             return null;
         }
     }
-    
+
     //////////////////////////// Participant \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     public String createParticipant() {
 
@@ -181,7 +179,7 @@ public class AdministratorManager {
         }
         return "admin_participant_create?faces-redirect=true";
     }
-    
+
     public String updateParticipant() {
         try {
             participantBean.updateParticipant(
@@ -211,7 +209,7 @@ public class AdministratorManager {
         return participantBean.getAllParticipants();
 
     }
-    
+
     public List<EventDTO> getCurrentParticipantEvents() {
         try {
             return eventBean.getParticipantEvents(currentResponsible.getId());
@@ -219,9 +217,6 @@ public class AdministratorManager {
             return null;
         }
     }
-    
-    
-
 
     //////////////////////////// Event \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     public String createEvent() {
@@ -272,8 +267,6 @@ public class AdministratorManager {
     public List<EventDTO> getAllEvents() {
         return eventBean.getAllEvents();
     }
-    
-     
 
     public AdministratorBean getAdministratorBean() {
         return administratorBean;

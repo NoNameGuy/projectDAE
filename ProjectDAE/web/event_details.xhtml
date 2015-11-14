@@ -14,7 +14,7 @@ and open the template in the editor.
     </head>
     <body>
         <div>Event Details</div>
-        <h:dataTable value="#{eventManager.currentEvent}" var="event">
+        <h:dataTable value="#{administratorManager.currentEvent}" var="event">
             <h:column>
                 <f:facet name="header">Date</f:facet>
                 <h:outputText value="#{event.date}"/>
