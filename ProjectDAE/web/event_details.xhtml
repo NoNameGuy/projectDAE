@@ -46,11 +46,19 @@ and open the template in the editor.
                 <h:outputText value="#{event.responsible_name}"/>
             </h:column>
             <h:column>
-                <h:form>
-                    <h:commandLink action="create_event" value="Alterar Responsavel"></h:commandLink>
-                    <h:commandLink action="create_event" value="Open Attendance"></h:commandLink>
-                    <br></br>
+                 <h:form rendered="#{!event.openInscriptions}">
+                    <h:commandLink value="Open inscriptions" action="responsible_details?faces-redirect=true">
+                        <f:setPropertyActionListener target="#{administratorManager.openInscriptions}" value="#{event}" />
+                    </h:commandLink>
+                </h:form>    
 
+                <h:form rendered="#{event.openInscriptions}">
+                    <h:commandLink value="Close inscriptions" action="responsible_details?faces-redirect=true">
+                        <f:setPropertyActionListener target="#{administratorManager.closeInscriptions}" value="#{event}" />
+                    </h:commandLink>
+                </h:form>
+                <h:form>
+                    <h:commandLink action="add_participant_event" value="Add Participant"></h:commandLink>
                 </h:form>
             </h:column>
         </h:dataTable>
