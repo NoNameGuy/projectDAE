@@ -45,23 +45,23 @@ public class ConfigBean {
             responsibleBean.createResponsible(3, "responsible1", "responsible1", "Responsible1@DAE.pt");
             responsibleBean.createResponsible(4, "responsible2", "responsible2", "Responsible2@DAE.pt");
             responsibleBean.createResponsible(5, "responsible3", "responsible3", "Responsible3@DAE.pt");
-            responsibleBean.createResponsible(6, "responsible4", "responsible2", "Responsible4@DAE.pt");
+            responsibleBean.createResponsible(6, "responsible4", "responsible4", "Responsible4@DAE.pt");
             
             // Create Participant
             participantBean.createParticipant(7, "participant1", "participant1", "Participant1@DAE.pt");
             participantBean.createParticipant(8, "participant2", "participant2", "Participant2@DAE.pt");
             participantBean.createParticipant(9, "participant3", "participant3", "Participant3@DAE.pt");
             participantBean.createParticipant(10, "participant4", "participant4", "Participant4@DAE.pt");
-            participantBean.createParticipant(11, "participant1", "participant1", "Participant1@DAE.pt");
-            participantBean.createParticipant(12, "participant2", "participant2", "Participant2@DAE.pt");
-            participantBean.createParticipant(13, "participant3", "participant3", "Participant3@DAE.pt");
-            participantBean.createParticipant(14, "participant4", "participant4", "Participant4@DAE.pt");
+            participantBean.createParticipant(11, "participant5", "participant5", "Participant5@DAE.pt");
+            participantBean.createParticipant(12, "participant6", "participant6", "Participant6@DAE.pt");
+            participantBean.createParticipant(13, "participant7", "participant7", "Participant7@DAE.pt");
+            participantBean.createParticipant(14, "participant8", "participant8", "Participant8@DAE.pt");
             
             // Create Event
             eventBean.createEvent(1, formatter.parse("21/01/2016"), "Evento 1", "Aula", "ESTG", 3);
             eventBean.createEvent(2, formatter.parse("05/05/2016"), "Evento 2", "Aula", "ESTG", 4);
-            eventBean.createEvent(3, formatter.parse("05/05/2016"), "Evento 2", "Aula", "ESTG", 4);
-            eventBean.createEvent(3, formatter.parse("05/05/2016"), "Evento 2", "Aula", "ESTG", 5);
+            eventBean.createEvent(3, formatter.parse("07/10/2016"), "Evento 3", "Aula", "ESTG", 4);
+            eventBean.createEvent(3, formatter.parse("18/02/2017"), "Evento 4", "Aula", "ESTG", 5);
             
             participantBean.enrollParticipant(7, 1);
             participantBean.enrollParticipant(8, 1);
